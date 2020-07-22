@@ -5,13 +5,17 @@
   
 
   
-  <title>Hexo</title>
+  <title>Python-Task01 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="1.运算符的优先级问题： 以下表格列出了从最高到最低优先级的所有运算符：    运算符 描述    ** 指数 (最高优先级)   ~ + - 按位翻转, 一元加号和减号 (最后两个的方法名为 +@ 和 -@)   * &#x2F; % &#x2F;&#x2F; 乘，除，求余数和取整除   + - 加法减法   &gt;&gt; &lt;&lt; 右移，左移运算符   &amp; 位 ‘AND’   ^ | 位运算符   &amp;l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python-Task01">
+<meta property="og:url" content="http://yoursite.com/2020/07/22/Python-Task01/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.运算符的优先级问题： 以下表格列出了从最高到最低优先级的所有运算符：    运算符 描述    ** 指数 (最高优先级)   ~ + - 按位翻转, 一元加号和减号 (最后两个的方法名为 +@ 和 -@)   * &#x2F; % &#x2F;&#x2F; 乘，除，求余数和取整除   + - 加法减法   &gt;&gt; &lt;&lt; 右移，左移运算符   &amp; 位 ‘AND’   ^ | 位运算符   &amp;l">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-22T13:55:59.000Z">
+<meta property="article:modified_time" content="2020-07-22T14:59:24.316Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -62,9 +66,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Python-Task01" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Python-Task01" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/22/Python-Task01/" class="article-date">
   <time datetime="2020-07-22T13:55:59.000Z" itemprop="datePublished">2020-07-22</time>
@@ -77,8 +79,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/22/Python-Task01/">Python-Task01</a>
+    <h1 class="article-title" itemprop="name">
+      Python-Task01
     </h1>
   
 
@@ -211,147 +213,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-NLP-Task01" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/21/NLP-Task01/" class="article-date">
-  <time datetime="2020-07-21T14:36:33.000Z" itemprop="datePublished">2020-07-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/21/NLP-Task01/">NLP-Task01</a>
-    </h1>
+    <a href="/2020/07/21/NLP-Task01/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">NLP-Task01</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="零基础入门NLP-新闻文本分类"><a href="#零基础入门NLP-新闻文本分类" class="headerlink" title="零基础入门NLP - 新闻文本分类"></a>零基础入门NLP - 新闻文本分类</h2><p>Task01：赛题理解</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pandas读取训练集数据</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">train_df = pd.read_csv(<span class="string">'D:/PycharmProjects/tianchiLab/input/train_set.csv'</span>, sep=<span class="string">'\t'</span>)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看训练集大小</span></span><br><span class="line">train_df.shape</span><br></pre></td></tr></table></figure>
-
-<p>(200000, 2)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看前5条数据</span></span><br><span class="line">train_df.head()</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th align="right"></th>
-<th align="right">label</th>
-<th align="right">text</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="right">0</td>
-<td align="right">2</td>
-<td align="right">2967 6758 339 2021 1854 3731 4109 3792 4149 15…</td>
-</tr>
-<tr>
-<td align="right">1</td>
-<td align="right">11</td>
-<td align="right">4464 486 6352 5619 2465 4802 1452 3137 5778 54…</td>
-</tr>
-<tr>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">7346 4068 5074 3747 5681 6093 1777 2226 7354 6…</td>
-</tr>
-<tr>
-<td align="right">3</td>
-<td align="right">2</td>
-<td align="right">7159 948 4866 2109 5520 2490 211 3956 5520 549…</td>
-</tr>
-<tr>
-<td align="right">4</td>
-<td align="right">3</td>
-<td align="right">3646 3055 3055 2490 4659 6065 3370 5814 2465 5…</td>
-</tr>
-</tbody></table>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对每行数据统计词的个数，并对词数做了简单的统计，得到最大值、最小值、均值、方差等。</span></span><br><span class="line">%pylab inline</span><br><span class="line">train_df[<span class="string">'text_len'</span>] = train_df[<span class="string">'text'</span>].apply(<span class="keyword">lambda</span> x: len(x.split(<span class="string">' '</span>)))</span><br><span class="line">print(train_df[<span class="string">'text_len'</span>].describe())</span><br></pre></td></tr></table></figure>
-
-<p>Populating the interactive namespace from numpy and matplotlib<br>count    200000.000000<br>mean        907.207110<br>std         996.029036<br>min           2.000000<br>25%         374.000000<br>50%         676.000000<br>75%        1131.000000<br>max       57921.000000<br>Name: text_len, dtype: float64</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对词数一列，画出直方图，查看数据分布</span></span><br><span class="line">_ = plt.hist(train_df[<span class="string">'text_len'</span>], bins=<span class="number">200</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Text char count'</span>)</span><br><span class="line">plt.title(<span class="string">"Histogram of char count"</span>)</span><br></pre></td></tr></table></figure>
-
-<p>Text(0.5, 1.0, ‘Histogram of char count’)</p>
-<p><img src="D:%5Cslenderzhang.github.io%5Csource_posts%5Cimg.png" alt="img"></p>
-<p><img src="NLP-Task01%5Cimg.png" alt="img"></p>
-<p><img src="NLP-Task01/img.png" alt="img"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/NLP-Task01/" data-id="ckcw430y100005kwc3yy568cd" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/21/hello-world/" class="article-date">
-  <time datetime="2020-07-21T13:36:01.172Z" itemprop="datePublished">2020-07-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/21/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/hello-world/" data-id="ckcvzuoq9000048wc1lrpcwon" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
