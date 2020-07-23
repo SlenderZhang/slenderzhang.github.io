@@ -64,6 +64,103 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-NLP-Task03" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/23/NLP-Task03/" class="article-date">
+  <time datetime="2020-07-23T14:32:49.000Z" itemprop="datePublished">2020-07-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/23/NLP-Task03/">NLP-Task03</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/23/NLP-Task03/" data-id="ckcywbdcb000028wcemzf7xzs" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Python-Task02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/23/Python-Task02/" class="article-date">
+  <time datetime="2020-07-23T08:05:01.000Z" itemprop="datePublished">2020-07-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/23/Python-Task02/">Python-Task02</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Python编程基础-Task01"><a href="#Python编程基础-Task01" class="headerlink" title="Python编程基础-Task01"></a>Python编程基础-Task01</h1><h2 id="Task-2-条件循环结构"><a href="#Task-2-条件循环结构" class="headerlink" title="Task 2: 条件循环结构"></a>Task 2: 条件循环结构</h2><p>1.assert关键词</p>
+<p>Python assert（断言）用于判断一个表达式，在表达式条件为 false 的时候触发异常。</p>
+<p>断言可以在条件不满足程序运行的情况下直接返回错误，而不必等待程序运行后出现崩溃的情况，例如我们的代码只能在 Linux 系统下运行，可以先判断当前系统是否符合条件。</p>
+<p>语法格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assert expression</span><br></pre></td></tr></table></figure>
+
+<p>等价于：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if not expression:</span><br><span class="line">    raise AssertionError</span><br></pre></td></tr></table></figure>
+
+<p>assert 后面也可以紧跟参数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assert expression [, arguments]</span><br></pre></td></tr></table></figure>
+
+<p>等价于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> expression:</span><br><span class="line">    <span class="keyword">raise</span> AssertionError(arguments)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span> <span class="number">1</span>==<span class="number">2</span>, <span class="string">'1 不等于 2'</span></span><br></pre></td></tr></table></figure>
+<p>Traceback (most recent call last):<br> File “<stdin>“, line 1, <strong>in</strong> <module><br>AssertionError: 1 不等于 2</p>
+<p>2.enumerate()函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enumerate(sequence, [start&#x3D;0])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>sequence – 一个序列、迭代器或其他支持迭代对象。</li>
+<li>start – 下标起始位置。</li>
+<li>返回 enumerate(枚举) 对象</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">seasons = [<span class="string">'Spring'</span>, <span class="string">'Summer'</span>, <span class="string">'Fall'</span>, <span class="string">'Winter'</span>]</span><br><span class="line">lst = list(enumerate(seasons))</span><br><span class="line">print(lst)</span><br><span class="line"><span class="comment"># [(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]</span></span><br><span class="line">lst = list(enumerate(seasons, start=<span class="number">1</span>))  <span class="comment"># 下标从 1 开始</span></span><br><span class="line">print(lst)</span><br><span class="line"><span class="comment"># [(1, 'Spring'), (2, 'Summer'), (3, 'Fall'), (4, 'Winter')]</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/23/Python-Task02/" data-id="ckcywbdcl000428wc5i1l9yy8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-NLP-Task02" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/23/NLP-Task02/" class="article-date">
@@ -115,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/23/NLP-Task02/" data-id="ckcxmxvws0002z8wc2vw5etee" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/23/NLP-Task02/" data-id="ckcywbdck000328wc5xvjhyot" class="article-share-link">Share</a>
       
       
     </footer>
@@ -147,9 +244,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Python编程基础-Task01"><a href="#Python编程基础-Task01" class="headerlink" title="Python编程基础-Task01"></a><strong>Python编程基础-Task01</strong></h1><h2 id="Task01：-变量、运算符、数据类型及位运算"><a href="#Task01：-变量、运算符、数据类型及位运算" class="headerlink" title="Task01： 变量、运算符、数据类型及位运算"></a>Task01： 变量、运算符、数据类型及位运算</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span> = <span class="string">#00FFFF</span> <span class="attr">size</span>=<span class="string">5</span> <span class="attr">face</span>=<span class="string">"STCAIYUN"</span>&gt;</span><span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<font size=3>
+        <h1 id="Python编程基础-Task01"><a href="#Python编程基础-Task01" class="headerlink" title="Python编程基础-Task01"></a><strong>Python编程基础-Task01</strong></h1><h2 id="Task01：-变量、运算符、数据类型及位运算"><a href="#Task01：-变量、运算符、数据类型及位运算" class="headerlink" title="Task01： 变量、运算符、数据类型及位运算"></a>Task01： 变量、运算符、数据类型及位运算</h2><font size=3>
 
 <p>1.运算符的优先级问题：</p>
 <p>以下表格列出了从最高到最低优先级的所有运算符：</p>
@@ -313,7 +408,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Python-Task01/" data-id="ckcxmxvwq0001z8wc3rpp6zs6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/Python-Task01/" data-id="ckcywbdcj000228wc7i5chrwv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -397,7 +492,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/NLP-Task01/" data-id="ckcxmxvwm0000z8wcgxewcveu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/NLP-Task01/" data-id="ckcywbdcg000128wc3r5p5ak9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -446,7 +541,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/hello-world/" data-id="ckcxmxvwt0003z8wcfs2q31sr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/hello-world/" data-id="ckcywbdcm000528wcc1dv2j33" class="article-share-link">Share</a>
       
       
     </footer>
@@ -487,6 +582,14 @@
       <ul>
         
           <li>
+            <a href="/2020/07/23/NLP-Task03/">NLP-Task03</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/23/Python-Task02/">Python-Task02</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/23/NLP-Task02/">NLP-Task02</a>
           </li>
         
@@ -496,10 +599,6 @@
         
           <li>
             <a href="/2020/07/21/NLP-Task01/">NLP-Task01</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/21/hello-world/">Hello World</a>
           </li>
         
       </ul>
