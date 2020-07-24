@@ -64,6 +64,86 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Python-Task03" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/24/Python-Task03/" class="article-date">
+  <time datetime="2020-07-24T06:10:42.000Z" itemprop="datePublished">2020-07-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/24/Python-Task03/">Python-Task03</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Python编程基础-Task03"><a href="#Python编程基础-Task03" class="headerlink" title="Python编程基础-Task03"></a>Python编程基础-Task03</h1><h2 id="Task-3-异常处理"><a href="#Task-3-异常处理" class="headerlink" title="Task 3:异常处理"></a>Task 3:异常处理</h2><p>1.语法错误</p>
+<p>Python 的语法错误或者称之为解析错。</p>
+<p>2.异常</p>
+<p>即便 Python 程序的语法是正确的，在运行它的时候，也有可能发生错误。运行期检测到的错误被称为异常。</p>
+<p>3.异常处理</p>
+<p>1）try-except语句</p>
+<p>2）try-except Exception as e 语句。<strong>Exception匹配了所有异常，把异常名称赋给了e</strong>。当然这里不一定非得是e，你可以取任何的变量名，只是约定俗称这样写罢了。</p>
+<p>3）try-except语句 多个except子句</p>
+<p>4）try-except -else语句</p>
+<p>5）try-except -finally语句。finaly的作用是，无论except是否捕捉到异常，finally后面的代码都会执行，try获取了资源，finally释放资源，保证了收尾工作。</p>
+<p>6）with语句</p>
+<p>with…语句相当于try-finally语句的简写，可以替代try-finally的功能。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">with open(&#39;poem.txt&#39;) as f:</span><br><span class="line">	print(f.read())</span><br><span class="line">print(f.closed)</span><br></pre></td></tr></table></figure>
+
+<p>表达式open(‘poem.txt’)返回是一个_io.TextIOWrapper 类型的变量赋给f。在with语句块中就可以使用这个变量操作文件。执行with这个结构之后，f会自动关闭，相当于自带了一个finally。</p>
+<p>​    Try的工作原理是，当开始一个try语句后，python就在当前程序的上下文中作标记，这样当异常出现时就可以回到这里，try子句先执行，接下来会发生什么依赖于执行时是否出现异常。</p>
+<ol>
+<li>首先，执行 try 子句（在关键字 try 和关键字 except 之间的语句）。</li>
+<li>如果当try后的语句执行时发生异常，那么 try 子句余下的部分将被忽略。python就跳回到try并执行第一个匹配该异常的except子句，异常处理完毕，控制流就通过整个try语句（除非在处理异常时又引发新的异常）。</li>
+<li>如果在try后的语句里发生了异常，却没有匹配的except子句，异常将被递交到上层的try，或者到程序的最上层（这样将结束程序，并打印缺省的出错信息）。</li>
+<li>如果在try子句执行时没有发生异常，忽略 except 子句，python将执行else语句后的语句（如果有else的话），然后控制流通过整个try语句。</li>
+</ol>
+<p>4.抛出异常</p>
+<p>raise语句   raise [Exception [, args [, traceback]]]</p>
+<p>使用<code>raise</code>语句抛出一个指定的异常。</p>
+<p>raise 唯一的一个参数指定了要被抛出的异常。它必须是一个异常的实例或者是异常的类（也就是 Exception 的子类）。</p>
+<p>如果你只想知道这是否抛出了一个异常，并不想去处理它，那么一个简单的 raise 语句就可以再次把它抛出。</p>
+<p>5.用户自定义异常</p>
+<p>可以通过创建一个新的异常类来拥有自己的异常。异常类继承自 Exception 类，可以直接继承，或者间接继承，例如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyError</span><span class="params">(Exception)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, value)</span>:</span></span><br><span class="line">		self.value = value</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">return</span> repr(self.value)</span><br><span class="line">  </span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">	<span class="keyword">raise</span> MyError(<span class="number">2</span>*<span class="number">2</span>)</span><br><span class="line"><span class="keyword">except</span> MyError <span class="keyword">as</span> e:</span><br><span class="line">    print(<span class="string">'My exception occurred, value:'</span>, e.value)</span><br><span class="line"></span><br><span class="line"><span class="comment"># My exception occurred, value: 4</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">raise</span> MyError(<span class="string">'oops!'</span>)</span><br><span class="line"><span class="comment">#Traceback (most recent call last):</span></span><br><span class="line"><span class="comment">#File "&lt;stdin&gt;", line 1, **in** ?</span></span><br><span class="line"><span class="comment">#__main__.MyError: 'oops!'</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，类 Exception 默认的 <strong>init</strong>() 被覆盖。</p>
+<p>6.总结如下：</p>
+<p>1)except语句不是必须的，finally语句也不是必须的，但是二者必须要有一个，否则就没有try的意义了。</p>
+<p>2)except语句可以有多个，Python会按except语句的顺序依次匹配你指定的异常，如果异常已经处理就不会再进入后面的except语句。也就是说最多只有一个分支被执行。</p>
+<p>3)except语句可以以元组形式同时指定多个异常。</p>
+<p>4)except语句后面如果不指定异常类型，则默认捕获所有异常，你可以通过logging或者sys模块获取当前异常。</p>
+<p>5)如果要捕获异常后要重复抛出，请使用raise，后面不要带任何参数或信息。</p>
+<p>6)不建议捕获并抛出同一个异常，请考虑重构你的代码。</p>
+<p>7)不建议在不清楚逻辑的情况下捕获所有异常，有可能你隐藏了很严重的问题。</p>
+<p>8)尽量使用内置的异常处理语句来 替换try/except语句，比如with语句，getattr()方法。</p>
+<p>7.练习题：猜数字游戏</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line">print(<span class="string">"猜测一个0到100之间的整数。"</span>)</span><br><span class="line">x = random.randint(<span class="number">0</span>, <span class="number">100</span>)</span><br><span class="line">i = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        a = int(input(<span class="string">"第%d次猜，请输入一个整形数字:"</span> %i))</span><br><span class="line">        <span class="keyword">if</span> a &lt; x:</span><br><span class="line">            print(<span class="string">"太小"</span>)</span><br><span class="line">        <span class="keyword">elif</span> a &gt; x:</span><br><span class="line">            print(<span class="string">"太大"</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"恭喜你猜到了这个数是"</span>, a)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">except</span> ValueError:</span><br><span class="line">        print(<span class="string">"输入无效"</span>)</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        i += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>猜测一个0到100之间的整数。<br>第1次猜，请输入一个整形数字:5.5<br>输入无效<br>第2次猜，请输入一个整形数字:5<br>太小<br>第3次猜，请输入一个整形数字:50<br>太大<br>第4次猜，请输入一个整形数字:30<br>太大<br>第5次猜，请输入一个整形数字:20<br>太大<br>第6次猜，请输入一个整形数字:10<br>太小<br>第7次猜，请输入一个整形数字:15<br>太大<br>第8次猜，请输入一个整形数字:13<br>恭喜你猜到了这个数是 13</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/24/Python-Task03/" data-id="ckczvr4q50000h4wchqu3c7et" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-NLP-Task03" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/23/NLP-Task03/" class="article-date">
@@ -134,7 +214,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Python编程基础-Task01"><a href="#Python编程基础-Task01" class="headerlink" title="Python编程基础-Task01"></a>Python编程基础-Task01</h1><h2 id="Task-2-条件循环结构"><a href="#Task-2-条件循环结构" class="headerlink" title="Task 2: 条件循环结构"></a>Task 2: 条件循环结构</h2><p>1.assert关键词</p>
+        <h1 id="Python编程基础-Task02"><a href="#Python编程基础-Task02" class="headerlink" title="Python编程基础-Task02"></a>Python编程基础-Task02</h1><h2 id="Task-2-条件循环结构"><a href="#Task-2-条件循环结构" class="headerlink" title="Task 2: 条件循环结构"></a>Task 2: 条件循环结构</h2><p>1.assert关键词</p>
 <p>Python assert（断言）用于判断一个表达式，在表达式条件为 false 的时候触发异常。</p>
 <p>断言可以在条件不满足程序运行的情况下直接返回错误，而不必等待程序运行后出现崩溃的情况，例如我们的代码只能在 Linux 系统下运行，可以先判断当前系统是否符合条件。</p>
 <p>语法格式如下：</p>
@@ -594,6 +674,10 @@
       <ul>
         
           <li>
+            <a href="/2020/07/24/Python-Task03/">Python-Task03</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/23/NLP-Task03/">NLP-Task03</a>
           </li>
         
@@ -607,10 +691,6 @@
         
           <li>
             <a href="/2020/07/22/Python-Task01/">Python-Task01</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/21/NLP-Task01/">NLP-Task01</a>
           </li>
         
       </ul>
