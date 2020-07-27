@@ -64,6 +64,62 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-NLP-Task04" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/27/NLP-Task04/" class="article-date">
+  <time datetime="2020-07-27T15:33:02.000Z" itemprop="datePublished">2020-07-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/27/NLP-Task04/">NLP-Task04</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="零基础入门NLP-新闻文本分类-Task04"><a href="#零基础入门NLP-新闻文本分类-Task04" class="headerlink" title="零基础入门NLP - 新闻文本分类-Task04"></a>零基础入门NLP - 新闻文本分类-Task04</h1><h2 id="Task04-基于深度学习的文本分类1"><a href="#Task04-基于深度学习的文本分类1" class="headerlink" title="Task04:基于深度学习的文本分类1"></a>Task04:基于深度学习的文本分类1</h2><ol>
+<li>FastText</li>
+</ol>
+<p>1)简介</p>
+<p>fastText是一个快速文本分类算法，与基于神经网络的分类算法相比有两大优点：<br>1、fastText在保持高精度的情况下加快了训练速度和测试速度<br>2、fastText不需要预训练好的词向量，fastText会自己训练词向量<br>3、fastText两个重要的优化：Hierarchical Softmax、N-gram<br>2)模型架构</p>
+<p>fastText模型架构和word2vec的CBOW模型架构非常相似。下面是fastText模型架构图：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-7f38f23e98ee89d21fd16e34d5f07d69_1440w.jpg" alt="img"></p>
+<p>注意：此架构图没有展示词向量的训练过程。可以看到，和CBOW一样，fastText模型也只有三层：输入层、隐含层、输出层（Hierarchical Softmax），输入都是多个经向量表示的单词，输出都是一个特定的target，隐含层都是对多个词向量的叠加平均。不同的是，CBOW的输入是目标单词的上下文，fastText的输入是多个单词及其n-gram特征，这些特征用来表示单个文档；CBOW的输入单词被onehot编码过，fastText的输入特征是被embedding过；CBOW的输出是目标词汇，fastText的输出是文档对应的类标。</p>
+<p>2.基于FastText的文本分类</p>
+<ul>
+<li>pip安装</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install fasttext</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>分类模型</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> f1_score</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转换为FastText需要的格式</span></span><br><span class="line"><span class="comment"># pandas读取训练集数据</span></span><br><span class="line">train_df = pd.read_csv(<span class="string">'D:/PycharmProjects/tianchiLab/input/train_set.csv'</span>, sep=<span class="string">'\t'</span>, nrows=<span class="number">30000</span>)</span><br><span class="line"><span class="comment"># 拼接'__label__'和label</span></span><br><span class="line">train_df[<span class="string">'label_ft'</span>] = <span class="string">'__label__'</span> + train_df[<span class="string">'label'</span>].astype(str)</span><br><span class="line"><span class="comment"># 取前面25000条数据作为训练集</span></span><br><span class="line">train_df[[<span class="string">'text'</span>,<span class="string">'label_ft'</span>]].iloc[:<span class="number">-5000</span>].to_csv(<span class="string">'train.csv'</span>, index=<span class="literal">None</span>, header=<span class="literal">None</span>, sep=<span class="string">'\t'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> fasttext</span><br><span class="line"><span class="comment"># fasttext训练模型</span></span><br><span class="line">model = fasttext.train_supervised(<span class="string">'train.csv'</span>, lr=<span class="number">1.0</span>, wordNgrams=<span class="number">2</span>, </span><br><span class="line">                                  verbose=<span class="number">2</span>, minCount=<span class="number">1</span>, epoch=<span class="number">25</span>, loss=<span class="string">"hs"</span>)</span><br><span class="line"><span class="comment"># 用后5000条数据做预测</span></span><br><span class="line">val_pred = [model.predict(x)[<span class="number">0</span>][<span class="number">0</span>].split(<span class="string">'__'</span>)[<span class="number">-1</span>] <span class="keyword">for</span> x <span class="keyword">in</span> train_df.iloc[<span class="number">-5000</span>:][<span class="string">'text'</span>]]</span><br><span class="line"><span class="comment"># 打印f1</span></span><br><span class="line">print(f1_score(train_df[<span class="string">'label'</span>].values[<span class="number">-5000</span>:].astype(str), val_pred, average=<span class="string">'macro'</span>))</span><br></pre></td></tr></table></figure>
+
+<p>0.8654174677824358</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/27/NLP-Task04/" data-id="ckd4okycw0000dgwc86df72fg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Python-Task04" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/27/Python-Task04/" class="article-date">
@@ -738,6 +794,10 @@
       <ul>
         
           <li>
+            <a href="/2020/07/27/NLP-Task04/">NLP-Task04</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/27/Python-Task04/">Python-Task04</a>
           </li>
         
@@ -751,10 +811,6 @@
         
           <li>
             <a href="/2020/07/23/Python-Task02/">Python-Task02</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/23/NLP-Task02/">NLP-Task02</a>
           </li>
         
       </ul>
