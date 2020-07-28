@@ -7,15 +7,15 @@
   
   <title>Python-Task04 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Python编程基础-Task04Task 4:列表、元组、字符串1.列表通过 matrix &#x3D; [array] * 3创建时，只是创建3个指向array的引用，所以一旦array改变，matrix中3个list也会随之改变。 123456&gt;&gt;&gt; lists &#x3D; [[]] * 3&gt;&gt;&gt; lists[[], [], []]&gt;&gt;&gt; lists[0]">
+  <meta name="description" content="Python编程基础-Task04Task 4:列表、元组、字符串列表 1.列表通过 matrix &#x3D; [array] * 3创建时，只是创建3个指向array的引用，所以一旦array改变，matrix中3个list也会随之改变。 123456&gt;&gt;&gt; lists &#x3D; [[]] * 3&gt;&gt;&gt; lists[[], [], []]&gt;&gt;&gt; lists">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python-Task04">
 <meta property="og:url" content="http://yoursite.com/2020/07/27/Python-Task04/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Python编程基础-Task04Task 4:列表、元组、字符串1.列表通过 matrix &#x3D; [array] * 3创建时，只是创建3个指向array的引用，所以一旦array改变，matrix中3个list也会随之改变。 123456&gt;&gt;&gt; lists &#x3D; [[]] * 3&gt;&gt;&gt; lists[[], [], []]&gt;&gt;&gt; lists[0]">
+<meta property="og:description" content="Python编程基础-Task04Task 4:列表、元组、字符串列表 1.列表通过 matrix &#x3D; [array] * 3创建时，只是创建3个指向array的引用，所以一旦array改变，matrix中3个list也会随之改变。 123456&gt;&gt;&gt; lists &#x3D; [[]] * 3&gt;&gt;&gt; lists[[], [], []]&gt;&gt;&gt; lists">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-27T07:59:12.000Z">
-<meta property="article:modified_time" content="2020-07-27T10:22:09.887Z">
+<meta property="article:modified_time" content="2020-07-28T13:14:32.124Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -88,7 +88,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Python编程基础-Task04"><a href="#Python编程基础-Task04" class="headerlink" title="Python编程基础-Task04"></a>Python编程基础-Task04</h1><h2 id="Task-4-列表、元组、字符串"><a href="#Task-4-列表、元组、字符串" class="headerlink" title="Task 4:列表、元组、字符串"></a>Task 4:列表、元组、字符串</h2><p>1.列表通过 matrix = [array] * 3创建时，只是创建3个指向array的引用，所以一旦array改变，matrix中3个list也会随之改变。</p>
+        <h1 id="Python编程基础-Task04"><a href="#Python编程基础-Task04" class="headerlink" title="Python编程基础-Task04"></a>Python编程基础-Task04</h1><h2 id="Task-4-列表、元组、字符串"><a href="#Task-4-列表、元组、字符串" class="headerlink" title="Task 4:列表、元组、字符串"></a>Task 4:列表、元组、字符串</h2><p><strong>列表</strong></p>
+<p>1.列表通过 matrix = [array] * 3创建时，只是创建3个指向array的引用，所以一旦array改变，matrix中3个list也会随之改变。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lists = [[]] * <span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lists</span><br><span class="line">[[], [], []]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lists[<span class="number">0</span>].append(<span class="number">3</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lists</span><br><span class="line">[[<span class="number">3</span>], [<span class="number">3</span>], [<span class="number">3</span>]]</span><br></pre></td></tr></table></figure>
 
 <p>创建二维数组的方式：</p>
@@ -116,6 +117,32 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 练习题3</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">peakIndexInMountainArray</span><span class="params">(A)</span>:</span></span><br><span class="line"><span class="comment">#     for i in range(1,len(A)-1):</span></span><br><span class="line"><span class="comment">#         all() 函数用于判断给定的可迭代参数 iterable 中的所有元素是否都为 TRUE，如果是返回 True，否则返回 False。</span></span><br><span class="line"><span class="comment">#         if all(A[n]&lt;A[n+1] for n in range(i)) and all(A[n]&gt;A[n+1] for n in range(i,len(A)-2)):</span></span><br><span class="line"><span class="comment">#             return i</span></span><br><span class="line"><span class="comment">#         else:</span></span><br><span class="line"><span class="comment">#             continue</span></span><br><span class="line">    <span class="comment"># 因为所给数组是满足条件的数组，山峰一定是数组的最大值</span></span><br><span class="line">    <span class="keyword">return</span> A.index(max(A))</span><br><span class="line"></span><br><span class="line">A = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">0</span>]</span><br><span class="line">print(peakIndexInMountainArray(A))</span><br></pre></td></tr></table></figure>
 
 <p>3</p>
+<p><strong>元组</strong></p>
+<p>1.元组与列表</p>
+<p>不同：</p>
+<ul>
+<li>tuple被创建后就不能对其进行修改，类似字符串。列表可以修改。</li>
+<li>元组使用小括号，列表使用方括号。</li>
+</ul>
+<p>相同：</p>
+<ul>
+<li>都是序列类型的容器对象，可以存放任何类型的数据，支持迭代。</li>
+<li>用整数来进行索引 (indexing) 和切片 (slicing)。</li>
+<li>tuple 一般用于存储异构(heterogeneous)数据，当做没有字段名的记录来用，比如用 tuple 来记录一个人的身高、体重、年龄。列表一般用于存储同构数据(homogenous)，同构数据就是具有相同意义的数据，比如都是字符串类型。</li>
+</ul>
+<p>namedtuple：因为 tuple 作为没有名字的记录来使用在某些场景有一定的局限性，所以又有了一个 namedtuple 类型的存在，namedtuple 可以指定字段名，用来当做一种轻量级的类来使用。namedtuple能够用来创建类似于元组的数据类型，除了能够用索引来访问数据，能够迭代，还能够方便的通过属性名来访问数据。</p>
+<p>2.元组虽然有不可修改的性质，但是只要元组中的元素（比如列表）可更改 (mutable)，那么我们可以直接更改其元素，注意这跟赋值其元素不同。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">t1 = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</span><br><span class="line">print(t1)  <span class="comment"># (1, 2, 3, [4, 5, 6])</span></span><br><span class="line"></span><br><span class="line">t1[<span class="number">3</span>][<span class="number">0</span>] = <span class="number">9</span></span><br><span class="line">print(t1)  <span class="comment"># (1, 2, 3, [9, 5, 6])</span></span><br></pre></td></tr></table></figure>
+
+<p>3.解压元组，用通配符[*]匹配解压元组的元素。[ *rest]   [ *_]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">t = <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span></span><br><span class="line">a, b, *rest, c = t</span><br><span class="line">print(a, b, c)  <span class="comment"># 1 2 5</span></span><br><span class="line">print(rest)  <span class="comment"># [3, 4]</span></span><br><span class="line"></span><br><span class="line">a, b, *_ = t</span><br><span class="line">print(a, b)  <span class="comment"># 1 2</span></span><br></pre></td></tr></table></figure>
+
+<p>4.练习题1</p>
+<p>(1,2,1,2)</p>
+<p>(1,1)</p>
+<p>2</p>
+<p>5.a, b = 1, 2  是拆包</p>
+<p>拆包: 对于函数中的多个返回数据, 去掉元组, 列表 或者字典 直接获取里面数据的过程.</p>
 
       
     </div>
