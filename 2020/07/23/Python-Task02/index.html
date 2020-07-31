@@ -15,7 +15,7 @@
 <meta property="og:description" content="Python编程基础-Task02Task 2: 条件循环结构1.assert关键词 Python assert（断言）用于判断一个表达式，在表达式条件为 false 的时候触发异常。 断言可以在条件不满足程序运行的情况下直接返回错误，而不必等待程序运行后出现崩溃的情况，例如我们的代码只能在 Linux 系统下运行，可以先判断当前系统是否符合条件。 语法格式如下： 1assert expressi">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-23T08:05:01.000Z">
-<meta property="article:modified_time" content="2020-07-24T06:11:28.852Z">
+<meta property="article:modified_time" content="2020-07-30T11:41:26.029Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -114,6 +114,26 @@
 <li>返回 enumerate(枚举) 对象</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">seasons = [<span class="string">'Spring'</span>, <span class="string">'Summer'</span>, <span class="string">'Fall'</span>, <span class="string">'Winter'</span>]</span><br><span class="line">lst = list(enumerate(seasons))</span><br><span class="line">print(lst)</span><br><span class="line"><span class="comment"># [(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]</span></span><br><span class="line">lst = list(enumerate(seasons, start=<span class="number">1</span>))  <span class="comment"># 下标从 1 开始</span></span><br><span class="line">print(lst)</span><br><span class="line"><span class="comment"># [(1, 'Spring'), (2, 'Summer'), (3, 'Fall'), (4, 'Winter')]</span></span><br></pre></td></tr></table></figure>
+
+<p>3.练习题1</p>
+<p>编写一个Python程序来查找那些既可以被7整除又可以被5整除的数字，介于1500和2700之间。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1501</span>,<span class="number">2700</span>) <span class="keyword">if</span> i%<span class="number">5</span> == <span class="number">0</span> <span class="keyword">and</span> i%<span class="number">7</span> == <span class="number">0</span>]</span><br><span class="line">print(s)</span><br></pre></td></tr></table></figure>
+
+<p>[1505, 1540, 1575, 1610, 1645, 1680, 1715, 1750, 1785, 1820, 1855, 1890, 1925, 1960, 1995, 2030, 2065, 2100, 2135, 2170, 2205, 2240, 2275, 2310, 2345, 2380, 2415, 2450, 2485, 2520, 2555, 2590, 2625, 2660, 2695]</p>
+<p>4.练习题2    龟兔赛跑</p>
+<p>输入格式<br>　　输入只有一行，包含用空格隔开的五个正整数v1，v2，t，s，l，其中(v1,v2&lt;=100;t&lt;=300;s&lt;=10;l&lt;=10000且为v1,v2的公倍数)<br>输出格式<br>　　输出包含两行，第一行输出比赛结果——一个大写字母“T”或“R”或“D”，分别表示乌龟获胜，兔子获胜，或者两者同时到达终点。<br>　　第二行输出一个正整数，表示获胜者（或者双方同时）到达终点所耗费的时间（秒数）。</p>
+<p>方法1     </p>
+<p>该算法需要先满足7个条件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">v1,v2,t,s,l = map(int,input().split())</span><br><span class="line"><span class="keyword">if</span> v1&lt;=<span class="number">100</span> <span class="keyword">and</span> v2&lt;=<span class="number">100</span> <span class="keyword">and</span> t&lt;=<span class="number">300</span> <span class="keyword">and</span> s&lt;=<span class="number">10</span> <span class="keyword">and</span> l&lt;=<span class="number">10000</span> <span class="keyword">and</span> l%v1==<span class="number">0</span> <span class="keyword">and</span> l%v2==<span class="number">0</span>:</span><br><span class="line">    s1,s2 = <span class="number">0</span>,<span class="number">0</span></span><br><span class="line">    i1 = i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> s1&lt;l <span class="keyword">and</span> s2&lt;l:</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">        s1 = s1+v1</span><br><span class="line">        s2 = s2+v2</span><br><span class="line">        <span class="keyword">if</span> s1==l <span class="keyword">or</span> s2==l:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">elif</span> s1-s2&gt;=t:</span><br><span class="line">            s2 = s2+s*v2</span><br><span class="line">            i += s</span><br><span class="line">    <span class="keyword">if</span> s1&gt;s2:</span><br><span class="line">        print(<span class="string">'R'</span>)</span><br><span class="line">    <span class="keyword">if</span> s1==s2:</span><br><span class="line">        print(<span class="string">'D'</span>)</span><br><span class="line">    <span class="keyword">if</span> s1&lt;s2:</span><br><span class="line">        print(<span class="string">'T'</span>)</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+
+<p>方法2</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">v1,v2,t,s,l = map(int,input().split())</span><br><span class="line">s1,s2 = <span class="number">0</span>,<span class="number">0</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 时间加一秒，或加1+s秒（兔子落后大于等于t米）</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">if</span> s1-s2&gt;=t:</span><br><span class="line">        s2 += s*v2</span><br><span class="line">        i += s</span><br><span class="line">    <span class="comment"># 根据当前已走距离，分别计算剩余距离所需时间</span></span><br><span class="line">    dt1 = i+(l-s1)/v1</span><br><span class="line">    dt2 = i+(l-s2)/v2</span><br><span class="line">    <span class="comment"># 计算如果加上当前1秒后的s1和s2</span></span><br><span class="line">    s1 = s1+v1</span><br><span class="line">    s2 = s2+v2</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">    <span class="comment"># 加上当前1秒后，如果s1或s2大于等于l总路程</span></span><br><span class="line">    <span class="keyword">if</span> s1&gt;=l <span class="keyword">or</span> s2&gt;=l:</span><br><span class="line">        <span class="comment"># 如果1所需时间大于2所需时间，则2赢，取2的时间向上取整</span></span><br><span class="line">        <span class="keyword">if</span> dt1&gt;dt2:</span><br><span class="line">            print(<span class="string">'T'</span>)</span><br><span class="line">            print(math.ceil(dt2))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="comment"># 如果1所需时间不大于2所需时间，则取1的时间向上取整</span></span><br><span class="line">        <span class="keyword">elif</span> dt1 == dt2:</span><br><span class="line">            print(<span class="string">'D'</span>)</span><br><span class="line">            print(math.ceil(dt1))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'R'</span>)</span><br><span class="line">            print(math.ceil(dt1))</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>待看：</p>
+<p>Python多线程有趣的例子——龟兔赛跑   <a href="https://blog.csdn.net/qiao39gs/article/details/84503458" target="_blank" rel="noopener">https://blog.csdn.net/qiao39gs/article/details/84503458</a></p>
+
       
     </div>
     <footer class="article-footer">
@@ -175,6 +195,10 @@
       <ul>
         
           <li>
+            <a href="/2020/07/31/Python-Task05/">Python-Task05</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/27/NLP-Task04/">NLP-Task04</a>
           </li>
         
@@ -188,10 +212,6 @@
         
           <li>
             <a href="/2020/07/23/NLP-Task03/">NLP-Task03</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/23/Python-Task02/">Python-Task02</a>
           </li>
         
       </ul>

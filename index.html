@@ -64,6 +64,134 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Python-Task05" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/31/Python-Task05/" class="article-date">
+  <time datetime="2020-07-30T23:15:47.000Z" itemprop="datePublished">2020-07-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/31/Python-Task05/">Python-Task05</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Python编程基础-Task05"><a href="#Python编程基础-Task05" class="headerlink" title="Python编程基础-Task05"></a>Python编程基础-Task05</h1><h2 id="Task-5-字典、集合和序列"><a href="#Task-5-字典、集合和序列" class="headerlink" title="Task 5:字典、集合和序列"></a>Task 5:字典、集合和序列</h2><p><strong>字典</strong></p>
+<p>1.字典是python唯一的一个映射类型，字符串、元组、列表属于序列类型。</p>
+<p>序列类型和字典不同之处：序列以连续的整数为索引，字典以“关键字”为索引，关键字可以是任意不可变类型，通常用字符串或数值。</p>
+<p>2.可变类型与不可变类型</p>
+<p>不可变类型：数值、字符、元组</p>
+<p>可变类型：列表、集合、字典</p>
+<p>如何快速判断一个数据类型x是不是可变类型：</p>
+<ul>
+<li>用 <code>id(X)</code> 函数，对 X 进行某种操作，比较操作前后的 <code>id</code>，如果不一样，则 <code>X</code> 不可变，如果一样，则 <code>X</code> 可变。</li>
+<li>便捷方法：用 <code>hash(X)</code>，只要不报错，证明 <code>X</code> 可被哈希，即不可变，反过来不可被哈希，即可变。</li>
+</ul>
+<p>1）id(x) 判断依据：</p>
+<p>不可变类型，变量重新赋值，id 内存地址会变。（给多个变量赋相同的值，整型、布尔型、比较短的字符串指向同个内存地址；浮点型、长字符串指向不同内存地址。这方面涉及Python内存管理机制，Python对int类型和较短的字符串进行了缓存，无论声明多少个值相同的变量，实际上都指向同个内存地址。）</p>
+<p>可变类型，变量重新赋值之后，id内存地址不变。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 浮点型变量重新赋值之后，id会变</span></span><br><span class="line">i = <span class="number">1.5</span></span><br><span class="line">print(id(i))</span><br><span class="line">i = i+<span class="number">1.2</span></span><br><span class="line">print(id(i))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对变量赋值相同的浮点型，id会变，即指向不同的内存地址</span></span><br><span class="line">a = <span class="number">1.5</span></span><br><span class="line">print(id(a))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对变量赋值相同的整型，id不变，即指向相同的内存地址</span></span><br><span class="line">b = <span class="number">1</span></span><br><span class="line">c = <span class="number">1</span></span><br><span class="line">print(id(b))</span><br><span class="line">print(id(c))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对变量赋值相同的布尔型，id不变，即指向相同的内存地址</span></span><br><span class="line">d = <span class="literal">True</span></span><br><span class="line">e = <span class="literal">True</span></span><br><span class="line">print(id(d))</span><br><span class="line">print(id(e))</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<p>1933540566552<br>1933540566456<br>1933540566432<br>140718072828736<br>140718072828736<br>140718072306000<br>140718072306000</p>
+<p>2）hash(x)判断依据：不可变类型能被哈希，可变类型不能被哈希。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">print(hash(<span class="string">'Name'</span>))  <span class="comment"># -9215951442099718823</span></span><br><span class="line"></span><br><span class="line">print(hash((<span class="number">1</span>, <span class="number">2</span>, <span class="string">'Python'</span>)))  <span class="comment"># 823362308207799471</span></span><br><span class="line"></span><br><span class="line">print(hash([<span class="number">1</span>, <span class="number">2</span>, <span class="string">'Python'</span>]))</span><br><span class="line"><span class="comment"># TypeError: unhashable type: 'list'</span></span><br><span class="line"></span><br><span class="line">print(hash(&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;))</span><br><span class="line"><span class="comment"># TypeError: unhashable type: 'set'</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>3.dict查找和插入的速度极快，不会随着key的增加而增加，但是需要占用大量的内存。</p>
+<p>4.创建和访问字典</p>
+<p>​    <strong>一个对象能不能作为字典的key，就取决于其有没有<strong>hash</strong>方法。所有python自带类型中，除了list、dict、set和内部至少带有上述三种类型之一的tuple之外，其余的对象都能当key。</strong></p>
+<p>​    因此，字典的键key可以是任意不可变类型(数值、字符串、元组)，但需要注意的是tuple元组作为键时，其中不能以任何方式包含可变对象。</p>
+<p>通过键值对的映射对象 初始化字典：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dic1 = dict([(<span class="string">'apple'</span>, <span class="number">4139</span>), (<span class="string">'peach'</span>, <span class="number">4127</span>), (<span class="string">'cherry'</span>, <span class="number">4098</span>)])</span><br><span class="line">print(dic1)  <span class="comment"># &#123;'cherry': 4098, 'apple': 4139, 'peach': 4127&#125;</span></span><br><span class="line"></span><br><span class="line">dic2 = dict(((<span class="string">'apple'</span>, <span class="number">4139</span>), (<span class="string">'peach'</span>, <span class="number">4127</span>), (<span class="string">'cherry'</span>, <span class="number">4098</span>)))</span><br><span class="line">print(dic2)  <span class="comment"># &#123;'peach': 4127, 'cherry': 4098, 'apple': 4139&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过 名称=值对 创建字典：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注意，此处name和age虽然作为地点的key时是加引号的字符串，但是在创建时不能加引号，加引号会报语法错误。</span></span><br><span class="line">dic = dict(name=<span class="string">'Tom'</span>, age=<span class="number">10</span>) </span><br><span class="line">print(dic)  <span class="comment"># &#123;'name': 'Tom', 'age': 10&#125;</span></span><br><span class="line">print(type(dic))  <span class="comment"># &lt;class 'dict'&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>5.字典的内置方法</p>
+<p>1）<code>dict.fromkeys(seq[, value])</code> 用于创建一个新字典，以序列 <code>seq</code> 中元素做字典的键，<code>value</code> 为字典所有键对应的初始值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">seq = (<span class="string">'name'</span>, <span class="string">'age'</span>, <span class="string">'sex'</span>)</span><br><span class="line">dic1 = dict.fromkeys(seq)</span><br><span class="line">print(dic1)</span><br><span class="line"></span><br><span class="line">dic2 = dict.fromkeys(seq,<span class="number">10</span>)</span><br><span class="line">print(dic2)</span><br><span class="line"></span><br><span class="line">dic3 = dict.fromkeys(seq,(<span class="string">'小马'</span>, <span class="string">'8'</span>, <span class="string">'男'</span>))</span><br><span class="line">print(dic3)</span><br></pre></td></tr></table></figure>
+<p>{‘name’: None, ‘age’: None, ‘sex’: None}<br>{‘name’: 10, ‘age’: 10, ‘sex’: 10}<br>{‘name’: (‘小马’, ‘8’, ‘男’), ‘age’: (‘小马’, ‘8’, ‘男’), ‘sex’: (‘小马’, ‘8’, ‘男’)}</p>
+<p>2）<code>dict.keys()</code>返回一个可迭代对象，可以使用 <code>list()</code> 来转换为列表，列表为字典中的所有键。</p>
+<p>3）<code>dict.values()</code>返回一个迭代器，可以使用 <code>list()</code> 来转换为列表，列表为字典中的所有值。</p>
+<p>4）<code>dict.items()</code>以列表返回可遍历的(键值)元组数组。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dic = &#123;<span class="string">'Name'</span>: <span class="string">'Lsgogroup'</span>, <span class="string">'Age'</span>: <span class="number">7</span>&#125;</span><br><span class="line">print(dic.items())</span><br><span class="line"><span class="comment"># dict_items([('Name', 'Lsgogroup'), ('Age', 7)])</span></span><br><span class="line"></span><br><span class="line">print(tuple(dic.items()))</span><br><span class="line"><span class="comment"># (('Name', 'Lsgogroup'), ('Age', 7))</span></span><br><span class="line"></span><br><span class="line">print(list(dic.items()))</span><br><span class="line"><span class="comment"># [('Name', 'Lsgogroup'), ('Age', 7)]</span></span><br></pre></td></tr></table></figure>
+
+<p>5）<code>dict.get(key, default=None)</code> 返回指定键的值，如果值不在字典中返回默认值。</p>
+<p>6）<code>dict.setdefault(key, default=None)</code> 和get()方法类似，返回指定键的值，如果键不存在字典中，将会添加键并将值设为默认值。</p>
+<p>7）<code>key in dict</code> <code>in</code> 操作符用于判断键是否存在于字典中，如果键在字典 dict 里返回<code>true</code>，否则返回<code>false</code>。而<code>not in</code>操作符刚好相反，如果键在字典 dict 里返回<code>false</code>，否则返回<code>true</code>。</p>
+<p>8）<code>dict.pop(key[,default])</code>删除字典给定键 <code>key</code> 所对应的值，返回值为被删除的值。<code>key</code> 值必须给出。若<code>key</code>不存在，必须设置默认值，返回 <code>default</code> 值。</p>
+<p>9）<code>del dict[key]</code> 删除字典给定键 <code>key</code> 所对应的值。</p>
+<p>10）<code>dict.popitem()</code>随机返回并删除字典中的一对键和值，如果字典已经为空，却调用了此方法，就报出KeyError异常。</p>
+<p>11）<code>dict.clear()</code>用于删除字典内所有元素。</p>
+<p>12）<code>dict.copy()</code>返回一个字典的浅复制。</p>
+<p>直接赋值和copy的区别:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">dic1 = &#123;<span class="string">'user'</span>: <span class="string">'lsgogroup'</span>, <span class="string">'num'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 引用对象</span></span><br><span class="line">dic2 = dic1  </span><br><span class="line"><span class="comment"># 浅拷贝父对象，子对象（[1,2,3]）不拷贝，还是引用</span></span><br><span class="line">dic3 = dic1.copy()  </span><br><span class="line"></span><br><span class="line">print(id(dic1))  <span class="comment"># 148635574728</span></span><br><span class="line">print(id(dic2))  <span class="comment"># 148635574728</span></span><br><span class="line">print(id(dic3))  <span class="comment"># 148635574344</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改 data 数据</span></span><br><span class="line">dic1[<span class="string">'user'</span>] = <span class="string">'root'</span></span><br><span class="line">dic1[<span class="string">'num'</span>].remove(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line">print(dic1)  <span class="comment"># &#123;'user': 'root', 'num': [2, 3]&#125;</span></span><br><span class="line">print(dic2)  <span class="comment"># &#123;'user': 'root', 'num': [2, 3]&#125;</span></span><br><span class="line"><span class="comment"># 由于浅拷贝时，子对象不拷贝，列表变化时，dic3也变化</span></span><br><span class="line">print(dic3)  <span class="comment"># &#123;'user': 'runoob', 'num': [2, 3]&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>13）<code>dict.update(dict2)</code>把字典参数 <code>dict2</code> 的 <code>key:value</code>对 更新到字典 <code>dict</code> 里。已有键的，则更新该键对应的值；没有键的，则添加该键值对。也是直接修改原字典。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dic = &#123;<span class="string">'Name'</span>: <span class="string">'Lsgogroup'</span>, <span class="string">'Age'</span>: <span class="number">7</span>&#125;</span><br><span class="line">dic2 = &#123;<span class="string">'Sex'</span>: <span class="string">'female'</span>, <span class="string">'Age'</span>: <span class="number">8</span>&#125;</span><br><span class="line">dic.update(dic2)</span><br><span class="line">print(dic)  </span><br><span class="line"><span class="comment"># &#123;'Sex': 'female', 'Age': 8, 'Name': 'Lsgogroup'&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>6.练习题1</p>
+<p>用程序解答下面的题目</p>
+<ul>
+<li>字典的长度是多少</li>
+<li>请修改’java’ 这个key对应的value值为98</li>
+<li>删除 c 这个key</li>
+<li>增加一个key-value对，key值为 php, value是90</li>
+<li>获取所有的key值，存储在列表里</li>
+<li>获取所有的value值，存储在列表里</li>
+<li>判断 javascript 是否在字典中</li>
+<li>获得字典里所有value 的和</li>
+<li>获取字典里最大的value</li>
+<li>获取字典里最小的value</li>
+<li>字典 dic1 = {‘php’: 97}， 将dic1的数据更新到dic中</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">dic = &#123;</span><br><span class="line">    <span class="string">'python'</span>:<span class="number">95</span>,</span><br><span class="line">    <span class="string">'java'</span>:<span class="number">99</span>,</span><br><span class="line">    <span class="string">'c'</span>:<span class="number">100</span></span><br><span class="line">&#125;</span><br><span class="line">print(len(dic))</span><br><span class="line">dic[<span class="string">'java'</span>] = <span class="number">98</span></span><br><span class="line">print(dic)</span><br><span class="line">dic.pop(<span class="string">'c'</span>)</span><br><span class="line">print(dic)</span><br><span class="line">dic[<span class="string">'php'</span>] = <span class="number">90</span></span><br><span class="line">print(dic)</span><br><span class="line">keys = list(dic.keys())</span><br><span class="line">print(keys)</span><br><span class="line">values = list(dic.values())</span><br><span class="line">print(values)</span><br><span class="line">print(<span class="string">'javascript'</span> <span class="keyword">in</span> dic)</span><br><span class="line">print(sum(values))</span><br><span class="line">print(max(values))</span><br><span class="line">print(min(values))</span><br><span class="line">dic1 = &#123;<span class="string">'php'</span>:<span class="number">97</span>&#125;</span><br><span class="line">dic.update(dic1)</span><br><span class="line">print(dic)</span><br></pre></td></tr></table></figure>
+
+<p>3<br>{‘python’: 95, ‘java’: 98, ‘c’: 100}<br>{‘python’: 95, ‘java’: 98}<br>{‘python’: 95, ‘java’: 98, ‘php’: 90}<br>[‘python’, ‘java’, ‘php’]<br>[95, 98, 90]<br>False<br>283<br>98<br>90<br>{‘python’: 95, ‘java’: 98, ‘php’: 97}</p>
+<p>7.练习题2</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">data = &#123;</span><br><span class="line">    <span class="string">'python'</span>: &#123;<span class="string">'上学期'</span>: <span class="string">'90'</span>, <span class="string">'下学期'</span>: <span class="string">'95'</span>&#125;,</span><br><span class="line">    <span class="string">'c++'</span>: [<span class="string">'95'</span>, <span class="string">'96'</span>, <span class="string">'97'</span>],</span><br><span class="line">    <span class="string">'java'</span>: [&#123;<span class="string">'月考'</span>:<span class="string">'90'</span>, <span class="string">'期中考试'</span>: <span class="string">'94'</span>, <span class="string">'期末考试'</span>: <span class="string">'98'</span>&#125;]</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">transfer_score</span><span class="params">(data)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> isinstance(data,dict):</span><br><span class="line">        <span class="keyword">for</span> key,value <span class="keyword">in</span> data.items():</span><br><span class="line">            data[key] = transfer_score(value)</span><br><span class="line">        <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> isinstance(data,list):</span><br><span class="line">        data_lst = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">            data_lst.append(transfer_score(i))</span><br><span class="line">        <span class="keyword">return</span> data_lst</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> isinstance(data,str):</span><br><span class="line">        <span class="keyword">return</span> int(data)</span><br><span class="line"></span><br><span class="line">data1 = transfer_score(data)</span><br><span class="line">print(data1)</span><br></pre></td></tr></table></figure>
+
+<p>{‘python’: {‘上学期’: 90, ‘下学期’: 95}, ‘c++’: [95, 96, 97], ‘java’: [{‘月考’: 90, ‘期中考试’: 94, ‘期末考试’: 98}]}</p>
+<p>8.遇到小问题</p>
+<p>python字典更新时出现value为None的情况</p>
+<p>如果，key对应的值是一个对象或者数据结构，该怎么去修改其对应的值呢，如：对应的值是一个列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">person = &#123;<span class="string">'name'</span>: [<span class="string">'jack'</span>, <span class="string">'alis'</span>], <span class="string">'age'</span>: <span class="number">18</span>&#125;</span><br><span class="line"><span class="keyword">print</span> person</span><br><span class="line">person[<span class="string">'name'</span>] = person[<span class="string">'name'</span>].append(<span class="string">'hanjun'</span>) <span class="comment"># 修改列表，重新给person['name']赋值</span></span><br><span class="line"><span class="keyword">print</span> person</span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<p>{‘age’: 18, ‘name’: [‘jack’, ‘alis’]}<br>{‘age’: 18, ‘name’: None}</p>
+<p>结果中name对应的值为None，这样就出现了细节上的bug，并且这个bug是不容易被发现的，看起来好像没什么错。</p>
+<p>正确的做法应该是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">person = &#123;<span class="string">'name'</span>: [<span class="string">'jack'</span>, <span class="string">'alis'</span>], <span class="string">'age'</span>: <span class="number">18</span>&#125;</span><br><span class="line"><span class="keyword">print</span> person</span><br><span class="line">person[<span class="string">'name'</span>].append(<span class="string">'hanjun'</span>) <span class="comment"># 列表本身是可变类型，直接值修改字典元素值-列表，不需要再重新给person['name']赋值。</span></span><br><span class="line"><span class="keyword">print</span> person</span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<p>{‘age’: 18, ‘name’: [‘jack’, ‘alis’]}<br>{‘age’: 18, ‘name’: [‘jack’, ‘alis’, ‘hanjun’]}</p>
+<p>对字典的值直接添加，而不是用再赋值的方式，再赋值的方式为什么会错呢？</p>
+<p>因为，列表list的append是一个方法，该方法直接修改原对象，返回值为None（没有返回值就会返回None），所以key为name的值就为None了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/31/Python-Task05/" data-id="ckd9oiiqr0000ekwchqnrgdqk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-NLP-Task04" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/27/NLP-Task04/" class="article-date">
@@ -94,6 +222,12 @@
 <p>fastText模型架构和word2vec的CBOW模型架构非常相似。下面是fastText模型架构图：</p>
 <p><img src="https://pic1.zhimg.com/80/v2-7f38f23e98ee89d21fd16e34d5f07d69_1440w.jpg" alt="img"></p>
 <p>注意：此架构图没有展示词向量的训练过程。可以看到，和CBOW一样，fastText模型也只有三层：输入层、隐含层、输出层（Hierarchical Softmax），输入都是多个经向量表示的单词，输出都是一个特定的target，隐含层都是对多个词向量的叠加平均。不同的是，CBOW的输入是目标单词的上下文，fastText的输入是多个单词及其n-gram特征，这些特征用来表示单个文档；CBOW的输入单词被onehot编码过，fastText的输入特征是被embedding过；CBOW的输出是目标词汇，fastText的输出是文档对应的类标。</p>
+<p>3）API</p>
+<p><strong>train_unsupervised 参数 用来训练词向量模型</strong></p>
+<p><strong><em>input</em></strong> :训练文件路径<br><strong><em>model</em></strong> :无监督训练使用的模型 {cbow 和 skip-gram} 默认为skip-gram<br><strong><em>lr</em></strong> :学习率 默认为0.05<br><strong><em>dim</em></strong> : 词向量维度 默认为100<br><strong><em>ws</em></strong> :（windows size） 窗口大小 默认为5<br><strong><em>epoch</em></strong> : 默认训练五轮<br><strong><em>minCount</em></strong> : 最小词数 默认为5 当数据集略小要记得调整<br><strong><em>minCountLabel</em></strong> :=0 因为是无监督。<br><strong><em>minn</em></strong> :最小char级别的3-gram（subword）<br><strong><em>maxn</em></strong> :最大char级别的6-gram （subword）<br><strong><em>neg</em></strong> :负例采样个数 默认为5<br><strong><em>wordNgrams</em></strong> :最大的词n-gram长度 默认为1<br><strong><em>loss</em></strong> :损失函数 {ns,hs,softmax,ova} 默认是ns 负采样 ， hs 是分层softmax<br><strong><em>bucket</em></strong> : 桶数默认为2000000<br><strong><em>thread</em></strong>：cpu线程数 默认为12<br><strong><em>lrUpdateRate</em></strong>：学习率更新，默认为100<br><strong><em>t</em></strong>：负采样阈值 默认0.0001<br><strong><em>verbose</em></strong>：=2</p>
+<hr>
+<p><strong>train_supervised 参数 用来训练分类模型</strong> 没有model参数√</p>
+<p><strong><em>input</em></strong> :训练文件路径<br><strong><em>lr</em></strong> :学习率 默认为<strong>0.1</strong> √<br><strong><em>dim</em></strong> : 词向量维度 默认为100<br><strong><em>ws</em></strong> :（windows size） 窗口大小 默认为5<br><strong><em>minCount</em></strong> : 最小词数 默认为<strong>1</strong>√<br><strong><em>minCountLabel</em></strong> :=<strong>1</strong> √ 最小标签数<br><strong><em>minn</em></strong> :=<strong>0</strong>√<br><strong><em>maxn</em></strong> :=<strong>0</strong>√<br><strong><em>neg</em></strong> :负例采样个数 默认为5<br><strong><em>wordNgrams</em></strong> :最大的词n-gram长度 默认为1<br><strong><em>loss</em></strong> :损失函数 {ns,hs,softmax,ova} 默认是<strong>softmax</strong>√<br><strong><em>bucket</em></strong> : 桶数默认为2000000<br><strong><em>thread</em></strong>：cpu线程数 默认为12<br><strong><em>lrUpdateRate</em></strong>：学习率更新，默认为100<br><strong><em>t</em></strong>：负采样阈值 默认0.0001<br><strong><em>label</em></strong> :标签前缀 默认 ‘_ <em>label</em> _’√<br><strong><em>verbose</em></strong>：=2 控制打印输出 2显示每个epoch 1显示最后一个epoch<br><strong><em>pretrainedVectors</em></strong>:用于监督学习的预训练词向量（.vec文件），给出路径 ，默认为‘ ’</p>
 <p>2.基于FastText的文本分类</p>
 <ul>
 <li>pip安装</li>
@@ -432,6 +566,26 @@
 <li>返回 enumerate(枚举) 对象</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">seasons = [<span class="string">'Spring'</span>, <span class="string">'Summer'</span>, <span class="string">'Fall'</span>, <span class="string">'Winter'</span>]</span><br><span class="line">lst = list(enumerate(seasons))</span><br><span class="line">print(lst)</span><br><span class="line"><span class="comment"># [(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]</span></span><br><span class="line">lst = list(enumerate(seasons, start=<span class="number">1</span>))  <span class="comment"># 下标从 1 开始</span></span><br><span class="line">print(lst)</span><br><span class="line"><span class="comment"># [(1, 'Spring'), (2, 'Summer'), (3, 'Fall'), (4, 'Winter')]</span></span><br></pre></td></tr></table></figure>
+
+<p>3.练习题1</p>
+<p>编写一个Python程序来查找那些既可以被7整除又可以被5整除的数字，介于1500和2700之间。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1501</span>,<span class="number">2700</span>) <span class="keyword">if</span> i%<span class="number">5</span> == <span class="number">0</span> <span class="keyword">and</span> i%<span class="number">7</span> == <span class="number">0</span>]</span><br><span class="line">print(s)</span><br></pre></td></tr></table></figure>
+
+<p>[1505, 1540, 1575, 1610, 1645, 1680, 1715, 1750, 1785, 1820, 1855, 1890, 1925, 1960, 1995, 2030, 2065, 2100, 2135, 2170, 2205, 2240, 2275, 2310, 2345, 2380, 2415, 2450, 2485, 2520, 2555, 2590, 2625, 2660, 2695]</p>
+<p>4.练习题2    龟兔赛跑</p>
+<p>输入格式<br>　　输入只有一行，包含用空格隔开的五个正整数v1，v2，t，s，l，其中(v1,v2&lt;=100;t&lt;=300;s&lt;=10;l&lt;=10000且为v1,v2的公倍数)<br>输出格式<br>　　输出包含两行，第一行输出比赛结果——一个大写字母“T”或“R”或“D”，分别表示乌龟获胜，兔子获胜，或者两者同时到达终点。<br>　　第二行输出一个正整数，表示获胜者（或者双方同时）到达终点所耗费的时间（秒数）。</p>
+<p>方法1     </p>
+<p>该算法需要先满足7个条件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">v1,v2,t,s,l = map(int,input().split())</span><br><span class="line"><span class="keyword">if</span> v1&lt;=<span class="number">100</span> <span class="keyword">and</span> v2&lt;=<span class="number">100</span> <span class="keyword">and</span> t&lt;=<span class="number">300</span> <span class="keyword">and</span> s&lt;=<span class="number">10</span> <span class="keyword">and</span> l&lt;=<span class="number">10000</span> <span class="keyword">and</span> l%v1==<span class="number">0</span> <span class="keyword">and</span> l%v2==<span class="number">0</span>:</span><br><span class="line">    s1,s2 = <span class="number">0</span>,<span class="number">0</span></span><br><span class="line">    i1 = i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> s1&lt;l <span class="keyword">and</span> s2&lt;l:</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">        s1 = s1+v1</span><br><span class="line">        s2 = s2+v2</span><br><span class="line">        <span class="keyword">if</span> s1==l <span class="keyword">or</span> s2==l:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">elif</span> s1-s2&gt;=t:</span><br><span class="line">            s2 = s2+s*v2</span><br><span class="line">            i += s</span><br><span class="line">    <span class="keyword">if</span> s1&gt;s2:</span><br><span class="line">        print(<span class="string">'R'</span>)</span><br><span class="line">    <span class="keyword">if</span> s1==s2:</span><br><span class="line">        print(<span class="string">'D'</span>)</span><br><span class="line">    <span class="keyword">if</span> s1&lt;s2:</span><br><span class="line">        print(<span class="string">'T'</span>)</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+
+<p>方法2</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">v1,v2,t,s,l = map(int,input().split())</span><br><span class="line">s1,s2 = <span class="number">0</span>,<span class="number">0</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 时间加一秒，或加1+s秒（兔子落后大于等于t米）</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">if</span> s1-s2&gt;=t:</span><br><span class="line">        s2 += s*v2</span><br><span class="line">        i += s</span><br><span class="line">    <span class="comment"># 根据当前已走距离，分别计算剩余距离所需时间</span></span><br><span class="line">    dt1 = i+(l-s1)/v1</span><br><span class="line">    dt2 = i+(l-s2)/v2</span><br><span class="line">    <span class="comment"># 计算如果加上当前1秒后的s1和s2</span></span><br><span class="line">    s1 = s1+v1</span><br><span class="line">    s2 = s2+v2</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">    <span class="comment"># 加上当前1秒后，如果s1或s2大于等于l总路程</span></span><br><span class="line">    <span class="keyword">if</span> s1&gt;=l <span class="keyword">or</span> s2&gt;=l:</span><br><span class="line">        <span class="comment"># 如果1所需时间大于2所需时间，则2赢，取2的时间向上取整</span></span><br><span class="line">        <span class="keyword">if</span> dt1&gt;dt2:</span><br><span class="line">            print(<span class="string">'T'</span>)</span><br><span class="line">            print(math.ceil(dt2))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="comment"># 如果1所需时间不大于2所需时间，则取1的时间向上取整</span></span><br><span class="line">        <span class="keyword">elif</span> dt1 == dt2:</span><br><span class="line">            print(<span class="string">'D'</span>)</span><br><span class="line">            print(math.ceil(dt1))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'R'</span>)</span><br><span class="line">            print(math.ceil(dt1))</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>待看：</p>
+<p>Python多线程有趣的例子——龟兔赛跑   <a href="https://blog.csdn.net/qiao39gs/article/details/84503458" target="_blank" rel="noopener">https://blog.csdn.net/qiao39gs/article/details/84503458</a></p>
+
       
     </div>
     <footer class="article-footer">
@@ -866,6 +1020,10 @@
       <ul>
         
           <li>
+            <a href="/2020/07/31/Python-Task05/">Python-Task05</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/27/NLP-Task04/">NLP-Task04</a>
           </li>
         
@@ -879,10 +1037,6 @@
         
           <li>
             <a href="/2020/07/23/NLP-Task03/">NLP-Task03</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/23/Python-Task02/">Python-Task02</a>
           </li>
         
       </ul>
