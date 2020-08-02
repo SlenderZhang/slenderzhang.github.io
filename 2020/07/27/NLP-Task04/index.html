@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-7f38f23e98ee89d21fd16e34d5f07d69_1440w.jpg">
 <meta property="article:published_time" content="2020-07-27T15:33:02.000Z">
-<meta property="article:modified_time" content="2020-07-30T14:13:47.212Z">
+<meta property="article:modified_time" content="2020-07-31T06:58:51.696Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://pic1.zhimg.com/80/v2-7f38f23e98ee89d21fd16e34d5f07d69_1440w.jpg">
@@ -113,9 +113,9 @@
 <ul>
 <li>分类模型</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> f1_score</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转换为FastText需要的格式</span></span><br><span class="line"><span class="comment"># pandas读取训练集数据</span></span><br><span class="line">train_df = pd.read_csv(<span class="string">'D:/PycharmProjects/tianchiLab/input/train_set.csv'</span>, sep=<span class="string">'\t'</span>, nrows=<span class="number">30000</span>)</span><br><span class="line"><span class="comment"># 拼接'__label__'和label</span></span><br><span class="line">train_df[<span class="string">'label_ft'</span>] = <span class="string">'__label__'</span> + train_df[<span class="string">'label'</span>].astype(str)</span><br><span class="line"><span class="comment"># 取前面25000条数据作为训练集</span></span><br><span class="line">train_df[[<span class="string">'text'</span>,<span class="string">'label_ft'</span>]].iloc[:<span class="number">-5000</span>].to_csv(<span class="string">'train.csv'</span>, index=<span class="literal">None</span>, header=<span class="literal">None</span>, sep=<span class="string">'\t'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> fasttext</span><br><span class="line"><span class="comment"># fasttext训练模型</span></span><br><span class="line">model = fasttext.train_supervised(<span class="string">'train.csv'</span>, lr=<span class="number">1.0</span>, wordNgrams=<span class="number">2</span>, </span><br><span class="line">                                  verbose=<span class="number">2</span>, minCount=<span class="number">1</span>, epoch=<span class="number">25</span>, loss=<span class="string">"hs"</span>)</span><br><span class="line"><span class="comment"># 用后5000条数据做预测</span></span><br><span class="line">val_pred = [model.predict(x)[<span class="number">0</span>][<span class="number">0</span>].split(<span class="string">'__'</span>)[<span class="number">-1</span>] <span class="keyword">for</span> x <span class="keyword">in</span> train_df.iloc[<span class="number">-5000</span>:][<span class="string">'text'</span>]]</span><br><span class="line"><span class="comment"># 打印f1</span></span><br><span class="line">print(f1_score(train_df[<span class="string">'label'</span>].values[<span class="number">-5000</span>:].astype(str), val_pred, average=<span class="string">'macro'</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> f1_score</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转换为FastText需要的格式</span></span><br><span class="line"><span class="comment"># pandas读取训练集数据</span></span><br><span class="line">train_df = pd.read_csv(<span class="string">'D:/PycharmProjects/tianchiLab/input/train_set.csv'</span>, sep=<span class="string">'\t'</span>, nrows=<span class="number">30000</span>)</span><br><span class="line">print(train_df.head())</span><br><span class="line"><span class="comment"># 拼接'__label__'和label</span></span><br><span class="line">train_df[<span class="string">'label_ft'</span>] = <span class="string">'__label__'</span> + train_df[<span class="string">'label'</span>].astype(str)</span><br><span class="line"><span class="comment"># 取前面25000条数据作为训练集</span></span><br><span class="line">train_df[[<span class="string">'text'</span>,<span class="string">'label_ft'</span>]].iloc[:<span class="number">-5000</span>].to_csv(<span class="string">'train.csv'</span>, index=<span class="literal">None</span>, header=<span class="literal">None</span>, sep=<span class="string">'\t'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> fasttext</span><br><span class="line"><span class="comment"># wordNgrams代表将一个单词和其后面的词组合在一起，如FastText原理介绍中输入层使用的例子。</span></span><br><span class="line"><span class="comment"># lr :学习率 默认为0.1。wordNgrams :最大的词n-gram长度 默认为1。verbose：=2 控制打印输出 2显示每个epoch 1显示最后一个epoch。</span></span><br><span class="line"><span class="comment"># minCount : 最小词数 默认为1。loss :损失函数 &#123;ns,hs,softmax,ova&#125; 默认是softmax。epoch : 训练轮数，默认训练五轮。</span></span><br><span class="line">model = fasttext.train_supervised(<span class="string">'train.csv'</span>, lr=<span class="number">0.5</span>, wordNgrams=<span class="number">2</span>, </span><br><span class="line">                                  verbose=<span class="number">2</span>, minCount=<span class="number">1</span>, epoch=<span class="number">25</span>, loss=<span class="string">"hs"</span>)</span><br><span class="line"><span class="comment"># 后5000条做测试集</span></span><br><span class="line">val_pred = [model.predict(x)[<span class="number">0</span>][<span class="number">0</span>].split(<span class="string">'__'</span>)[<span class="number">-1</span>] <span class="keyword">for</span> x <span class="keyword">in</span> train_df.iloc[<span class="number">-5000</span>:][<span class="string">'text'</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印f1</span></span><br><span class="line">print(f1_score(train_df[<span class="string">'label'</span>].values[<span class="number">-5000</span>:].astype(str), val_pred, average=<span class="string">'macro'</span>))</span><br></pre></td></tr></table></figure>
 
-<p>0.8654174677824358</p>
+<p>0.87332537480972</p>
 
       
     </div>
@@ -165,7 +165,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
     </div>
   </div>
 
@@ -176,6 +176,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/08/02/Python-Task06/">Python-Task06</a>
+          </li>
         
           <li>
             <a href="/2020/07/31/Python-Task05/">Python-Task05</a>
@@ -191,10 +195,6 @@
         
           <li>
             <a href="/2020/07/24/Python-Task03/">Python-Task03</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/23/NLP-Task03/">NLP-Task03</a>
           </li>
         
       </ul>

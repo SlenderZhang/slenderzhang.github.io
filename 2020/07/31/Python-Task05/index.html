@@ -7,15 +7,15 @@
   
   <title>Python-Task05 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Python编程基础-Task05Task 5:字典、集合和序列字典 1.字典是python唯一的一个映射类型，字符串、元组、列表属于序列类型。 序列类型和字典不同之处：序列以连续的整数为索引，字典以“关键字”为索引，关键字可以是任意不可变类型，通常用字符串或数值。 2.可变类型与不可变类型 不可变类型：数值、字符、元组 可变类型：列表、集合、字典 如何快速判断一个数据类型x是不是可变类型：  用">
+  <meta name="description" content="Python编程基础-Task05Task 5:字典、集合和序列字典 1.字典是python唯一的一个映射类型，字符串、元组、列表属于序列类型。 序列类型和字典不同之处：序列以连续的整数为索引，字典以“关键字”为索引，关键字可以是任意不可变类型，通常用字符串或数值。 2.可变类型与不可变类型 不可变类型：数值(int&#x2F;float&#x2F;bool)、字符、元组 可变类型：列表、集合、字典 如何快速判断一个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python-Task05">
 <meta property="og:url" content="http://yoursite.com/2020/07/31/Python-Task05/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Python编程基础-Task05Task 5:字典、集合和序列字典 1.字典是python唯一的一个映射类型，字符串、元组、列表属于序列类型。 序列类型和字典不同之处：序列以连续的整数为索引，字典以“关键字”为索引，关键字可以是任意不可变类型，通常用字符串或数值。 2.可变类型与不可变类型 不可变类型：数值、字符、元组 可变类型：列表、集合、字典 如何快速判断一个数据类型x是不是可变类型：  用">
+<meta property="og:description" content="Python编程基础-Task05Task 5:字典、集合和序列字典 1.字典是python唯一的一个映射类型，字符串、元组、列表属于序列类型。 序列类型和字典不同之处：序列以连续的整数为索引，字典以“关键字”为索引，关键字可以是任意不可变类型，通常用字符串或数值。 2.可变类型与不可变类型 不可变类型：数值(int&#x2F;float&#x2F;bool)、字符、元组 可变类型：列表、集合、字典 如何快速判断一个">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-30T23:15:47.000Z">
-<meta property="article:modified_time" content="2020-07-31T03:39:59.994Z">
+<meta property="article:modified_time" content="2020-08-02T11:06:23.476Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -92,7 +92,7 @@
 <p>1.字典是python唯一的一个映射类型，字符串、元组、列表属于序列类型。</p>
 <p>序列类型和字典不同之处：序列以连续的整数为索引，字典以“关键字”为索引，关键字可以是任意不可变类型，通常用字符串或数值。</p>
 <p>2.可变类型与不可变类型</p>
-<p>不可变类型：数值、字符、元组</p>
+<p>不可变类型：数值(int/float/bool)、字符、元组</p>
 <p>可变类型：列表、集合、字典</p>
 <p>如何快速判断一个数据类型x是不是可变类型：</p>
 <ul>
@@ -180,6 +180,60 @@
 <p>{‘age’: 18, ‘name’: [‘jack’, ‘alis’]}<br>{‘age’: 18, ‘name’: [‘jack’, ‘alis’, ‘hanjun’]}</p>
 <p>对字典的值直接添加，而不是用再赋值的方式，再赋值的方式为什么会错呢？</p>
 <p>因为，列表list的append是一个方法，该方法直接修改原对象，返回值为None（没有返回值就会返回None），所以key为name的值就为None了。</p>
+<p><strong>集合</strong></p>
+<p>1.set是一组key的集合，key不能重复。跟在dict中一样，key只能是不可变类型。</p>
+<p>2.创建集合</p>
+<p>1）先创建集合对象，再用add()方法加入元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">basket = set()</span><br><span class="line">basket.add(<span class="string">'apple'</span>)</span><br><span class="line">basket.add(<span class="string">'banana'</span>)</span><br><span class="line">print(basket)  <span class="comment"># &#123;'banana', 'apple'&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>2）直接把一堆元素用花括号括起来{元素1，元素2，…，元素n}。重复元素在set中会被自动过滤掉。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">basket = &#123;<span class="string">'apple'</span>, <span class="string">'orange'</span>, <span class="string">'apple'</span>, <span class="string">'pear'</span>, <span class="string">'orange'</span>, <span class="string">'banana'</span>&#125;</span><br><span class="line">print(basket)  <span class="comment"># &#123;'banana', 'apple', 'pear', 'orange'&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p> 3）使用set(value)工厂函数，把列表或元组转换成集合。（工厂函数基本上都是带有返回对象的，而这些返回对象则是通过调用一种或者多种类来创建的对象。工厂函数看上去有点像函数，实质上他们是类，当你调用它们时，实际上是生成的该类型的一个实例，就像工厂生产货物一样。）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a = set(<span class="string">'abracadabra'</span>)</span><br><span class="line">print(a)  </span><br><span class="line"><span class="comment"># &#123;'r', 'b', 'd', 'c', 'a'&#125;</span></span><br><span class="line"></span><br><span class="line">b = set((<span class="string">"Google"</span>, <span class="string">"Lsgogroup"</span>, <span class="string">"Taobao"</span>, <span class="string">"Taobao"</span>))</span><br><span class="line">print(b)  </span><br><span class="line"><span class="comment"># &#123;'Taobao', 'Lsgogroup', 'Google'&#125;</span></span><br><span class="line"></span><br><span class="line">c = set([<span class="string">"Google"</span>, <span class="string">"Lsgogroup"</span>, <span class="string">"Taobao"</span>, <span class="string">"Google"</span>])</span><br><span class="line">print(c)  </span><br><span class="line"><span class="comment"># &#123;'Taobao', 'Lsgogroup', 'Google'&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>3.集合的两个特点：无序和唯一。由于set存储的是无序集合，所以我们不可以为集合创建索引或执行切片操作，也没有键(keys)方法可以用来获取集合中元素的值，但是可以判断一个元素是否在集合中。</p>
+<p>4.集合的内置方法</p>
+<p>1）<code>set.add(elmnt)</code>用于给集合添加元素，如果添加的元素在集合中已存在，则不执行任何操作。</p>
+<p>2）<code>set.update(set)</code>用于修改当前集合，可以添加新的元素或集合到当前集合中，如果添加的元素在集合中已存在，则该元素只会出现一次，重复的会忽略。</p>
+<p>3）<code>set.remove(item)</code> 用于移除集合中的指定元素。如果元素不存在，则会发生错误。</p>
+<p>4）<code>set.discard(value)</code> 用于移除指定的集合元素。<code>remove()</code> 方法在移除一个不存在的元素时会发生错误，而 <code>discard()</code> 方法不会。</p>
+<p>5）<code>set.pop()</code> 用于随机移除一个元素。</p>
+<p>6）<code>set.intersection(set1, set2)</code> 返回两个集合的交集。</p>
+<p>7）<code>set1 &amp; set2</code> 返回两个集合的交集。</p>
+<p>8）<code>set.intersection_update(set1, set2)</code> 交集，在原始的集合上移除不重叠的元素。</p>
+<p>9）<code>set.union(set1, set2)</code> 返回两个集合的并集。</p>
+<p>10）<code>set1 | set2</code> 返回两个集合的并集。</p>
+<p>11）<code>set.difference(set1)</code> 返回集合的差集。set有，set1没有的。=  set-set1</p>
+<p>12）<code>set1 - set2</code> 返回集合的差集。</p>
+<p>13）<code>set.difference_update(set1)</code> 集合的差集，直接在原来的集合中移除元素，没有返回值。</p>
+<p>14）<code>set.symmetric_difference(set1)</code>返回集合的异或。去掉set和set1中都有的元素。=set^set1</p>
+<p>15）<code>set1 ^ set2</code> 返回集合的异或。</p>
+<p>16）<code>set.symmetric_difference_update(set1)</code>移除当前集合中在另外一个指定集合相同的元素，并将另外一个指定集合中不同的元素插入到当前集合中。没有返回值，直接更新原集合set。</p>
+<p>17）<code>set.issubset(set1)</code>判断集合是不是被其他集合包含，如果是则返回 True，否则返回 False。</p>
+<p>​        =  set &lt;= set1</p>
+<p>18）<code>set1 &lt;= set2</code> 判断集合是不是被其他集合包含，如果是则返回 True，否则返回 False。</p>
+<p>19）<code>set.issuperset(set1)</code>用于判断集合是不是包含其他集合，如果是则返回 True，否则返回 False。  =  set&gt;= set1</p>
+<p>20）<code>set1 &gt;= set2</code> 判断集合是不是包含其他集合，如果是则返回 True，否则返回 False。</p>
+<p>21）<code>set.isdisjoint(set)</code> 用于判断两个集合是不是不相交，如果是返回 True，否则返回 False。</p>
+<p>5.不可变集合</p>
+<p>frozenset，不能增加或删除元素。仍然可以进行集合操作，只是不能用带有update的方法。</p>
+<p><code>frozenset([iterable])</code> 返回一个冻结的集合，冻结后集合不能再添加或删除任何元素。</p>
+<p>6.练习题</p>
+<p>1）怎么表示只包含⼀个数字1的元组。</p>
+<p>a = (1,)</p>
+<p>2）创建一个空集合，增加 {‘x’,‘y’,‘z’} 三个元素。</p>
+<p>s = set()<br>s.add(‘x’)<br>s.add(‘y’)<br>s.add(‘z’)</p>
+<p>3）列表[‘A’, ‘B’, ‘A’, ‘B’]去重。</p>
+<p>l = [‘A’, ‘B’, ‘A’, ‘B’]<br>l = list(set(l))<br>print(l)    # [‘A’, ‘B’]</p>
+<p>4）求两个集合{6, 7, 8}，{7, 8, 9}中不重复的元素（差集指的是两个集合交集外的部分）。</p>
+<p>a = {6, 7, 8}<br>b = {7, 8, 9}<br>c = a^b</p>
+<p>print(c)     # {9, 6}</p>
+<p>5）求{‘A’, ‘B’, ‘C’}中元素在 {‘B’, ‘C’, ‘D’}中出现的次数。</p>
+<p>a = {‘A’, ‘B’, ‘C’}<br>b = {‘B’, ‘C’, ‘D’,’B’}<br>c = a&amp;b<br>n = len(c)<br>print(c)    #{‘C’, ‘B’}<br>print(n)     # 2</p>
+<p><strong>集合</strong></p>
+<p>1.set是一组key的集合，key不能重复。跟在dict中一样，key只能是不可变类型。</p>
+<p>2.创建集合</p>
 
       
     </div>
@@ -192,6 +246,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/08/02/Python-Task06/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python-Task06
+        
+      </div>
+    </a>
   
   
     <a href="/2020/07/27/NLP-Task04/" id="article-nav-older" class="article-nav-link-wrap">
@@ -220,7 +283,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
     </div>
   </div>
 
@@ -231,6 +294,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/08/02/Python-Task06/">Python-Task06</a>
+          </li>
         
           <li>
             <a href="/2020/07/31/Python-Task05/">Python-Task05</a>
@@ -246,10 +313,6 @@
         
           <li>
             <a href="/2020/07/24/Python-Task03/">Python-Task03</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/23/NLP-Task03/">NLP-Task03</a>
           </li>
         
       </ul>
