@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>NLP-Task06 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="零基础入门NLP - 新闻文本分类-Task06Task06:基于深度学习的文本分类31.Attention Is All You Need论文学习 摘要 主流的序列转换模型都基于复杂的循环或卷积神经网络，包括编码器和解码器。最佳性能的模型还通过注意力机制将编码器和解码器连接起来。我们提出了一种新的简单网络架构Transformer，它仅仅基于注意力机制，完全不需要循环和卷积。在两个机器翻译任务上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NLP-Task06">
+<meta property="og:url" content="http://yoursite.com/2020/08/04/NLP-Task06/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="零基础入门NLP - 新闻文本分类-Task06Task06:基于深度学习的文本分类31.Attention Is All You Need论文学习 摘要 主流的序列转换模型都基于复杂的循环或卷积神经网络，包括编码器和解码器。最佳性能的模型还通过注意力机制将编码器和解码器连接起来。我们提出了一种新的简单网络架构Transformer，它仅仅基于注意力机制，完全不需要循环和卷积。在两个机器翻译任务上">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/08/04/NLP-Task06/NLP-Task06/8e0b1_1440w.jpeg">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_%7Bmodel%7D">
+<meta property="og:image" content="http://yoursite.com/2020/08/04/NLP-Task06/NLP-Task06/5b75f_1440w.jpeg">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_k">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_v+">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Csqrt%7Bd_%7Bk%7D%7D+">
+<meta property="og:image" content="http://yoursite.com/2020/08/04/NLP-Task06/NLP-Task06/3bcd2d_1440w.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Cfrac%7B1%7D%7B%5Csqrt%7Bd_%7Bk%7D%7D%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_k">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_k+">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_k">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=+%5Cfrac%7B1%7D%7B%5Csqrt%7Bd_%7Bk%7D%7D%7D+">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_k">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_k">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_k">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_k">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_v">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_%7Bmodel%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_v">
+<meta property="og:image" content="http://yoursite.com/2020/08/04/NLP-Task06/NLP-Task06/f9775d_1440w.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_k">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_v">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_%7Bmodel%7D">
+<meta property="og:image" content="http://yoursite.com/2020/08/04/NLP-Task06/NLP-Task06/2209c7_1440w.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_%7Bmodel%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_%7Bff%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Csqrt%7Bd_%7Bmodel%7D%7D+">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_%7Bmodel%7D">
+<meta property="og:image" content="http://yoursite.com/2020/08/04/NLP-Task06/NLP-Task06/b7b7e_1440w.jpeg">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=PE_%7Bpos%252Bk%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=PE_%7Bpos%7D">
+<meta property="og:image" content="http://yoursite.com/2020/08/04/NLP-Task06/NLP-Task06/0c2e9_1440w.jpeg">
+<meta property="og:image" content="http://yoursite.com/2020/08/04/NLP-Task06/NLP-Task06/bda5e4_1440w.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=P_%7Bdrop%7D">
+<meta property="og:image" content="http://yoursite.com/2020/08/04/NLP-Task06/NLP-Task06/d161f_1440w.jpeg">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=P_%7Bdrop%7D">
+<meta property="og:image" content="http://yoursite.com/2020/08/04/NLP-Task06/NLP-Task06/f08bc_1440w.jpeg">
+<meta property="article:published_time" content="2020-08-04T15:38:13.000Z">
+<meta property="article:modified_time" content="2020-08-04T15:43:13.941Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/08/04/NLP-Task06/NLP-Task06/8e0b1_1440w.jpeg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-NLP-Task06" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/04/NLP-Task06/" class="article-date">
+  <time datetime="2020-08-04T15:38:13.000Z" itemprop="datePublished">2020-08-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      NLP-Task06
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="零基础入门NLP-新闻文本分类-Task06"><a href="#零基础入门NLP-新闻文本分类-Task06" class="headerlink" title="零基础入门NLP - 新闻文本分类-Task06"></a>零基础入门NLP - 新闻文本分类-Task06</h1><h2 id="Task06-基于深度学习的文本分类3"><a href="#Task06-基于深度学习的文本分类3" class="headerlink" title="Task06:基于深度学习的文本分类3"></a>Task06:基于深度学习的文本分类3</h2><p>1.Attention Is All You Need论文学习</p>
+<p>摘要</p>
+<p>主流的序列转换模型都基于复杂的循环或卷积神经网络，包括编码器和解码器。最佳性能的模型还通过注意力机制将编码器和解码器连接起来。我们提出了一种新的简单网络架构Transformer，它仅仅基于注意力机制，完全不需要循环和卷积。在两个机器翻译任务上的实验表明，这些模型在质量上更优，同时更具并行性，并且需要更少的训练时间。我们的模型在WMT 2014英语到德语的翻译任务中达到了28.4 BLEU，比现有的最佳结果(包括集成模型)提高了2个BLEU以上。在WMT 2014英语到法语翻译任务中，我们的模型在八个GPU上训练了3.5天后，建立了一个新的单模型，效果为BLEU分数41.8，是其他最好模型的训练成本的一小部分。我们通过将Transformer成功应用于大量训练数据和有限训练数据的两种情况下的英语成分解析，表明Transformer可以很好地推广到其他任务。</p>
+<p>1 introduction</p>
+<p>递归神经网络，特别是长短期记忆[13]和门控递归[7]神经网络，已经作为序列建模和转换问题的最先进的解决方法，诸如在语言模型和机器翻译上。自那以后，许多努力继续推进循环语言模型和编码器-解码器架构[38，24，15 ]。</p>
+<p>循环模型通常沿着输入和输出序列的符号位置进行计算。将位置与计算时间中的步骤对齐，它们生成隐藏状态ht序列，作为先前隐藏状态ht - 1和位置t的输入的函数。这种固有的顺序性质使在训练中难以并行化，当序列长度较长时这变得相当致命，因为存储器约束限制了批处理。最近的工作通过因式分解技巧[ 21 ]和条件计算[ 32 ]在计算效率上取得了显著提高，同时在后者的情况下也提高了模型性能。然而，顺序计算的基本约束仍然存在。</p>
+<p>注意力机制已经成为各种任务中很重要的一部分，允许对依赖关系进行建模，而不考虑它们在输入或输出序列中的距离[ 2，19 ]。然而，在除了少数情况之外的所有情况下，[ 27 ]，这种关注机制经常与神经网络结合使用。</p>
+<p>在这项工作中，我们提出了Transformer，它不用循环，取而代之的是完全依赖attention机制来描绘输入输出之间的全局依赖。Transformer允许更大程度的并行化，并且在八个P100 GPUs上训练12小时后，翻译质量可以达到最先进的水平。</p>
+<p>2 Background</p>
+<p>减少顺序计算的目标也是扩展神经GPU[16], ByteNet [18]和ConvS2S [9]的基础，所有这些都使用卷积神经网络作为基本构件，并行计算所有输入和输出位置的隐藏表示。在这些模型中，将来自两个任意输入或输出位置的信号相关联所需的操作数量随着位置之间的距离增加，对于ConvS2S为线性，对于ByteNet为对数。这使得了解远处位置之间的相关性变得更加困难，[ 12 ]。在Transformer中，这操作会被减少到固定数量，尽管由于平均注意力加权位置而降低了有效resolution，正如第3.2节所述，我们用Multi-Head注意力抵消了这种影响。</p>
+<p>Self-attention，有时被称为intra-attention，是一种attention机制，将单个序列的不同位置联系起来，以计算该序列的表示。自我关注已经成功地应用于各种任务中，包括阅读理解、抽象概括、文本蕴涵和独立于学习任务的句子表征[ 4、27、28、22 ]。</p>
+<p>端到端记忆网络是基于循环注意力机制，而不是序列对齐的循环，在简单语言问答和语言建模任务中表现良好，[ 34 ]。</p>
+<p>然而，Transformer是第一个完全依靠self-attention来计算其输入和输出表示的转换模型，而不使用序列rnn或者卷积模型。在接下来的章节中，我们将描述Transformer，激发self-attention，并讨论其优于[ 17、18 ]和[ 9 ]等模型的优势。</p>
+<p>3 Model Architecture</p>
+<p>大部分有竞争力的神经序列转换模型 都有一个encoder-decoder结构。Encoder会把一个输入的序列表示（x1，x2，。。。Xn）映射为另一个表示z=（z1，。。。Zn）。接着，decoder会根据z输出序列（y1，。。Ym）。模型的每一步都是自回归的，并且当生成下一个的时候会消耗以前生成的符号作为额外的输入。</p>
+<p>Transformer大概沿用这种架构，为encoder和decoder同时使用tacked self-attention和point-wise，还有全连接层，分别如下图的左半部分和右半部分所示。</p>
+<p><img src="NLP-Task06/8e0b1_1440w.jpeg" alt="img"></p>
+<p>3.1 Encoder and Decoder Stacks</p>
+<p>Encoder:encoder由6个相同层堆叠而成。每一层都有两个子层。首先是一个multi-head self-attention 机制，第二个是简单的、按位置全连接的前馈网络。我们在两个子层的每一个周围都使用残差连接，然后是层归一化。也就是说，每个子层的输出是LayerNorm(x+ Sublayer(x))，其中Sublayer(x)是由子层本身实现的功能。为了便于这些残差连接，模型中的所有子层以及嵌入层产生尺寸 </p>
+<p><img src="https://www.zhihu.com/equation?tex=d_%7Bmodel%7D" alt="img"></p>
+<p> = 512的输出。</p>
+<p>Decoder:decoder也由6个相同层堆叠而成。除了decoder里面有的两个子层，还加入了第三个子层，可以在encoder的输出上有multi-head attention的功能。我们同样在子层周围用残差连接和层归一化。我们还修改了decoder堆栈中的self-attention子层，以防止位置关注后续位置。这种masking，加上输出嵌入偏移一个位置，确保了位置i的预测只能依赖于小于i的位置处的已知输出。</p>
+<p>3.2 Attention</p>
+<p>Attention函数可以描述为将query和一组key-value对映射到输出，其中query、key、value和输出都是向量。 输出为value的加权和，其中分配给每个value的权重通过query与相应key的兼容函数来计算。</p>
+<p><img src="NLP-Task06/5b75f_1440w.jpeg" alt="img"></p>
+<p>3.2.1 Scaled Dot-Product Attention</p>
+<p>我们称我们特殊的attention为“缩放版的点积attention”（图 2）。 输入由query、 </p>
+<p><img src="https://www.zhihu.com/equation?tex=d_k" alt="img"></p>
+<p> 维的key和</p>
+<p><img src="https://www.zhihu.com/equation?tex=d_v+" alt="img"></p>
+<p> 维的value组成。 我们计算query和所有key的点积、用 </p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Csqrt%7Bd_%7Bk%7D%7D+" alt="img"></p>
+<p> 相除，然后应用一个softmax函数以获得值的权重。</p>
+<p>在实践中，我们同时计算一组query的attention函数，将它们组合成一个矩阵Q。 key和value也一起打包成矩阵 K 和 V 。 我们计算输出矩阵为：</p>
+<p><img src="NLP-Task06/3bcd2d_1440w.png" alt="img"></p>
+<p>两个最常用的attention函数是加法attention[2]和点积（乘法）attention。 除了缩放因子 </p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Cfrac%7B1%7D%7B%5Csqrt%7Bd_%7Bk%7D%7D%7D" alt="img"></p>
+<p> 之外，点积attention与我们的算法相同。 加法attention使用具有单个隐藏层的前馈网络计算兼容性函数。 虽然两者在理论上的复杂性相似，但在实践中点积attention的速度更快、更节省空间，因为它可以使用高度优化的矩阵乘法代码来实现。</p>
+<p>当 </p>
+<p><img src="https://www.zhihu.com/equation?tex=d_k" alt="img"></p>
+<p> 的值比较小的时候，这两个机制的性能相差相近，当 </p>
+<p><img src="https://www.zhihu.com/equation?tex=d_k+" alt="img"></p>
+<p> 比较大时，加法attention比不带缩放的点积attention性能好[3]。 我们怀疑，对于很大的 </p>
+<p><img src="https://www.zhihu.com/equation?tex=d_k" alt="img"></p>
+<p> 值，点积大幅度增长，将softmax函数推向具有极小梯度的区域。 为了抵消这种影响，我们缩小点积 </p>
+<p><img src="https://www.zhihu.com/equation?tex=+%5Cfrac%7B1%7D%7B%5Csqrt%7Bd_%7Bk%7D%7D%7D+" alt="img"></p>
+<p> 倍。（作者备注：为了解释点积为什么变大，假设q和k的组成成员是独立随机的变量，其均值为0方差为1。然后它们的点积有均值0和方差 </p>
+<p><img src="https://www.zhihu.com/equation?tex=d_k" alt="img"></p>
+<p> 。 </p>
+<p><img src="https://www.zhihu.com/equation?tex=d_k" alt="img"></p>
+<p> 过大会进入softmax的极小梯度区。</p>
+<p>3.2.2 Multi-Head Attention</p>
+<p>我们发现将query、key和value分别用不同的、学习到的线性映射来映射到 </p>
+<p><img src="https://www.zhihu.com/equation?tex=d_k" alt="img"></p>
+<p> 、 </p>
+<p><img src="https://www.zhihu.com/equation?tex=d_k" alt="img"></p>
+<p> 和 </p>
+<p><img src="https://www.zhihu.com/equation?tex=d_v" alt="img"></p>
+<p> 维h次效果更好，而不是用 </p>
+<p><img src="https://www.zhihu.com/equation?tex=d_%7Bmodel%7D" alt="img"></p>
+<p> 维的query、key和value执行单个attention函数。 基于每个映射版本的query、key和value，我们并行执行attention函数，产生</p>
+<p><img src="https://www.zhihu.com/equation?tex=d_v" alt="img"></p>
+<p> 维输出值。 将它们连接并再次映射，产生最终值，如图所示 2。</p>
+<p>Multi-head attention允许模型的不同表示子空间联合关注不同位置的信息。 如果只有一个attention head，它的平均值会削弱这个信息。</p>
+<p><img src="NLP-Task06/f9775d_1440w.png" alt="img"></p>
+<p>其中，映射为参数矩阵WiQ ∈ ℝdmodel×dk , WiK ∈ ℝdmodel×dk , WiV ∈ ℝdmodel×dv 及W O ∈ ℝhdv×dmodel。</p>
+<p>在这项工作中，我们采用h = 8 个并行attention层或head。 对每个head，我们使用 </p>
+<p><img src="https://www.zhihu.com/equation?tex=d_k" alt="img"></p>
+<p> = </p>
+<p><img src="https://www.zhihu.com/equation?tex=d_v" alt="img"></p>
+<p> = </p>
+<p><img src="https://www.zhihu.com/equation?tex=d_%7Bmodel%7D" alt="img"></p>
+<p> ∕ h = 64。 由于每个head的大小减小，总的计算成本与具有全部维度的单个head attention相似。</p>
+<p>3.2.3 Applications of Attention in our Model</p>
+<p>Transformer使用以3种方式使用multi-head attention：</p>
+<p>在“编码器—解码器attention”层，query来自前一个解码器层，key和value来自编码器的输出。 这允许解码器中的每个位置能关注到输入序列中的所有位置。 这模仿序列到序列模型中典型的编码器—解码器的attention机制，例如[38, 2, 9]。</p>
+<p>编码器包含self-attention层。 在self-attention层中，所有的key、value和query来自同一个地方，在这里是编码器中前一层的输出。编码器中的每个位置都可以关注编码器上一层的所有位置。</p>
+<p>类似地，解码器中的self-attention层允许解码器中的每个位置都关注解码器中直到并包括该位置的所有位置。我们需要防止解码器中的向左信息流，来保持自回归属性。通过屏蔽softmax的输入中所有不合法连接的值（设置为-∞），我们在缩放版的点积attention中实现。 见图 2.</p>
+<p>3.3 Position-wise Feed-Forward Networks</p>
+<p>除了attention子层之外，我们的编码器和解码器中的每个层都包含一个完全连接的前馈网络，该前馈网络单独且相同地应用于每个位置。 它由两个线性变换组成，之间有一个ReLU激活。</p>
+<p><img src="NLP-Task06/2209c7_1440w.png" alt="img"></p>
+<p>尽管线性变换在不同位置上是相同的，但它们层与层之间的参数是不一样的。 它的另一种描述方式是两个内核大小为1的卷积。 输入和输出的维度为 </p>
+<p><img src="https://www.zhihu.com/equation?tex=d_%7Bmodel%7D" alt="img"></p>
+<p> = 512，内部层的维度为 </p>
+<p><img src="https://www.zhihu.com/equation?tex=d_%7Bff%7D" alt="img"></p>
+<p> = 2048。</p>
+<p>3.4 Embeddings and Softmax</p>
+<p>与其他序列转导模型类似，我们使用学习到的嵌入将输入词符和输出词符转换为维度为dmodel的向量。 我们还使用普通的线性变换和softmax函数将解码器输出转换为预测的下一个词符的概率。 在我们的模型中，两个嵌入层之间和pre-softmax线性变换共享相同的权重矩阵，类似于[30]。 在嵌入层中，我们将这些权重乘以 </p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Csqrt%7Bd_%7Bmodel%7D%7D+" alt="img"></p>
+<p> 。</p>
+<p>3.5 Positional Encoding</p>
+<p>由于我们的模型不包含循环和卷积，为了让模型利用序列的顺序，我们必须注入序列中关于词符相对或者绝对位置的一些信息。 为此，我们将“位置编码”添加到编码器和解码器堆栈底部的输入嵌入中。 位置编码和嵌入的维度 </p>
+<p><img src="https://www.zhihu.com/equation?tex=d_%7Bmodel%7D" alt="img"></p>
+<p> 相同，所以它们俩可以相加。 有多种位置编码可以选择，例如通过学习得到的位置编码和固定的位置编码[9]。</p>
+<p>在这项工作中，我们使用不同频率的正弦和余弦函数：</p>
+<p><img src="NLP-Task06/b7b7e_1440w.jpeg" alt="img"></p>
+<p>其中pos 是位置，i 是维度。 也就是说，位置编码的每个维度对应于一个正弦曲线。 这些波长形成一个几何级数，从2π 到10000 ⋅ 2π。 我们选择这个函数是因为我们假设它允许模型很容易学习对相对位置的关注，因为对任意确定的偏移k, </p>
+<p><img src="https://www.zhihu.com/equation?tex=PE_%7Bpos%2Bk%7D" alt="img"></p>
+<p> 可以表示为 </p>
+<p><img src="https://www.zhihu.com/equation?tex=PE_%7Bpos%7D" alt="img"></p>
+<p> 的线性函数。</p>
+<p>我们还使用学习到的位置嵌入进行了试验，发现这两个版本产生几乎相同的结果（参见表 3 行(E)）。 我们选择了正弦曲线，因为它允许使用时出现比训练时更长的序列。</p>
+<p>4 Why Self-Attention</p>
+<p>本节，我们比较self-attention与循环层和卷积层的各个方面，它们通常用于映射变长的符号序列表示(x1,…,xn) 到另一个等长的序列(z1,…,zn)，其中xi,zi ∈ ℝd，例如一个典型的序列转导编码器或解码器中的隐藏层。 我们使用self-attention是考虑到要解决三个问题。</p>
+<p>一个是每层计算的总复杂度。 另一个是可以并行的计算量，以所需的最小顺序操作的数量来衡量。</p>
+<p>第三个是网络中长距离依赖之间的路径长度。 学习长距离依赖性是许多序列转导任务中的关键挑战。 影响学习这种依赖能力的一个关键因素，是前向和后向信号必须在网络中传播的路径长度。 输入和输出序列中任意位置组合之间的这些路径越短，学习远距离依赖性就越容易[12]。因此，我们还比较了由不同层类型组成的网络中任意两个输入和输出位置之间的最大路径长度。</p>
+<p><img src="NLP-Task06/0c2e9_1440w.jpeg" alt="img"></p>
+<p>如表1所示，self-attention层将所有位置连接到恒定数量的顺序执行的操作，而循环层需要O(n) 顺序操作。 在计算复杂性方面，当序列长度n 小于表示维度d 时，self-attention层比循环层快，这是机器翻译中最先进的模型最常见情况，例如单词[38]表示法和字节对[31]表示法。为了提高涉及很长序列的任务的计算性能，可以将self-attention限制在仅考虑大小为r 的邻域。 这会将最大路径长度增加到O(n ∕ r)。 我们计划在未来的工作中进一步调查这种方法。</p>
+<p>核宽度为k &lt; n的单层卷积不会连接每一对输入和输出的位置。 要这么做，在邻近核的情况下需要O(n∕k) 个卷积层， 在扩展卷积的情况下需要O(logk(n)) 个层[18]，它们增加了网络中任意两个位置之间的最长路径的长度。 卷积层通常比循环层更昂贵，与因子k有关。然而，可分卷积[6]大幅减少复杂度到O(k ⋅n⋅d + n⋅d2)。 然而，即使k = n，一个可分卷积的复杂度等同于self-attention层和point-wise前向层的组合，即我们的模型采用的方法。</p>
+<p>间接的好处是self-attention可以产生更可解释的模型。 我们从我们的模型中研究attention的分布，并在附录中展示和讨论示例。 每个attention head不仅清楚地学习到执行不同的任务，许多似乎展现与句子的句法和语义结构的行为。</p>
+<p>5 Training</p>
+<p>本节介绍我们的模型训练方法。</p>
+<p>5.1 训练数据和批次</p>
+<p>我们在标准的WMT 2014英语-德语数据集上进行了训练，其中包含约450万个句子对。 这些句子使用字节对编码[3]进行编码，源语句和目标语句共享大约37000个词符的词汇表。 对于英语-法语翻译，我们使用大得多的WMT 2014英法数据集，它包含3600万个句子，并将词符分成32000个word-piece词汇表[38]。 序列长度相近的句子一起进行批处理。 每个训练批次的句子对包含大约25000个源词符和25000个目标词符。</p>
+<p>5.2 硬件和时间</p>
+<p>我们在一台具有8个NVIDIA P100 GPU的机器上训练我们的模型。 使用本文描述的超参数的基础模型，每个训练步骤耗时约0.4秒。 我们的基础模型共训练了10万步或12小时。 对于我们的大模型(表格三底部一行), 每一步耗时1秒. 大模型训练了30万步（3.5天）。</p>
+<p>5.3 优化</p>
+<p>我们使用Adam优化[20]，其中β1 = 0.9, β2 = 0.98 及ϵ = 10-9。 我们根据以下公式在训练过程中改变学习率：</p>
+<p><img src="NLP-Task06/bda5e4_1440w.png" alt="img"></p>
+<p>这对应于在第一次warm up_steps 步骤中线性地增加学习速率，并且随后将其与步骤数的平方根成比例地减小。 我们使用warm up_steps = 4000。</p>
+<p>5.4 正则化</p>
+<p>训练期间我们采用三种正则化：</p>
+<p>残差dropout 我们将dropout[33]在它与子层的输入相加和正则化之前，应用到每个子层的输出中。 此外，在编码器和解码器堆栈中，我们将dropout应用到嵌入和位置编码的和这一步骤中。 对于基本模型，我们使用</p>
+<p><img src="https://www.zhihu.com/equation?tex=P_%7Bdrop%7D" alt="img"></p>
+<p> = 0.1。</p>
+<p><img src="NLP-Task06/d161f_1440w.jpeg" alt="img"></p>
+<p>Label Smoothing 在训练过程中，我们使用的label smoothing的值为ϵls = 0.1[36]。 这让模型不易理解，因为模型学得更加不确定，但提高了准确性和BLEU得分。</p>
+<p>6 Results</p>
+<p>6.1 Machine Translation</p>
+<p>在WMT 2014英语-德语翻译任务中，大型transformer模型（表2中的Transformer (big)）比以前报道的最佳模型（包括集成模型）高出2.0个BLEU以上，确立了一个全新的最高BLEU分数为28.4。 该模型的配置列在表3的底部。 训练在8 个P100 GPU上花费3.5 天。 即使我们的基础模型也超过了以前发布的所有模型和整合模型，且训练成本只是这些模型的一小部分。</p>
+<p>在WMT 2014英语-法语翻译任务中，我们的大型模型的BLEU得分为41.0，超过了之前发布的所有单一模型，训练成本低于先前最先进模型的1 ∕ 4 。 英语-法语的Transformer (big) 模型使用丢弃率为</p>
+<p><img src="https://www.zhihu.com/equation?tex=P_%7Bdrop%7D" alt="img"></p>
+<p> = 0.1，而不是0.3。</p>
+<p>对于基础模型，我们使用的单个模型来自最后5个检查点的平均值，这些检查点每10分钟写一次。 对于大型模型，我们对最后20个检查点进行了平均。 我们使用beam search，beam大小为4 ，长度惩罚α = 0.6 [38]。 这些超参数是在开发集上进行实验后选定的。 在推断时，我们设置最大输出长度为输入长度+50，但在可能时尽早终止[38]。</p>
+<p>表2总结了我们的结果，并将我们的翻译质量和训练成本与文献中的其他模型体系结构进行了比较。 我们通过将训练时间、所使用的GPU的数量以及每个GPU的持续单精度浮点能力的估计相乘来估计用于训练模型的浮点运算的数量。</p>
+<p><img src="NLP-Task06/f08bc_1440w.jpeg" alt="img"></p>
+<p>6.2 Model Variations</p>
+<p>为了评估Transformer不同组件的重要性，我们以不同的方式改变我们的基础模型，测量开发集newstest2013上英文-德文翻译的性能变化。我们使用前一节所述的beam搜索，但没有平均检查点。 我们在表中列出这些结果。</p>
+<p>在表3的行（A）中，我们改变attention head的数量和attention key和value的维度，保持计算量不变，如3.2.2节所述。 虽然只有一个head attention比最佳设置差0.9 BLEU，但质量也随着head太多而下降。</p>
+<p>在表3行（B）中，我们观察到减小key的大小dk会有损模型质量。 这表明确定兼容性并不容易，并且比点积更复杂的兼容性函数可能更有用。我们在行（C）和（D）中进一步观察到，如预期的那样，更大的模型更好，并且dropout对避免过度拟合非常有帮助。 在行（E）中，我们用学习到的位置嵌入[9]来替换我们的正弦位置编码，并观察到与基本模型几乎相同的结果。</p>
+<p>7 结论</p>
+<p>在这项工作中，我们提出了Transformer，第一个完全基于attention的序列转导模型，用multi-headed self-attention取代了编码器-解码器架构中最常用的循环层。</p>
+<p>对于翻译任务，Transformer可以比基于循环或卷积层的体系结构训练更快。 在WMT 2014英语-德语和WMT 2014英语-法语翻译任务中，我们取得了最好的结果。 在前面的任务中，我们最好的模型甚至胜过以前报道过的所有集成模型。</p>
+<p>我们对基于attention的模型的未来感到兴奋，并计划将它们应用于其他任务。 我们计划将Transformer扩展到除文本之外的涉及输入和输出模式的问题，并调查局部的、受限attention机制以有效处理大型输入和输出，如图像、音频和视频。 让生成具有更少的顺序性是我们的另一个研究目标。</p>
+<p>我们用于训练和评估模型的代码可以在<a href="https://link.zhihu.com/?target=https%3A//github.com/tensorflow/tensor2tensor">https://github.com/tensorflow/tensor2tensor</a>上找到。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/04/NLP-Task06/" data-id="ckdg43r0g0001kkwc9aen3w0c" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/08/04/NLP-Task05/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">NLP-Task05</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/08/04/NLP-Task06/">NLP-Task06</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/04/NLP-Task05/">NLP-Task05</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/02/Python-Task06/">Python-Task06</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/31/Python-Task05/">Python-Task05</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/27/NLP-Task04/">NLP-Task04</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
