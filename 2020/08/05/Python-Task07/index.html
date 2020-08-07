@@ -15,7 +15,7 @@
 <meta property="og:description" content="Python编程基础-Task07Task 7:类、对象与魔法方法类与对象 1.对象&#x3D;属性+方法 对象是类的实例。 封装：我们可以使用关键字class定义Python类，关键字后面紧跟类的名称、分号和类的实现。 Python中的类名约定以大写字母开头。 继承：子类自动共享父类之间数据和方法的机制。 多态：不同对象对不同方法响应不同的行动。 2.Self   Python 的 self 相当于 C+">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-05T15:20:52.000Z">
-<meta property="article:modified_time" content="2020-08-07T01:12:06.979Z">
+<meta property="article:modified_time" content="2020-08-07T03:09:26.454Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -165,6 +165,7 @@
 <p>注意：属性与方法名相同时，属性会覆盖方法。</p>
 <p>8.绑定</p>
 <p>Python 严格要求方法需要有实例才能被调用。</p>
+<p>self参数的作用是绑定方法，有了这个参数，Python 可以分清是哪个对象在调用方法和属性，可以认为方法中的 self 其实就是实例对象的唯一标志。</p>
 <p>Python 对象的数据属性通常存储在名为<code>.__ dict__</code>的字典中，我们可以直接访问<code>__dict__</code>，或利用 Python 的内置函数<code>vars()</code>获取<code>.__ dict__</code>。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CC</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setXY</span><span class="params">(self, x, y)</span>:</span></span><br><span class="line">        self.x = x</span><br><span class="line">        self.y = y</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">printXY</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(self.x, self.y)</span><br><span class="line"></span><br><span class="line">dd = CC()</span><br><span class="line">print(dd.__dict__)</span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br><span class="line">print(vars(dd))</span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br><span class="line">print(CC.__dict__)</span><br><span class="line"><span class="comment"># &#123;'__module__': '__main__', 'setXY': &lt;function CC.setXY at 0x000000C3473DA048&gt;, 'printXY': &lt;function CC.printXY at 0x000000C3473C4F28&gt;, '__dict__': &lt;attribute '__dict__' of 'CC' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'CC' objects&gt;, '__doc__': None&#125;</span></span><br><span class="line">dd.setXY(<span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">print(dd.__dict__)</span><br><span class="line"><span class="comment"># &#123;'x': 4, 'y': 5&#125;</span></span><br><span class="line">print(vars(CC))</span><br><span class="line"><span class="comment"># &#123;'__module__': '__main__', 'setXY': &lt;function CC.setXY at 0x000000632CA9B048&gt;, 'printXY': &lt;function CC.printXY at 0x000000632CA83048&gt;, '__dict__': &lt;attribute '__dict__' of 'CC' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'CC' objects&gt;, '__doc__': None&#125;</span></span><br><span class="line">print(CC.__dict__)</span><br><span class="line"><span class="comment"># &#123;'__module__': '__main__', 'setXY': &lt;function CC.setXY at 0x000000632CA9B048&gt;, 'printXY': &lt;function CC.printXY at 0x000000632CA83048&gt;, '__dict__': &lt;attribute '__dict__' of 'CC' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'CC' objects&gt;, '__doc__': None&#125;</span></span><br></pre></td></tr></table></figure>
 
@@ -202,7 +203,21 @@
 <li>周末票价为平日的120%</li>
 <li>儿童票半价</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class Ticket():</span><br><span class="line">    # your code here</span><br></pre></td></tr></table></figure>
+<p>实现1：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ticket</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># your code here</span></span><br><span class="line"></span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">Ticket</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.price = <span class="number">100</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">weekendPrice</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.price *= <span class="number">1.2</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">kidsPrice</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.price *= <span class="number">0.5</span></span><br><span class="line">adult = Ticket()</span><br><span class="line">kid = Ticket()</span><br><span class="line">kid.kidsPrice()</span><br><span class="line">print(adult.price * <span class="number">2</span>+kid.price)</span><br></pre></td></tr></table></figure>
+
+<p>250.0</p>
+<p>实现2：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ticket</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, weekend=False, child=False)</span>:</span></span><br><span class="line">        self.price = <span class="number">100</span></span><br><span class="line">        <span class="keyword">if</span> weekend:</span><br><span class="line">            self.w = <span class="number">1.2</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.w = <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> child:</span><br><span class="line">            self.discount = <span class="number">0.5</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.discount = <span class="number">1</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">clacPrice</span><span class="params">(self,num)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.price * self.w * self.discount * num</span><br><span class="line"></span><br><span class="line">adult = Ticket()</span><br><span class="line">child = Ticket(child=<span class="literal">True</span>)</span><br><span class="line">print(<span class="string">"2个成人+1个小孩平日票价为：%.2f"</span>% (adult.clacPrice(<span class="number">2</span>) + child.clacPrice(<span class="number">1</span>)))</span><br></pre></td></tr></table></figure>
+
+<p>2个成人+1个小孩平日票价为：250.00</p>
+<p>实现3：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ticket</span>:</span></span><br><span class="line">    price = <span class="number">100</span></span><br><span class="line">    weekend = price*<span class="number">1.2</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">compute</span><span class="params">(self, adultcount, childcount, isweekend)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> isweekend == <span class="string">'no'</span>:</span><br><span class="line">            total = int(adultcount) * self.price + int(childcount)*self.price/<span class="number">2</span></span><br><span class="line">            print(<span class="string">"应该支付金额："</span>, str(total))</span><br><span class="line">        <span class="keyword">elif</span> isweekend ==<span class="string">'yes'</span>:</span><br><span class="line">            total = int(adultcount) * self.weekend + int(childcount)*self.weekend/<span class="number">2</span></span><br><span class="line">            print(<span class="string">"应该支付金额："</span>, str(total))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"输入有误！"</span>)</span><br><span class="line"></span><br><span class="line">adult = input(<span class="string">"请输入成年人数量"</span>)</span><br><span class="line">child = input(<span class="string">"请输入小孩数量"</span>)</span><br><span class="line">isweekend = input(<span class="string">"是否是周末？yes/no"</span>)</span><br><span class="line">t = Ticket()</span><br><span class="line">t.compute(adult, child, isweekend)</span><br></pre></td></tr></table></figure>
+
+<p>请输入成年人数量2<br>请输入小孩数量1<br>是否是周末？yes/nono<br>应该支付金额： 250.0</p>
+<p><strong>魔法方法</strong></p>
+<p>1.对象=属性+方法</p>
+
       
     </div>
     <footer class="article-footer">
@@ -214,6 +229,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/08/07/Python-Task08/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python-Task08
+        
+      </div>
+    </a>
   
   
     <a href="/2020/08/04/NLP-Task06/" id="article-nav-older" class="article-nav-link-wrap">
@@ -255,6 +279,10 @@
       <ul>
         
           <li>
+            <a href="/2020/08/07/Python-Task08/">Python-Task08</a>
+          </li>
+        
+          <li>
             <a href="/2020/08/05/Python-Task07/">Python-Task07</a>
           </li>
         
@@ -268,10 +296,6 @@
         
           <li>
             <a href="/2020/08/02/Python-Task06/">Python-Task06</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/31/Python-Task05/">Python-Task05</a>
           </li>
         
       </ul>

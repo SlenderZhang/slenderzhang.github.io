@@ -64,6 +64,167 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Python-Task08" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/07/Python-Task08/" class="article-date">
+  <time datetime="2020-08-07T03:08:22.000Z" itemprop="datePublished">2020-08-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/07/Python-Task08/">Python-Task08</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Python编程基础-Task08"><a href="#Python编程基础-Task08" class="headerlink" title="Python编程基础-Task08"></a>Python编程基础-Task08</h1><h2 id="Task-8-模块与datetime模块"><a href="#Task-8-模块与datetime模块" class="headerlink" title="Task 8:模块与datetime模块"></a>Task 8:模块与datetime模块</h2><p><strong>模块</strong></p>
+<p>1.模块   </p>
+<p>​    模块是一个包含所有你定义的函数和变量的文件，其后缀名是.py。模块可以被别的程序引入，以使用该模块中的函数等功能。这也是使用 python 标准库的方法。</p>
+<ul>
+<li>容器 -&gt; 数据的封装</li>
+<li>函数 -&gt; 语句的封装</li>
+<li>类 -&gt; 方法和属性的封装</li>
+<li>模块 -&gt; 程序文件</li>
+</ul>
+<p>2.命名空间</p>
+<p>​    命名空间（namespace）是从名称到对象的映射，大部分命名空间都是通过Python字典来实现的。命名空间提供了在项目中避免名字冲突的一种方法。各个命名空间是独立的，没有任何关系的，所以一个命名空间中不能有重名，但不同的命名空间是可以重名而没有任何影响。</p>
+<p>因为对象的不同，也有所区别，可以分为如下几种：</p>
+<ul>
+<li>内置命名空间（Built-in Namespaces）：Python语言内置的名称，Python 运行起来，它们就存在了。内置函数的命名空间都属于内置命名空间，所以，我们可以在任何程序中直接运行它们，比如<code>id()</code>,不需要做什么操作，拿过来就直接使用了。</li>
+<li>全局命名空间（Module：Global Namespaces）：模块中定义的名称，记录了模块的变量，包括函数、类、其他导入的模块、模块级的变量和常量。每个模块创建它自己所拥有的全局命名空间，不同模块的全局命名空间彼此独立，不同模块中相同名称的命名空间，也会因为模块的不同而不相互干扰。</li>
+<li>本地命名空间（Function &amp; Class：Local Namespaces）：函数中定义的名称，记录了函数的变量，包括函数的参数和局部定义的变量。模块中有函数或者类，每个函数或者类所定义的命名空间就是本地命名空间。如果函数返回了结果或者抛出异常，则本地命名空间也结束了。</li>
+</ul>
+<img src="https://www.runoob.com/wp-content/uploads/2014/05/types_namespace-1.png" alt="img" style="zoom:50%;" />
+
+<p>命名空间查找顺序:按照从里到外的顺序，为：<strong>局部的命名空间去 -&gt; 全局命名空间 -&gt; 内置命名空间</strong>。</p>
+<p>如果找不到变量 ，它将放弃查找并引发一个 NameError 异常</p>
+<p>命名空间的生命周期：命名空间的生命周期取决于对象的作用域，如果对象执行完成，则该命名空间的生命周期就结束。因此，我们无法从外部命名空间访问内部命名空间的对象。</p>
+<p>作用域：作用域就是一个 Python 程序可以直接访问命名空间的正文区域。</p>
+<p>变量的作用域决定了在哪一部分程序可以访问哪个特定的变量名称。Python的作用域一共有4种，分别是：</p>
+<p>有四种作用域：</p>
+<ul>
+<li><strong>L（Local）</strong>：最内层，包含局部变量，比如一个函数/方法内部。</li>
+<li><strong>E（Enclosing）</strong>：包含了非局部(non-local)也非全局(non-global)的变量。比如两个嵌套函数，一个函数（或类） A 里面又包含了一个函数 B ，那么对于 B 中的名称来说 A 中的作用域就为 nonlocal。</li>
+<li><strong>G（Global）</strong>：当前脚本的最外层，比如当前模块的全局变量。</li>
+<li><strong>B（Built-in）</strong>： 包含了内建的变量/关键字等。，最后被搜索</li>
+</ul>
+<p>规则顺序： <strong>L –&gt; E –&gt; G –&gt;gt; B</strong>。</p>
+<p>在局部找不到，便会去局部外的局部找（例如闭包），再找不到就会去全局找，再者去内置中找。</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/05/1418490-20180906153626089-1835444372.png" alt="img"></p>
+<p>3.导入模块</p>
+<p>第一种：import 模块名</p>
+<p>第二种：from 模块名 import 函数名</p>
+<p>第三种：import 模块名 as 新名字</p>
+<p><strong>比如引入同一目录下的py文件：</strong></p>
+<p>例如在admin.py文件中要引入dealcode.py文件：</p>
+<p>1)在目录下有<strong>init</strong>.py文件</p>
+<p>2)在admin.py文件中加一行：from . import dealcode</p>
+<p>（如果要引入同一目录下的dealcode.py文件中的一个类Hello，在admin.py文件中加一行：from .dealcode import Hello）</p>
+<p>引入同级目录文件夹的下级文件：from .templateminer import lenma_template</p>
+<p>（一定要加.）</p>
+<p>from .. import module_name：导入本模块上一级目录的模块。</p>
+<p>from ..package_name import module_name。导入本模块上一级目录下的包中的模块。</p>
+<p>但需要注意：</p>
+<p>需要执行main的模块中，将相对引用改为绝对引用。较常见的比如单元测试类中的导入。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> .package <span class="keyword">import</span> mymodule</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">   do_something()</span><br></pre></td></tr></table></figure>
+
+<p>更改：</p>
+<p>比较简单的一种是将”.”之前加上文件夹的名字，形如：</p>
+<p>​    from my_dir.package import mymodule   或者  from package import mymodule</p>
+<p>分析：</p>
+<p>在main函数中执行时，<strong>name</strong>这个变量值是”<strong>main</strong>”。而相对引用符号”.”的就是对应<strong>name</strong>这个变量。</p>
+<p>当这个模块是在别的模块中被导入使用，此时的”.”就是原模块的文件名。在main函数中执行时，此时”.”变成了”<strong>main</strong>”。所以，出现了这个问题。</p>
+<p>4.<code>if __name__ == &#39;__main__&#39;</code></p>
+<p><code>__name__</code>：是内置变量，可用于表示当前模块的名字。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> const</span><br><span class="line"></span><br><span class="line">print(__name__)</span><br><span class="line"><span class="comment"># __main__</span></span><br><span class="line"></span><br><span class="line">print(const.__name__)</span><br><span class="line"><span class="comment"># const</span></span><br></pre></td></tr></table></figure>
+
+<p>​    由此我们可知：如果一个 .py 文件（模块）被直接运行时，其<code>__name__</code>值为<code>__main__</code>，即模块名为<code>__main__</code>。</p>
+<p>所以，<code>if __name__ == &#39;__main__&#39;</code>的意思是：当 .py 文件被直接运行时，<code>if __name__ == &#39;__main__&#39;</code>之下的代码块将被运行；当 .py 文件以模块形式被导入时，<code>if __name__ == &#39;__main__&#39;</code>之下的代码块不被运行。</p>
+<p>5.搜索路径</p>
+<p>当解释器遇到 import 语句，如果模块在当前的搜索路径就会被导入。</p>
+<p>当我们使用import语句的时候，Python解释器是怎样找到对应的文件的呢？</p>
+<p>这就涉及到Python的搜索路径，搜索路径是由一系列目录名组成的，Python解释器就依次从这些目录中去寻找所引入的模块。这看起来很像环境变量，事实上，也可以通过定义环境变量的方式来确定搜索路径。</p>
+<p>搜索路径是在Python编译或安装的时候确定的，安装新的库应该也会修改。搜索路径被存储在sys模块中的path变量：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">print(sys.path)</span><br><span class="line"><span class="comment"># ['C:\\ProgramData\\Anaconda3\\DLLs', 'C:\\ProgramData\\Anaconda3\\lib', 'C:\\ProgramData\\Anaconda3', 'C:\\ProgramData\\Anaconda3\\lib\\site-packages',...]</span></span><br></pre></td></tr></table></figure>
+
+<p>6.包</p>
+<p>包是一种管理 Python 模块命名空间的形式，采用”点模块名称”。</p>
+<p>创建包分为三个步骤：</p>
+<ul>
+<li><p>创建一个文件夹，用于存放相关的模块，文件夹的名字即包的名字。</p>
+</li>
+<li><p>在文件夹中创建一个 <code>__init__.py</code> 的模块文件，内容可以为空。</p>
+</li>
+<li><p>将相关的模块放入文件夹中。</p>
+</li>
+</ul>
+<p>如果我们使用 <code>from sound.effects import *</code>，Python 会进入文件系统，找到这个包里面所有的子模块，一个一个的把它们都导入进来。</p>
+<p>导入语句遵循如下规则：如果包定义文件 <code>__init__.py</code> 存在一个叫做 <code>__all__</code> 的列表变量，那么在使用 <code>from package import *</code> 的时候就把这个列表中的所有名字作为包内容导入。</p>
+<p>例如，在 <code>sounds/effects/__init__.py</code>中包含如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__all__ &#x3D; [&quot;echo&quot;, &quot;surround&quot;, &quot;reverse&quot;]</span><br></pre></td></tr></table></figure>
+
+<p>这表示当你使用 <code>from sound.effects import *</code>这种用法时，你只会导入包里面这三个子模块。</p>
+<p>如果 <code>__all__</code> 真的没有定义，那么使用<code>from sound.effects import *</code>这种语法的时候，就不会导入包 <code>sound.effects</code> 里的任何子模块。他只是把包 <code>sound.effects</code> 和它里面定义的所有内容导入进来（可能运行<code>__init__.py</code>里定义的初始化代码）。</p>
+<p>这会把 <code>__init__.py</code> 里面定义的所有名字导入进来。并且他不会破坏掉我们在这句话之前导入的所有明确指定的模块。</p>
+<p>7.练习题</p>
+<p>1）怎么查出通过 from xx import xx导⼊的可以直接调⽤的⽅法？</p>
+<p>方法1：通过 dir() 函数查看该模块中包含哪些成员：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> string</span><br><span class="line">print(dir(string))</span><br></pre></td></tr></table></figure>
+
+<p>程序执行结果为：</p>
+<p>[‘Formatter’, ‘Template’, ‘<em>ChainMap’, ‘<em>TemplateMetaclass’, ‘__all</em></em>‘, ‘<strong>builtins</strong>‘, ‘<strong>cached</strong>‘, ‘<strong>doc</strong>‘, ‘<strong>file</strong>‘, ‘<strong>loader</strong>‘, ‘<strong>name</strong>‘, ‘<strong>package</strong>‘, ‘<strong>spec</strong>‘, ‘_re’, ‘_string’, ‘ascii_letters’, ‘ascii_lowercase’, ‘ascii_uppercase’, ‘capwords’, ‘digits’, ‘hexdigits’, ‘octdigits’, ‘printable’, ‘punctuation’, ‘whitespace’]</p>
+<p>​    通过 dir() 函数获取到的模块成员，不仅包含供外部文件使用的成员，还包含很多“特殊”（名称以 2 个下划线开头和结束）的成员，列出这些成员，对我们并没有实际意义。</p>
+<p>​    可以忽略显示 dir() 函数输出的特殊成员的方法。仍以 string 模块为例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> string</span><br><span class="line">print([e <span class="keyword">for</span> e <span class="keyword">in</span> dir(string) <span class="keyword">if</span> <span class="keyword">not</span> e.startswith(<span class="string">'_'</span>)])</span><br></pre></td></tr></table></figure>
+
+<p>程序执行结果为：</p>
+<p>[‘Formatter’, ‘Template’, ‘ascii_letters’, ‘ascii_lowercase’, ‘ascii_uppercase’, ‘capwords’, ‘digits’, ‘hexdigits’, ‘octdigits’, ‘printable’, ‘punctuation’, ‘whitespace’]</p>
+<p>方法2：除了使用 dir() 函数之外，还可以使用<code>__all__</code>变量，借助该变量也可以查看模块（包）内包含的所有成员。</p>
+<p>仍以 string 模块为例，举个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> string</span><br><span class="line">print(string.__all__)</span><br></pre></td></tr></table></figure>
+
+<p>程序执行结果为：</p>
+<p>[‘ascii_letters’, ‘ascii_lowercase’, ‘ascii_uppercase’, ‘capwords’, ‘digits’, ‘hexdigits’, ‘octdigits’, ‘printable’, ‘punctuation’, ‘whitespace’, ‘Formatter’, ‘Template’]</p>
+<p>​    显然，和 dir() 函数相比，<code>__all__</code>变量在查看指定模块成员时，它不会显示模块中的特殊成员，同时还会根据成员的名称进行排序显示。</p>
+<p>​    不过需要注意的是，并非所有的模块都支持使用<code>__all__</code> 变量，因此对于获取有些模块的成员，就只能使用 dir() 函数。</p>
+<p>方法3：在python交互解释器中使用help()查看，使用help函数查看里面的FUNCTIONS</p>
+<p>2）了解Collection模块，编写程序以查询给定列表中最常见的元素。</p>
+<p>题目说明：</p>
+<p>输入：language = [‘PHP’, ‘PHP’, ‘Python’, ‘PHP’, ‘Python’, ‘JS’, ‘Python’, ‘Python’,’PHP’, ‘Python’]</p>
+<p>输出：Python</p>
+<p>方法1：利用字典dict来完成统计</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">most_element</span><span class="params">(language)</span>:</span></span><br><span class="line">    dic = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> language:</span><br><span class="line">        dic[key] = dic.get(key,<span class="number">0</span>)+<span class="number">1</span></span><br><span class="line">    d = sorted(dic.items(),key = <span class="keyword">lambda</span> i:i[<span class="number">1</span>], reverse=<span class="literal">True</span>)</span><br><span class="line">    rs = d[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> rs</span><br><span class="line">language = [<span class="string">'PHP'</span>, <span class="string">'PHP'</span>, <span class="string">'Python'</span>, <span class="string">'PHP'</span>, <span class="string">'Python'</span>, <span class="string">'JS'</span>, <span class="string">'Python'</span>, <span class="string">'Python'</span>,<span class="string">'PHP'</span>, <span class="string">'Python'</span>]</span><br><span class="line"></span><br><span class="line">print(most_element(language))</span><br></pre></td></tr></table></figure>
+
+<p>Python</p>
+<p>方法2：利用Python的collection包下Counter的类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">most_element</span><span class="params">(language)</span>:</span></span><br><span class="line">    <span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line">    d = Counter(language)</span><br><span class="line">    <span class="comment"># 取第一个出现频率最高的元素以及他的次数,返回的数据格式是列表里面嵌套元组</span></span><br><span class="line">    c = d.most_common(<span class="number">1</span>)</span><br><span class="line">    rs = c[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> rs</span><br><span class="line">language = [<span class="string">'PHP'</span>, <span class="string">'PHP'</span>, <span class="string">'Python'</span>, <span class="string">'PHP'</span>, <span class="string">'Python'</span>, <span class="string">'JS'</span>, <span class="string">'Python'</span>, <span class="string">'Python'</span>,<span class="string">'PHP'</span>, <span class="string">'Python'</span>]</span><br><span class="line"></span><br><span class="line">print(most_element(language))</span><br></pre></td></tr></table></figure>
+
+<p>Python</p>
+<p><strong>datetime模块</strong></p>
+<p>1.datatime类</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/07/Python-Task08/" data-id="ckdjx2wel0000r0wc99eqej1t" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Python-Task07" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/08/05/Python-Task07/" class="article-date">
@@ -163,6 +324,7 @@
 <p>注意：属性与方法名相同时，属性会覆盖方法。</p>
 <p>8.绑定</p>
 <p>Python 严格要求方法需要有实例才能被调用。</p>
+<p>self参数的作用是绑定方法，有了这个参数，Python 可以分清是哪个对象在调用方法和属性，可以认为方法中的 self 其实就是实例对象的唯一标志。</p>
 <p>Python 对象的数据属性通常存储在名为<code>.__ dict__</code>的字典中，我们可以直接访问<code>__dict__</code>，或利用 Python 的内置函数<code>vars()</code>获取<code>.__ dict__</code>。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CC</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setXY</span><span class="params">(self, x, y)</span>:</span></span><br><span class="line">        self.x = x</span><br><span class="line">        self.y = y</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">printXY</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(self.x, self.y)</span><br><span class="line"></span><br><span class="line">dd = CC()</span><br><span class="line">print(dd.__dict__)</span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br><span class="line">print(vars(dd))</span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br><span class="line">print(CC.__dict__)</span><br><span class="line"><span class="comment"># &#123;'__module__': '__main__', 'setXY': &lt;function CC.setXY at 0x000000C3473DA048&gt;, 'printXY': &lt;function CC.printXY at 0x000000C3473C4F28&gt;, '__dict__': &lt;attribute '__dict__' of 'CC' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'CC' objects&gt;, '__doc__': None&#125;</span></span><br><span class="line">dd.setXY(<span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">print(dd.__dict__)</span><br><span class="line"><span class="comment"># &#123;'x': 4, 'y': 5&#125;</span></span><br><span class="line">print(vars(CC))</span><br><span class="line"><span class="comment"># &#123;'__module__': '__main__', 'setXY': &lt;function CC.setXY at 0x000000632CA9B048&gt;, 'printXY': &lt;function CC.printXY at 0x000000632CA83048&gt;, '__dict__': &lt;attribute '__dict__' of 'CC' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'CC' objects&gt;, '__doc__': None&#125;</span></span><br><span class="line">print(CC.__dict__)</span><br><span class="line"><span class="comment"># &#123;'__module__': '__main__', 'setXY': &lt;function CC.setXY at 0x000000632CA9B048&gt;, 'printXY': &lt;function CC.printXY at 0x000000632CA83048&gt;, '__dict__': &lt;attribute '__dict__' of 'CC' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'CC' objects&gt;, '__doc__': None&#125;</span></span><br></pre></td></tr></table></figure>
 
@@ -200,7 +362,21 @@
 <li>周末票价为平日的120%</li>
 <li>儿童票半价</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class Ticket():</span><br><span class="line">    # your code here</span><br></pre></td></tr></table></figure>
+<p>实现1：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ticket</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># your code here</span></span><br><span class="line"></span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">Ticket</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.price = <span class="number">100</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">weekendPrice</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.price *= <span class="number">1.2</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">kidsPrice</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.price *= <span class="number">0.5</span></span><br><span class="line">adult = Ticket()</span><br><span class="line">kid = Ticket()</span><br><span class="line">kid.kidsPrice()</span><br><span class="line">print(adult.price * <span class="number">2</span>+kid.price)</span><br></pre></td></tr></table></figure>
+
+<p>250.0</p>
+<p>实现2：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ticket</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, weekend=False, child=False)</span>:</span></span><br><span class="line">        self.price = <span class="number">100</span></span><br><span class="line">        <span class="keyword">if</span> weekend:</span><br><span class="line">            self.w = <span class="number">1.2</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.w = <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> child:</span><br><span class="line">            self.discount = <span class="number">0.5</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.discount = <span class="number">1</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">clacPrice</span><span class="params">(self,num)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.price * self.w * self.discount * num</span><br><span class="line"></span><br><span class="line">adult = Ticket()</span><br><span class="line">child = Ticket(child=<span class="literal">True</span>)</span><br><span class="line">print(<span class="string">"2个成人+1个小孩平日票价为：%.2f"</span>% (adult.clacPrice(<span class="number">2</span>) + child.clacPrice(<span class="number">1</span>)))</span><br></pre></td></tr></table></figure>
+
+<p>2个成人+1个小孩平日票价为：250.00</p>
+<p>实现3：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ticket</span>:</span></span><br><span class="line">    price = <span class="number">100</span></span><br><span class="line">    weekend = price*<span class="number">1.2</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">compute</span><span class="params">(self, adultcount, childcount, isweekend)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> isweekend == <span class="string">'no'</span>:</span><br><span class="line">            total = int(adultcount) * self.price + int(childcount)*self.price/<span class="number">2</span></span><br><span class="line">            print(<span class="string">"应该支付金额："</span>, str(total))</span><br><span class="line">        <span class="keyword">elif</span> isweekend ==<span class="string">'yes'</span>:</span><br><span class="line">            total = int(adultcount) * self.weekend + int(childcount)*self.weekend/<span class="number">2</span></span><br><span class="line">            print(<span class="string">"应该支付金额："</span>, str(total))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"输入有误！"</span>)</span><br><span class="line"></span><br><span class="line">adult = input(<span class="string">"请输入成年人数量"</span>)</span><br><span class="line">child = input(<span class="string">"请输入小孩数量"</span>)</span><br><span class="line">isweekend = input(<span class="string">"是否是周末？yes/no"</span>)</span><br><span class="line">t = Ticket()</span><br><span class="line">t.compute(adult, child, isweekend)</span><br></pre></td></tr></table></figure>
+
+<p>请输入成年人数量2<br>请输入小孩数量1<br>是否是周末？yes/nono<br>应该支付金额： 250.0</p>
+<p><strong>魔法方法</strong></p>
+<p>1.对象=属性+方法</p>
+
       
     </div>
     <footer class="article-footer">
@@ -1100,87 +1276,6 @@
 
 
   
-    <article id="post-Python-Task02" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/23/Python-Task02/" class="article-date">
-  <time datetime="2020-07-23T08:05:01.000Z" itemprop="datePublished">2020-07-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/23/Python-Task02/">Python-Task02</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Python编程基础-Task02"><a href="#Python编程基础-Task02" class="headerlink" title="Python编程基础-Task02"></a>Python编程基础-Task02</h1><h2 id="Task-2-条件循环结构"><a href="#Task-2-条件循环结构" class="headerlink" title="Task 2: 条件循环结构"></a>Task 2: 条件循环结构</h2><p>1.assert关键词</p>
-<p>Python assert（断言）用于判断一个表达式，在表达式条件为 false 的时候触发异常。</p>
-<p>断言可以在条件不满足程序运行的情况下直接返回错误，而不必等待程序运行后出现崩溃的情况，例如我们的代码只能在 Linux 系统下运行，可以先判断当前系统是否符合条件。</p>
-<p>语法格式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assert expression</span><br></pre></td></tr></table></figure>
-
-<p>等价于：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if not expression:</span><br><span class="line">    raise AssertionError</span><br></pre></td></tr></table></figure>
-
-<p>assert 后面也可以紧跟参数:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assert expression [, arguments]</span><br></pre></td></tr></table></figure>
-
-<p>等价于：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> expression:</span><br><span class="line">    <span class="keyword">raise</span> AssertionError(arguments)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span> <span class="number">1</span>==<span class="number">2</span>, <span class="string">'1 不等于 2'</span></span><br></pre></td></tr></table></figure>
-<p>Traceback (most recent call last):<br> File “<stdin>“, line 1, <strong>in</strong> <module><br>AssertionError: 1 不等于 2</p>
-<p>2.enumerate()函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enumerate(sequence, [start&#x3D;0])</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>sequence – 一个序列、迭代器或其他支持迭代对象。</li>
-<li>start – 下标起始位置。</li>
-<li>返回 enumerate(枚举) 对象</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">seasons = [<span class="string">'Spring'</span>, <span class="string">'Summer'</span>, <span class="string">'Fall'</span>, <span class="string">'Winter'</span>]</span><br><span class="line">lst = list(enumerate(seasons))</span><br><span class="line">print(lst)</span><br><span class="line"><span class="comment"># [(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]</span></span><br><span class="line">lst = list(enumerate(seasons, start=<span class="number">1</span>))  <span class="comment"># 下标从 1 开始</span></span><br><span class="line">print(lst)</span><br><span class="line"><span class="comment"># [(1, 'Spring'), (2, 'Summer'), (3, 'Fall'), (4, 'Winter')]</span></span><br></pre></td></tr></table></figure>
-
-<p>3.练习题1</p>
-<p>编写一个Python程序来查找那些既可以被7整除又可以被5整除的数字，介于1500和2700之间。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1501</span>,<span class="number">2700</span>) <span class="keyword">if</span> i%<span class="number">5</span> == <span class="number">0</span> <span class="keyword">and</span> i%<span class="number">7</span> == <span class="number">0</span>]</span><br><span class="line">print(s)</span><br></pre></td></tr></table></figure>
-
-<p>[1505, 1540, 1575, 1610, 1645, 1680, 1715, 1750, 1785, 1820, 1855, 1890, 1925, 1960, 1995, 2030, 2065, 2100, 2135, 2170, 2205, 2240, 2275, 2310, 2345, 2380, 2415, 2450, 2485, 2520, 2555, 2590, 2625, 2660, 2695]</p>
-<p>4.练习题2    龟兔赛跑</p>
-<p>输入格式<br>　　输入只有一行，包含用空格隔开的五个正整数v1，v2，t，s，l，其中(v1,v2&lt;=100;t&lt;=300;s&lt;=10;l&lt;=10000且为v1,v2的公倍数)<br>输出格式<br>　　输出包含两行，第一行输出比赛结果——一个大写字母“T”或“R”或“D”，分别表示乌龟获胜，兔子获胜，或者两者同时到达终点。<br>　　第二行输出一个正整数，表示获胜者（或者双方同时）到达终点所耗费的时间（秒数）。</p>
-<p>方法1     </p>
-<p>该算法需要先满足7个条件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">v1,v2,t,s,l = map(int,input().split())</span><br><span class="line"><span class="keyword">if</span> v1&lt;=<span class="number">100</span> <span class="keyword">and</span> v2&lt;=<span class="number">100</span> <span class="keyword">and</span> t&lt;=<span class="number">300</span> <span class="keyword">and</span> s&lt;=<span class="number">10</span> <span class="keyword">and</span> l&lt;=<span class="number">10000</span> <span class="keyword">and</span> l%v1==<span class="number">0</span> <span class="keyword">and</span> l%v2==<span class="number">0</span>:</span><br><span class="line">    s1,s2 = <span class="number">0</span>,<span class="number">0</span></span><br><span class="line">    i1 = i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> s1&lt;l <span class="keyword">and</span> s2&lt;l:</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">        s1 = s1+v1</span><br><span class="line">        s2 = s2+v2</span><br><span class="line">        <span class="keyword">if</span> s1==l <span class="keyword">or</span> s2==l:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">elif</span> s1-s2&gt;=t:</span><br><span class="line">            s2 = s2+s*v2</span><br><span class="line">            i += s</span><br><span class="line">    <span class="keyword">if</span> s1&gt;s2:</span><br><span class="line">        print(<span class="string">'R'</span>)</span><br><span class="line">    <span class="keyword">if</span> s1==s2:</span><br><span class="line">        print(<span class="string">'D'</span>)</span><br><span class="line">    <span class="keyword">if</span> s1&lt;s2:</span><br><span class="line">        print(<span class="string">'T'</span>)</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
-
-<p>方法2</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">v1,v2,t,s,l = map(int,input().split())</span><br><span class="line">s1,s2 = <span class="number">0</span>,<span class="number">0</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 时间加一秒，或加1+s秒（兔子落后大于等于t米）</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">if</span> s1-s2&gt;=t:</span><br><span class="line">        s2 += s*v2</span><br><span class="line">        i += s</span><br><span class="line">    <span class="comment"># 根据当前已走距离，分别计算剩余距离所需时间</span></span><br><span class="line">    dt1 = i+(l-s1)/v1</span><br><span class="line">    dt2 = i+(l-s2)/v2</span><br><span class="line">    <span class="comment"># 计算如果加上当前1秒后的s1和s2</span></span><br><span class="line">    s1 = s1+v1</span><br><span class="line">    s2 = s2+v2</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">    <span class="comment"># 加上当前1秒后，如果s1或s2大于等于l总路程</span></span><br><span class="line">    <span class="keyword">if</span> s1&gt;=l <span class="keyword">or</span> s2&gt;=l:</span><br><span class="line">        <span class="comment"># 如果1所需时间大于2所需时间，则2赢，取2的时间向上取整</span></span><br><span class="line">        <span class="keyword">if</span> dt1&gt;dt2:</span><br><span class="line">            print(<span class="string">'T'</span>)</span><br><span class="line">            print(math.ceil(dt2))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="comment"># 如果1所需时间不大于2所需时间，则取1的时间向上取整</span></span><br><span class="line">        <span class="keyword">elif</span> dt1 == dt2:</span><br><span class="line">            print(<span class="string">'D'</span>)</span><br><span class="line">            print(math.ceil(dt1))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'R'</span>)</span><br><span class="line">            print(math.ceil(dt1))</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>待看：</p>
-<p>Python多线程有趣的例子——龟兔赛跑   <a href="https://blog.csdn.net/qiao39gs/article/details/84503458" target="_blank" rel="noopener">https://blog.csdn.net/qiao39gs/article/details/84503458</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/23/Python-Task02/" data-id="ckddxsxa30006twwcedzh1s1n" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1217,6 +1312,10 @@
       <ul>
         
           <li>
+            <a href="/2020/08/07/Python-Task08/">Python-Task08</a>
+          </li>
+        
+          <li>
             <a href="/2020/08/05/Python-Task07/">Python-Task07</a>
           </li>
         
@@ -1230,10 +1329,6 @@
         
           <li>
             <a href="/2020/08/02/Python-Task06/">Python-Task06</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/31/Python-Task05/">Python-Task05</a>
           </li>
         
       </ul>
