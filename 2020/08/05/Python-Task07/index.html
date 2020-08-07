@@ -7,15 +7,15 @@
   
   <title>Python-Task07 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Python编程基础-Task07Task 7:类、对象与魔法方法类 1.">
+  <meta name="description" content="Python编程基础-Task07Task 7:类、对象与魔法方法类与对象 1.对象&#x3D;属性+方法 对象是类的实例。 封装：我们可以使用关键字class定义Python类，关键字后面紧跟类的名称、分号和类的实现。 Python中的类名约定以大写字母开头。 继承：子类自动共享父类之间数据和方法的机制。 多态：不同对象对不同方法响应不同的行动。 2.Self   Python 的 self 相当于 C+">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python-Task07">
 <meta property="og:url" content="http://yoursite.com/2020/08/05/Python-Task07/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Python编程基础-Task07Task 7:类、对象与魔法方法类 1.">
+<meta property="og:description" content="Python编程基础-Task07Task 7:类、对象与魔法方法类与对象 1.对象&#x3D;属性+方法 对象是类的实例。 封装：我们可以使用关键字class定义Python类，关键字后面紧跟类的名称、分号和类的实现。 Python中的类名约定以大写字母开头。 继承：子类自动共享父类之间数据和方法的机制。 多态：不同对象对不同方法响应不同的行动。 2.Self   Python 的 self 相当于 C+">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-05T15:20:52.000Z">
-<meta property="article:modified_time" content="2020-08-05T15:22:07.656Z">
+<meta property="article:modified_time" content="2020-08-07T01:12:06.979Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -88,9 +88,121 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Python编程基础-Task07"><a href="#Python编程基础-Task07" class="headerlink" title="Python编程基础-Task07"></a>Python编程基础-Task07</h1><h2 id="Task-7-类、对象与魔法方法"><a href="#Task-7-类、对象与魔法方法" class="headerlink" title="Task 7:类、对象与魔法方法"></a>Task 7:类、对象与魔法方法</h2><p><strong>类</strong></p>
-<p>1. </p>
+        <h1 id="Python编程基础-Task07"><a href="#Python编程基础-Task07" class="headerlink" title="Python编程基础-Task07"></a>Python编程基础-Task07</h1><h2 id="Task-7-类、对象与魔法方法"><a href="#Task-7-类、对象与魔法方法" class="headerlink" title="Task 7:类、对象与魔法方法"></a>Task 7:类、对象与魔法方法</h2><p><strong>类与对象</strong></p>
+<p>1.对象=属性+方法</p>
+<p>对象是类的实例。</p>
+<p>封装：我们可以使用关键字class定义Python类，关键字后面紧跟类的名称、分号和类的实现。</p>
+<p>Python中的类名约定以大写字母开头。</p>
+<p>继承：子类自动共享父类之间数据和方法的机制。</p>
+<p>多态：不同对象对不同方法响应不同的行动。</p>
+<p>2.Self   Python 的 <code>self</code> 相当于 C++ 的 <code>this</code> 指针。</p>
+<p>类的方法与普通的函数只有一个特别的区别 —— 它们必须有一个额外的第一个参数名称（对应于该实例，即该对象本身），按照惯例它的名称是 <code>self</code>。在调用方法时，我们无需明确提供与参数 <code>self</code> 相对应的参数。</p>
+<p>3.Python的魔法方法</p>
+<p>​    最基本的魔法方法就是<code>__init__</code>，我们可以用它来指明一个对象初始化的行为。然而，当我们调用 x = SomeClass() 的时候， <strong>init</strong> 并不是第一个被调用的方法。事实上，第一个被调用的是 <strong>new</strong> ，这个 方法才真正地创建了实例。当这个对象的生命周期结束的时候， <strong>del</strong> 会被调用。让我们近一步理解这三个方法：</p>
+<ul>
+<li><p><code>__new__(cls,[...)</code> </p>
+<p><code>__new__</code> 是对象实例化时第一个调用的方法，它只取下 cls 参数，并把其他参数传给<code>__init__</code>。 <code>__new__</code>很少使用，但是也有它适合的场景，尤其是当类继承自一个像元组或者字符串这样不经常改变的类型的时候。</p>
+</li>
+<li><p><code>__init__(self,[...])</code>        构造函数，在生成对象时调用</p>
+<p>类的初始化方法。它获取任何传给构造器的参数（比如我们调用 x = SomeClass(10, ‘foo’) ， <code>__init__</code>就会接到参数 10 和 ‘foo’ 。 <code>__init__</code>在Python的类定义中用的最多。</p>
+</li>
+<li><p><code>__del__(self)</code>       析构函数，释放对象时使用</p>
+<p><code>__new__</code>和 <code>__init__</code> 是对象的构造器， <code>__del__</code>是对象的销毁器。它并非实现了语句 del x (因此该语句不等同于 x.<strong>del</strong>())。而是定义了当对象被垃圾回收时的行为。 当对象需要在销毁时做一些处理的时候这个方法很有用，比如 socket 对象、文件对象。但是需要注意的是，当Python解释器退出但对象仍然存活的时候， <code>__del__</code> 并不会 执行。 所以养成一个手工清理的好习惯是很重要的，比如及时关闭连接。</p>
+</li>
+</ul>
+<p><strong><strong>call</strong>(self[, args…])</strong>允许一个类的实例像函数一样被调用：x(a, b) 调用 x.<strong>call</strong>(a, b)</p>
+<p><strong><strong>len</strong>(self)</strong>定义当被 len() 调用时的行为，获得长度。</p>
+<p><strong>repr</strong>(self)定义当被 repr() 调用时的行为，打印，转换。</p>
+<p><strong><strong>str</strong>(self)</strong>定义当被 str() 调用时的行为</p>
+<p><strong>bytes</strong>(self)定义当被 bytes() 调用时的行为</p>
+<p><strong><strong>hash</strong>(self)</strong>定义当被 hash() 调用时的行为</p>
+<p><strong><strong>bool</strong>(self)</strong>定义当被 bool() 调用时的行为，应该返回 True 或 False</p>
+<p><strong><strong>format</strong>(self, format_spec)</strong>定义当被 format() 调用时的行为</p>
+<p><strong><strong>setitem</strong> :</strong> 按照索引赋值</p>
+<p><strong><strong>getitem</strong>:</strong> 按照索引获取值</p>
+<p><strong><strong>cmp</strong>:</strong> 比较运算</p>
+<p><strong><strong>add</strong>:</strong> 加运算</p>
+<p><strong><strong>sub</strong>:</strong> 减运算</p>
+<p><strong><strong>mul</strong>:</strong> 乘运算</p>
+<p><strong><strong>truediv</strong>:</strong> 除运算</p>
+<p><strong><strong>mod</strong>:</strong> 求余运算</p>
+<p><strong><strong>pow</strong>:</strong> 乘方</p>
+<p>4.公有和私有</p>
+<p>在 Python 中定义私有变量只需要在变量名或函数名前加上“__”两个下划线。</p>
+<p>​    以这种格式定义的方法或变量一般来说应当是仅供类的内部调用。对于以这种格式定义的私有属性，python并没有强制性的访问限制，而是采用了所谓的<strong>名字改编(name mangling)</strong>。名字改编指的是Python会将类中定义的所有以至少两个下划线开头，至多一个下划线结尾的属性(包括方法和变量)的名称改编为<code>_类名__方法名</code>的格式。例如对于<code>__func()</code>，其会被改编为<code>_classname__func()</code>。_注意在改编的时候，类名中包含的所有前缀下划线都将被忽略。_只要在类中定义了符合上述格式的属性，不论该属性是方法还是变量，这一名字改编的过程总是会发生。另外，名字改编还可以使得子类在重载父类的方法时避免产生命名冲突。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">foo</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.__var = <span class="number">1</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__bar</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'bar'</span>)</span><br><span class="line"></span><br><span class="line">f = foo()</span><br><span class="line"></span><br><span class="line">hasattr(f, <span class="string">'__bar'</span>)  <span class="comment"># False</span></span><br><span class="line">hasattr(f, <span class="string">'_foo__bar'</span>)  <span class="comment">#True</span></span><br><span class="line">hasattr(f, <span class="string">'__var'</span>)  <span class="comment"># False</span></span><br><span class="line">hasattr(f, <span class="string">'_foo__var'</span>)  <span class="comment"># True</span></span><br><span class="line"></span><br><span class="line">f.__bar()  <span class="comment"># AttributeError: 'foo' object has no attribute '__bar'  不能直接访问</span></span><br><span class="line">f._foo__bar()  <span class="comment"># will print out 'bar'  换个名字就可以访问了</span></span><br><span class="line">f._foo_var  <span class="comment"># 1</span></span><br></pre></td></tr></table></figure>
 
+<p>5.继承</p>
+<p>继承父类时，如果重写了子类的<code>__init__</code>，也就是子类的构造方法把父类的构造方法覆盖了，此时如果还想用父类的<code>__init__</code>中定义的属性，有两种方式：</p>
+<ul>
+<li><p>调用未绑定的父类方法<code>Fish.__init__(self)</code>，传入self参数，通过父类.方法名调用，此时的self是作为子类的属性传入。</p>
+</li>
+<li><p>使用super函数<code>super().__init__()</code>，不传self参数。super() 函数是用于调用父类(超类)的一个方法。</p>
+</li>
+</ul>
+<p>python对大小写是敏感的。</p>
+<p>6.组合</p>
+<p>类的组合，是指一个类的属性直接是另外一个类的实例。</p>
+<p>一个类被定义后，目标就是把它当成一个模块来使用，并把这些对象嵌入到你的代码中去，同其他数据类型及逻辑执行流混合使用。<br>有两种方法可以在你的代码中利用类。<br>第一种是组合，就是让不同的类混合并加入到其他类中，来增强功能和代码重用性。你可以在一个大点的类中创建你自己的类的实例，实现一些其他属性和方法来增强原来的类对象。<br>另一种是派生，通过子类从基类继承核心属性，不断地派生扩展功能实现。</p>
+<p><strong>关于类的组合与类的继承的选择问题</strong></p>
+<ul>
+<li>类的继承和组合都是将别的类的属性或者方法拿过来用</li>
+<li>使用组合的情况:当类之间有显著不同，并且较小的类是较大类所需要的组件时候，就可以用组合</li>
+<li>使用继承的情况:当类与类之间有相同的功能，提取这些共同的功能做成基类，用继承比较好</li>
+</ul>
+<p>7.类、类对象和实例对象</p>
+<p>类对象：创建一个类，其实也是一个对象也在内存开辟了一块空间，称为类对象，类对象只有一个。</p>
+<p>实例对象：就是通过实例化类创建的对象，称为实例对象，实例对象可以有多个。</p>
+<p>类属性：类里面方法外面定义的变量称为类属性。类属性所属于类对象并且多个实例对象之间共享同一个类属性，说白了就是类属性所有的通过该类实例化的对象都能共享。</p>
+<p>实例属性：实例属性和具体的某个实例对象有关系，并且一个实例对象和另外一个实例对象是不共享属性的，说白了实例属性只能在自己的对象里面使用，其他的对象不能直接使用，因为<code>self</code>是谁调用，它的值就属于该对象。</p>
+<p>类属性和实例属性区别</p>
+<ul>
+<li>类属性：类外面，可以通过<code>实例对象.类属性</code>和<code>类名.类属性</code>进行调用。类里面，通过<code>self.类属性</code>和<code>类名.类属性</code>进行调用。</li>
+<li>实例属性 ：类外面，可以通过<code>实例对象.实例属性</code>调用。类里面，通过<code>self.实例属性</code>调用。</li>
+<li>实例属性就相当于局部变量。出了这个类或者这个类的实例对象，就没有作用了。</li>
+<li>类属性就相当于类里面的全局变量，可以和这个类的所有实例对象共享。</li>
+</ul>
+<p>注意：属性与方法名相同时，属性会覆盖方法。</p>
+<p>8.绑定</p>
+<p>Python 严格要求方法需要有实例才能被调用。</p>
+<p>Python 对象的数据属性通常存储在名为<code>.__ dict__</code>的字典中，我们可以直接访问<code>__dict__</code>，或利用 Python 的内置函数<code>vars()</code>获取<code>.__ dict__</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CC</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setXY</span><span class="params">(self, x, y)</span>:</span></span><br><span class="line">        self.x = x</span><br><span class="line">        self.y = y</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">printXY</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(self.x, self.y)</span><br><span class="line"></span><br><span class="line">dd = CC()</span><br><span class="line">print(dd.__dict__)</span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br><span class="line">print(vars(dd))</span><br><span class="line"><span class="comment"># &#123;&#125;</span></span><br><span class="line">print(CC.__dict__)</span><br><span class="line"><span class="comment"># &#123;'__module__': '__main__', 'setXY': &lt;function CC.setXY at 0x000000C3473DA048&gt;, 'printXY': &lt;function CC.printXY at 0x000000C3473C4F28&gt;, '__dict__': &lt;attribute '__dict__' of 'CC' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'CC' objects&gt;, '__doc__': None&#125;</span></span><br><span class="line">dd.setXY(<span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">print(dd.__dict__)</span><br><span class="line"><span class="comment"># &#123;'x': 4, 'y': 5&#125;</span></span><br><span class="line">print(vars(CC))</span><br><span class="line"><span class="comment"># &#123;'__module__': '__main__', 'setXY': &lt;function CC.setXY at 0x000000632CA9B048&gt;, 'printXY': &lt;function CC.printXY at 0x000000632CA83048&gt;, '__dict__': &lt;attribute '__dict__' of 'CC' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'CC' objects&gt;, '__doc__': None&#125;</span></span><br><span class="line">print(CC.__dict__)</span><br><span class="line"><span class="comment"># &#123;'__module__': '__main__', 'setXY': &lt;function CC.setXY at 0x000000632CA9B048&gt;, 'printXY': &lt;function CC.printXY at 0x000000632CA83048&gt;, '__dict__': &lt;attribute '__dict__' of 'CC' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'CC' objects&gt;, '__doc__': None&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>9.一些相关的内置函数（BIF）</p>
+<p>1）<code>issubclass(class, classinfo)</code> 方法用于判断参数 class 是否是类型参数 classinfo 的子类。一个类被认为是其自身的子类。<code>classinfo</code>可以是类对象的元组，只要class是其中任何一个候选类的子类，则返回<code>True</code>。</p>
+<p>2）<code>isinstance(object, classinfo)</code> 方法用于判断一个对象是否是一个已知的类型，类似<code>type()</code>。但是，<code>type()</code>不会认为子类是一种父类类型，不考虑继承关系；<code>isinstance()</code>会认为子类是一种父类类型，考虑继承关系。（如果第一个参数不是对象，则永远返回<code>False</code>。如果第二个参数不是类或者由类对象组成的元组，会抛出一个<code>TypeError</code>异常。）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">2</span></span><br><span class="line">print(isinstance(a, int))  <span class="comment"># True</span></span><br><span class="line">print(isinstance(a, str))  <span class="comment"># False</span></span><br><span class="line">print(isinstance(a, (str, int, list)))  <span class="comment"># True</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">print(isinstance(A(), A))  <span class="comment"># True</span></span><br><span class="line">print(type(A()) == A)  <span class="comment"># True</span></span><br><span class="line">print(isinstance(B(), A))  <span class="comment"># True</span></span><br><span class="line">print(type(B()) == A)  <span class="comment"># False</span></span><br></pre></td></tr></table></figure>
+
+<p>3）<code>hasattr(object, name)</code>用于判断对象是否包含对应的属性。</p>
+<p>4）<code>getattr(object, name[, default])</code>用于返回一个对象属性值。如果没有该属性，则返回default。name可以传 方法名，则返回的是方法。可以调用该方法。</p>
+<p>5）<code>setattr(object, name, value)</code>对应函数 <code>getattr()</code>，用于设置属性值，该属性不一定是存在的。</p>
+<p>6）<code>delattr(object, name)</code>用于删除属性。</p>
+<p>7）<code>class property([fget[, fset[, fdel[, doc]]]])</code>用于在新式类中返回属性值。<code>fget</code> – 获取属性值的函数；<code>fset</code> – 设置属性值的函数；<code>fdel</code> – 删除属性值函数；<code>doc</code> – 属性描述信息。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.__x = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getx</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.__x</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setx</span><span class="params">(self, value)</span>:</span></span><br><span class="line">        self.__x = value</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delx</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">del</span> self.__x</span><br><span class="line"></span><br><span class="line">    x = property(getx, setx, delx, <span class="string">"I'm the 'x' property."</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cc = C()</span><br><span class="line">cc.x = <span class="number">2</span></span><br><span class="line">print(cc.x)  <span class="comment"># 2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">del</span> cc.x</span><br><span class="line">print(cc.x)</span><br><span class="line"><span class="comment"># AttributeError: 'C' object has no attribute '_C__x'</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>10.练习题</p>
+<p>1）以下类定义中哪些是类属性，哪些是实例属性？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>:</span></span><br><span class="line">    num = <span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.x = <span class="number">4</span></span><br><span class="line">        self.y = <span class="number">5</span></span><br><span class="line">        C.count = <span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+<p>num、count是类属性；x、y是实例属性。</p>
+<p>2）怎么定义私有⽅法？</p>
+<p>前面加两个下划线。</p>
+<p>3）执行以下代码，并解释错误原因：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">myFun</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">'Hello!'</span>)</span><br><span class="line">    c = C()</span><br><span class="line">    c.myFun()</span><br></pre></td></tr></table></figure>
+
+<p>定义方法时，没有self参数；类内写了创建类实例和调用实例的方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">myFun</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'Hello!'</span>)</span><br><span class="line">c = C()</span><br><span class="line">c.myFun()</span><br></pre></td></tr></table></figure>
+
+<p>4）按照以下要求定义一个游乐园门票的类，并尝试计算2个成人+1个小孩平日票价。</p>
+<p>要求:</p>
+<ul>
+<li>平日票价100元</li>
+<li>周末票价为平日的120%</li>
+<li>儿童票半价</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class Ticket():</span><br><span class="line">    # your code here</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
