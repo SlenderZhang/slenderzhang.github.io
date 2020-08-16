@@ -87,6 +87,72 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Python编程基础-Task09"><a href="#Python编程基础-Task09" class="headerlink" title="Python编程基础-Task09"></a>Python编程基础-Task09</h1><h2 id="Task-9-文件与文件系统"><a href="#Task-9-文件与文件系统" class="headerlink" title="Task 9:文件与文件系统"></a>Task 9:文件与文件系统</h2><p>1.文件与文件系统</p>
+<p>打开文件  <code>open(file, mode=&#39;r&#39;, buffering=None, encoding=None, errors=None, newline=None, closefd=True)</code>，file：必需，文件路径（相对或者绝对路径）。mode：可选，文件打开模式。encoding：一般使用utf8。errors：报错级别。newline：区分换行符。</p>
+<p>mode：’r’只读方式，’w’打开一个文件只用于写入，覆盖式；’x’新建一个文件，写模式；’a’追加模式；’b’以二进制模式打开文件；’t’以文本模式打开；’+’可读写模式。</p>
+<p>文件对象方法：</p>
+<p>1）<code>fileObject.close()</code> 用于关闭一个已打开的文件。关闭后的文件不能再进行读写操作， 否则会触发<code>ValueError</code>错误。</p>
+<p>2）<code>fileObject.read([size])</code> 用于从文件读取指定的字符数，如果未给定或为负则读取所有。</p>
+<p>3）<code>fileObject.readline()</code>读取整行，包括 “\n” 字符。</p>
+<p>4）<code>fileObject.readlines()</code>用于读取所有行(直到结束符 EOF)并返回列表，该列表可以由 Python 的 <code>for... in ...</code> 结构进行处理。</p>
+<p>5）<code>fileObject.tell()</code>返回文件的当前位置，即文件指针当前位置。按字节数计算，一个中文汉字占两个字节的空间。</p>
+<p>6）<code>fileObject.seek(offset[, whence])</code>用于移动文件读取指针到指定位置。<code>offset</code>：开始的偏移量，也就是代表需要移动偏移的字节数，如果是负数表示从倒数第几位开始。<code>whence</code>：可选，默认值为 0。给 <code>offset</code> 定义一个参数，表示要从哪个位置开始偏移；0 代表从文件开头开始算起，1 代表从当前位置开始算起，2 代表从文件末尾算起。</p>
+<p>7）<code>fileObject.write(str)</code>用于向文件中写入指定字符串，返回的是写入的字符长度。在文件关闭前或缓冲区刷新前，字符串内容存储在缓冲区中，这时你在文件中是看不到写入的内容的。</p>
+<p>如果文件打开模式带<code>b</code>，那写入文件内容时，<code>str</code>（参数）要用<code>encode</code>方法转为<code>bytes</code>形式，否则报错：<code>TypeError: a bytes-like object is required, not &#39;str&#39;</code>。</p>
+<p>8）<code>fileObject.writelines(sequence)</code>向文件写入一个序列字符串列表，如果需要换行则要自己加入每行的换行符<code>\n</code>。</p>
+<p>9）关键词 with 语句就可以保证诸如文件之类的对象在使用完之后一定会正确的执行它的清理方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'myfile.txt'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> f:</span><br><span class="line">            print(line)</span><br><span class="line"><span class="keyword">except</span> OSError <span class="keyword">as</span> error:</span><br><span class="line">    print(<span class="string">'出错啦!%s'</span> % str(error))</span><br></pre></td></tr></table></figure>
+
+<p>2.OS模块中关于文件/目录常用的函数</p>
+<p>1）<code>os.getcwd()</code>用于返回当前工作目录。</p>
+<p>2）<code>os.chdir(path)</code>用于改变当前工作目录到指定的路径。</p>
+<p>3）<code>listdir (path=&#39;.&#39;)</code>返回<code>path</code>指定的文件夹包含的文件或文件夹的名字的列表。</p>
+<p>4）<code>os.mkdir(path)</code>创建单层目录，如果该目录已存在抛出异常。</p>
+<p>5）<code>os.makedirs(path)</code>用于递归创建多层目录，如果该目录已存在抛出异常。</p>
+<p>6）<code>os.remove(path)</code>用于删除指定路径的文件。如果指定的路径是一个目录，将抛出 <code>OSError</code>。</p>
+<p>7）<code>os.rmdir(path)</code>用于删除单层目录。仅当这文件夹是空的才可以, 否则, 抛出 <code>OSError</code>。</p>
+<p>8）<code>os.removedirs(path)</code>递归删除目录，从子目录到父目录逐层尝试删除，遇到目录非空则抛出异常。</p>
+<p>9）<code>os.rename(src, dst)</code>方法用于命名文件或目录，从 <code>src</code> 到 <code>dst</code>，如果 <code>dst</code> 是一个存在的目录, 将抛出 <code>OSError</code>。</p>
+<p>10）<code>os.system(command)</code>运行系统的shell命令（将字符串转化成命令）</p>
+<p>11）<code>os.curdir</code>指代当前目录（<code>.</code>）</p>
+<p>12）<code>os.pardir</code>指代上一级目录（<code>..</code>）</p>
+<p>13）<code>os.sep</code>输出操作系统特定的路径分隔符（win下为<code>\\</code>，Linux下为<code>/</code>）</p>
+<p>14）<code>os.linesep</code>当前平台使用的行终止符（win下为<code>\r\n</code>，Linux下为<code>\n</code>）</p>
+<p>15）<code>os.name</code>指代当前使用的操作系统（包括：’mac’，’nt’）</p>
+<p>16）<code>os.path.basename(path)</code>去掉目录路径，单独返回文件名</p>
+<p>17）<code>os.path.dirname(path)</code>去掉文件名，单独返回目录路径</p>
+<p>18）<code>os.path.join(path1[, path2[, ...]])</code>将 <code>path1</code>，<code>path2</code> 各部分组合成一个路径名</p>
+<p>19）<code>os.path.split(path)</code>分割文件名与路径，返回<code>(f_path,f_name)</code>元组。如果完全使用目录，它会将最后一个目录作为文件名分离，且不会判断文件或者目录是否存在。</p>
+<p>20）<code>os.path.splitext(path)</code>分离文件名与扩展名，返回<code>(f_path,f_name)</code>元组。</p>
+<p>21）<code>os.path.getsize(file)</code>返回指定文件大小，单位是字节。</p>
+<p>22）<code>os.path.getatime(file)</code>返回指定文件最近的访问时间</p>
+<p>23）<code>os.path.getctime(file)</code>返回指定文件的创建时间</p>
+<p>24）<code>os.path.getmtime(file)</code>返回指定文件的最新的修改时间</p>
+<p>25）浮点型秒数，可用time模块的<code>gmtime()</code>或<code>localtime()</code>函数换算</p>
+<p>26）<code>os.path.exists(path)</code>判断指定路径（目录或文件）是否存在</p>
+<p>27）<code>os.path.isabs(path)</code>判断指定路径是否为绝对路径</p>
+<p>28）<code>os.path.isdir(path)</code>判断指定路径是否存在且是一个目录</p>
+<p>29）<code>os.path.isfile(path)</code>判断指定路径是否存在且是一个文件</p>
+<p>30）<code>os.path.islink(path)</code>判断指定路径是否存在且是一个符号链接</p>
+<p>31）<code>os.path.ismount(path)</code>判断指定路径是否存在且是一个悬挂点</p>
+<p>32）<code>os.path.samefile(path1,path2)</code>判断path1和path2两个路径是否指向同一个文件</p>
+<p>3.序列化与反序列化</p>
+<p>Python 的 pickle 模块实现了基本的数据序列和反序列化。</p>
+<ul>
+<li>通过 pickle 模块的序列化操作我们能够将程序中运行的对象信息保存到文件中去，永久存储。</li>
+<li>通过 pickle 模块的反序列化操作，我们能够从文件中创建上一次程序保存的对象。</li>
+</ul>
+<p>pickle模块中最常用的函数为：</p>
+<p><code>pickle.dump(obj, file, [,protocol])</code> 将<code>obj</code>对象序列化存入已经打开的<code>file</code>中。<code>obj</code>：想要序列化的<code>obj</code>对象。<code>file</code>:文件名称。<code>protocol</code>：序列化使用的协议。如果该项省略，则默认为0。如果为负值或<code>HIGHEST_PROTOCOL</code>，则使用最高的协议版本。</p>
+<p><code>pickle.load(file)</code> 将<code>file</code>中的对象序列化读出。<code>file</code>：文件名称。</p>
+<p>4.练习题</p>
+<p>1)打开中文字符的文档时，会出现乱码，Python自带的打开文件是否可以指定文字编码？还是只能用相关函数？</p>
+<p>用open(path, ‘r’, encoding = ‘utf-8’) 打开文件就可以。linux使用’utf-8’编码方式，window使用’GBK’编码方式。linux平台编码（UTF-8）与window平台（GBK）不一样。中文字符默认是用gbk编码方式来读取，所以会乱码。</p>
+<p>2）编写程序查找最长的单词</p>
+<p>输入文档: res/test.txt</p>
+<p>题目说明:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">   </span></span><br><span class="line"><span class="string">Input file</span></span><br><span class="line"><span class="string">   test.txt</span></span><br><span class="line"><span class="string">   </span></span><br><span class="line"><span class="string">Output file</span></span><br><span class="line"><span class="string">   ['general-purpose,', 'object-oriented,']</span></span><br><span class="line"><span class="string">   </span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">longest_word</span><span class="params">(filename)</span>:</span></span><br><span class="line">    <span class="comment"># 读取全部数据，用strip()去除头尾的字符，再用split(’\n’)切割每一段。</span></span><br><span class="line">    <span class="comment"># readlines()读取的结果里还是包含了’\n’.</span></span><br><span class="line">    <span class="keyword">with</span> open(filename,<span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        data = f.read().strip().split(<span class="string">'\n'</span>)</span><br><span class="line">    <span class="comment"># 替换英文字符 逗号</span></span><br><span class="line">    data = [i.replace(<span class="string">','</span>,<span class="string">' '</span>)  <span class="keyword">for</span> i <span class="keyword">in</span> data]</span><br><span class="line">    <span class="comment"># 用’ ‘.join 的方法重新组合字符串，再进行split(’ '), 按照空格来切割，得到单个字符。</span></span><br><span class="line">    data1 = <span class="string">' '</span>.join(data).split(<span class="string">' '</span>)</span><br><span class="line">    <span class="comment"># 根据字符串长度排序</span></span><br><span class="line">    data1.sort(key = <span class="keyword">lambda</span> x:len(x))</span><br><span class="line">    <span class="comment"># 保留所有与最长字符串长度相同的字符串</span></span><br><span class="line">    longest = [i <span class="keyword">for</span> i <span class="keyword">in</span> data1 <span class="keyword">if</span> len(i)==len(data1[<span class="number">-1</span>])]</span><br><span class="line">    <span class="keyword">return</span> longest</span><br><span class="line"></span><br><span class="line">print(longest_word(<span class="string">'test2.txt'</span>))</span><br></pre></td></tr></table></figure>
+
+<p>[‘general-purpose’, ‘object-oriented’]</p>
 
       
     </div>
