@@ -64,6 +64,65 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Leetcode-Task01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/19/Leetcode-Task01/" class="article-date">
+  <time datetime="2020-08-19T15:04:47.000Z" itemprop="datePublished">2020-08-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/19/Leetcode-Task01/">Leetcode-Task01</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Leetcode编程-Task01"><a href="#Leetcode编程-Task01" class="headerlink" title="Leetcode编程-Task01"></a>Leetcode编程-Task01</h1><h2 id="Task-1-分治"><a href="#Task-1-分治" class="headerlink" title="Task 1:分治"></a>Task 1:分治</h2><p><strong>1.主要思想</strong></p>
+<p>分治算法的主要思想是将原问题<strong>递归地分成</strong>若干个子问题，直到子问题<strong>满足边界条件</strong>，停止递归。将子</p>
+<p>问题逐个击破(一般是同种方法)，将已经解决的子问题合并，最后，算法会<strong>层层合并</strong>得到原问题的答</p>
+<p>案。</p>
+<p><strong>2.分治算法的步骤</strong></p>
+<p>分：<strong>递归地</strong>将问题<strong>分解</strong>为各个的子<strong>问题</strong>(性质相同的、相互独立的子问题)；</p>
+<p>治：将这些规模更小的子问题<strong>逐个击破</strong>；</p>
+<p>合：将已解决的子问题<strong>逐层合并</strong>，最终得出原问题的解；</p>
+<p><strong>3.分治法适用的情况</strong></p>
+<p>原问题的<strong>计算复杂度</strong>随着问题的规模的增加而增加。</p>
+<p>原问题<strong>能够被分解</strong>成更小的子问题。</p>
+<p>子问题的<strong>结构和性质</strong>与原问题一样，并且<strong>相互独立</strong>，子问题之间<strong>不包含</strong>公共的子子问题。</p>
+<p>原问题分解出的子问题的解<strong>可以合并</strong>为该问题的解。</p>
+<p>4.</p>
+<p>1)Leetcode</p>
+<p>实现 pow(x, n) ，即计算 x 的 n 次幂函数。</p>
+<p>示例 1:</p>
+<p>输入: 2.00000, 10<br>输出: 1024.00000<br>示例 2:</p>
+<p>输入: 2.10000, 3<br>输出: 9.26100<br>示例 3:</p>
+<p>输入: 2.00000, -2<br>输出: 0.25000<br>解释: 2-2 = 1/22 = 1/4 = 0.25<br>说明:</p>
+<p>-100.0 &lt; x &lt; 100.0<br>n 是 32 位有符号整数，其数值范围是 [−231, 231 − 1] 。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">myPow</span><span class="params">(self, x: float, n: int)</span> -&gt; float:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">quickMul</span><span class="params">(N)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> N == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1.0</span></span><br><span class="line">        y = quickMul(N // <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> y * y <span class="keyword">if</span> N % <span class="number">2</span> == <span class="number">0</span> <span class="keyword">else</span> y * y * x</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> quickMul(n) <span class="keyword">if</span> n &gt;= <span class="number">0</span> <span class="keyword">else</span> <span class="number">1.0</span> / quickMul(-n)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/19/Leetcode-Task01/" data-id="cke1jfl5a000088wc5npw7nla" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Python-Task09" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/08/07/Python-Task09/" class="article-date">
@@ -459,7 +518,7 @@
 <p>2.Self   Python 的 <code>self</code> 相当于 C++ 的 <code>this</code> 指针。</p>
 <p>类的方法与普通的函数只有一个特别的区别 —— 它们必须有一个额外的第一个参数名称（对应于该实例，即该对象本身），按照惯例它的名称是 <code>self</code>。在调用方法时，我们无需明确提供与参数 <code>self</code> 相对应的参数。</p>
 <p>3.Python的魔法方法</p>
-<p>​    最基本的魔法方法就是<code>__init__</code>，我们可以用它来指明一个对象初始化的行为。然而，当我们调用 x = SomeClass() 的时候， <strong>init</strong> 并不是第一个被调用的方法。事实上，第一个被调用的是 <strong>new</strong> ，这个 方法才真正地创建了实例。当这个对象的生命周期结束的时候， <strong>del</strong> 会被调用。让我们近一步理解这三个方法：</p>
+<p>​    最基本的魔法方法就是<code>__init__</code>，我们可以用它来指明一个对象初始化的行为。然而，当我们调用 x = SomeClass() 的时候， <code>__init__</code> 并不是第一个被调用的方法。事实上，第一个被调用的是 <code>__new__</code>，这个 方法才真正地创建了实例。当这个对象的生命周期结束的时候， <code>__del__</code> 会被调用。让我们近一步理解这三个方法：</p>
 <ul>
 <li><p><code>__new__(cls,[...)</code> </p>
 <p><code>__new__</code> 是对象实例化时第一个调用的方法，它只取下 cls 参数，并把其他参数传给<code>__init__</code>。 <code>__new__</code>很少使用，但是也有它适合的场景，尤其是当类继承自一个像元组或者字符串这样不经常改变的类型的时候。</p>
@@ -577,7 +636,147 @@
 
 <p>请输入成年人数量2<br>请输入小孩数量1<br>是否是周末？yes/nono<br>应该支付金额： 250.0</p>
 <p><strong>魔法方法</strong></p>
-<p>1.对象=属性+方法</p>
+<p>​    魔法方法总是被双下划线包围，例如<code>__init__</code>。魔法方法的“魔力”体现在它们总能够在适当的时候被自动调用。</p>
+<p>​    魔法方法的第一个参数应为<code>cls</code>（类方法） 或者<code>self</code>（实例方法）。</p>
+<ul>
+<li><code>cls</code>：代表一个类的名称</li>
+<li><code>self</code>：代表一个实例对象的名称</li>
+</ul>
+<p>1.基本的魔法方法</p>
+<p>1）<code>__init__(self[, ...])</code> 构造器，当一个实例被创建的时候调用的初始化方法</p>
+<p>2）<code>__new__(cls[, ...])</code> 在一个对象实例化的时候所调用的第一个方法，在调用<code>__init__</code>初始化前，先调用<code>__new__</code>。</p>
+<ul>
+<li><code>__new__</code>至少要有一个参数<code>cls</code>，代表要实例化的类，此参数在实例化时由 Python 解释器自动提供，后面的参数直接传递给<code>__init__</code>。</li>
+<li><code>__new__</code>对当前类进行了实例化，并将实例返回，传给<code>__init__</code>的<code>self</code>。但是，执行了<code>__new__</code>，并不一定会进入<code>__init__</code>，只有<code>__new__</code>返回的是当前类<code>cls</code>的实例，当前类的<code>__init__</code>才会进入。也就是说，在init()调用之前，new()决定是否要使用该init()方法，因为new()可以调用其他类的构造方法或者直接返回别的对象来作为本类 的实例。 </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,value)</span>:</span></span><br><span class="line">        print(<span class="string">"into A __init__"</span>)</span><br><span class="line">        self.value = value</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, *args, **kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">"into A __new__"</span>)</span><br><span class="line">        print(cls)</span><br><span class="line">        <span class="keyword">return</span> object.__new__(cls)</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, value)</span>:</span></span><br><span class="line">        print(<span class="string">"into B __init__"</span>)</span><br><span class="line">        self.value = value</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls,*args,**kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">"into B __new__"</span>)</span><br><span class="line">        print(cls)</span><br><span class="line">        <span class="keyword">return</span> super().__new__(cls,*args,**kwargs)    <span class="comment"># __new__返回了当前类cls的实例，当前类的__init__才会进入。</span></span><br><span class="line"></span><br><span class="line">b = B(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">into B __new__</span><br><span class="line">&lt;class &#39;__main__.B&#39;&gt;</span><br><span class="line">into A __new__</span><br><span class="line">&lt;class &#39;__main__.B&#39;&gt;</span><br><span class="line">into B __init__</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,value)</span>:</span></span><br><span class="line">        print(<span class="string">"into A __init__"</span>)</span><br><span class="line">        self.value = value</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, *args, **kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">"into A __new__"</span>)</span><br><span class="line">        print(cls)</span><br><span class="line">        <span class="keyword">return</span> object.__new__(cls)</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, value)</span>:</span></span><br><span class="line">        print(<span class="string">"into B __init__"</span>)</span><br><span class="line">        self.value = value</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls,*args,**kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">"into B __new__"</span>)</span><br><span class="line">        print(cls)</span><br><span class="line">        <span class="keyword">return</span> super().__new__(A,*args,**kwargs)  <span class="comment"># 若__new__没有正确返回当前类cls的实例，那__init__是不会被调用的，即使是父类的实例也不行，将没有__init__被调用。</span></span><br><span class="line"></span><br><span class="line">b = B(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">into B __new__</span><br><span class="line">&lt;class &#39;__main__.B&#39;&gt;</span><br><span class="line">into A __new__</span><br><span class="line">&lt;class &#39;__main__.A&#39;&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,value)</span>:</span></span><br><span class="line">        print(<span class="string">"into A __init__"</span>)</span><br><span class="line">        self.value = value</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, *args, **kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">"into A __new__"</span>)</span><br><span class="line">        print(cls)</span><br><span class="line">        <span class="keyword">return</span> object.__new__(cls)</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, value)</span>:</span></span><br><span class="line">        print(<span class="string">"into B __init__"</span>)</span><br><span class="line">        self.value = value</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls,*args,**kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">"into B __new__"</span>)</span><br><span class="line">        print(cls)</span><br><span class="line">        <span class="keyword">return</span> super().__new__(B,*args,**kwargs)   <span class="comment"># 再改__new__返回当前类B的实例，那B的__init__会被调用。与传入'cls'结果一样。</span></span><br><span class="line"></span><br><span class="line">b = B(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">into B __new__</span><br><span class="line">&lt;class &#39;__main__.B&#39;&gt;</span><br><span class="line">into A __new__</span><br><span class="line">&lt;class &#39;__main__.B&#39;&gt;</span><br><span class="line">into B __init__</span><br></pre></td></tr></table></figure>
+
+<p>new()方法的特性：</p>
+<p>new()方法是在类准备将自身实例化时调用。 </p>
+<p>new()方法始终都是类的静态方法，即使没有被加上静态方法装饰器。</p>
+<p>什么情况下使用 <strong>new</strong>() 呢？答案很简单，在 <strong>init</strong>() 不够用的时候。例如，对 Python 不可变的内置类型（如 int、str、float 等）进行子类化，这是因为一旦创建了这样不可变的对象实例，就无法在 <strong>init</strong>() 方法中对其进行修改。</p>
+<p><code>__new__</code>方法主要是当你继承一些不可变的 class 时（比如<code>int, str, tuple</code>）， 提供给你一个自定义这些类的实例化过程的途径：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CapStr</span><span class="params">(str)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls,string)</span>:</span></span><br><span class="line">        string = string.upper()</span><br><span class="line">        <span class="keyword">return</span> str.__new__(cls,string)</span><br><span class="line">    </span><br><span class="line">a = CapStr(<span class="string">"i love lsgogroup"</span>)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p>结果： I LOVE LSGOGROUP</p>
+<p>可以利用<code>__new__</code>实现单例模式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Earth</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">a = Earth()</span><br><span class="line">print(id(a))</span><br><span class="line">b = Earth()</span><br><span class="line">print(id(b))</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Earth</span>:</span></span><br><span class="line">    __instance = <span class="literal">None</span>   <span class="comment"># 定义一个类属性做判断</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> cls.__instance <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            cls.__instance = object.__new__(cls)</span><br><span class="line">            <span class="keyword">return</span> cls.__instance</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> cls.__instance</span><br><span class="line"></span><br><span class="line">a = Earth()</span><br><span class="line">print(id(a))</span><br><span class="line">b = Earth()</span><br><span class="line">print(id(b))</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1737562503208</span><br><span class="line">1737562503264</span><br><span class="line">1737562493112</span><br><span class="line">1737562493112</span><br></pre></td></tr></table></figure>
+
+<p>3）<code>__del__(self)</code> 析构器，当一个对象将要被系统回收之时调用的方法。</p>
+<p>Python 采用自动引用计数（简称 ARC）的方式实现垃圾回收GC机制。该方法的核心思想是：每个 Python 对象都会配置一个计数器，初始 Python 实例对象的计数器值都为 0，如果有变量引用该实例对象，其计数器的值会加 1，依次类推；反之，每当一个变量取消对该实例对象的引用，计数器会减 1。如果一个 Python 对象的的计数器值为 0，则表明没有变量引用该 Python 对象，即证明程序不再需要它，此时 Python 就会自动调用 <code>__del__</code>() 方法将其回收。</p>
+<p>4）<code>__str__(self)</code>：当你打印一个对象的时候；当你使用%s格式化的时候；str强转数据类型的时候，都会触发<code>__str__</code>。</p>
+<p>5）<code>__repr__(self)</code>：</p>
+<ul>
+<li><p><code>repr</code>是<code>str</code>的备胎</p>
+</li>
+<li><p>有<code>__str__</code>的时候执行<code>__str__</code>,没有实现<code>__str__</code>的时候，执行<code>__repr__</code></p>
+</li>
+<li><p><code>repr(obj)</code>内置函数对应的结果是<code>__repr__</code>的返回值</p>
+</li>
+<li><p>当你使用<code>%r</code>格式化的时候 触发<code>__repr__</code></p>
+</li>
+</ul>
+<p>  <code>__str__(self)</code> 和<code>__repr__(self)</code> 对比：</p>
+<p>  1 <code>__str__(self)</code> 的返回结果可读性强。<code>__str__</code> 的意义是得到便于人们阅读的信息，就像下面的 ‘2019-10-11’ 一样。</p>
+<p>  2 <code>__repr__(self)</code> 的返回结果应更准确。<code>__repr__</code> 存在的目的在于调试，便于开发者使用。</p>
+<p>【例子】</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line">today = datetime.date.today()</span><br><span class="line">print(str(today))  <span class="comment"># 2019-10-11</span></span><br><span class="line">print(repr(today))  <span class="comment"># datetime.date(2019, 10, 11)</span></span><br><span class="line">print(<span class="string">'%s'</span> %today)  <span class="comment"># 2019-10-11</span></span><br><span class="line">print(<span class="string">'%r'</span> %today)  <span class="comment"># datetime.date(2019, 10, 11)</span></span><br></pre></td></tr></table></figure>
+
+<p>2.算术运算符</p>
+<p>类型工厂函数，指的是“不通过类而是通过函数来创建对象”。</p>
+<p>1）<strong>add</strong>(self, other)<code>定义加法的行为：</code>+</p>
+<p>2）<strong>sub</strong>(self, other)<code>定义减法的行为：</code>-</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,height,weight)</span>:</span></span><br><span class="line">        self.height = height</span><br><span class="line">        self.weight = weight</span><br><span class="line">    <span class="comment"># 两个对象的长相加，宽不变，返回一个新的类</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__add__</span><span class="params">(self,others)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> MyClass(self.height + others.height, self.weight)</span><br><span class="line">    <span class="comment"># 两个对象的宽相减，长不变，返回一个新的类</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__sub__</span><span class="params">(self,others)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> MyClass(self.height, self.weight-others.weight)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">intro</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"高为"</span>, self.height, <span class="string">"重为"</span>, self.weight)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    a = MyClass(<span class="number">10</span>,<span class="number">5</span>)</span><br><span class="line">    a.intro()</span><br><span class="line">    b = MyClass(<span class="number">20</span>,<span class="number">10</span>)</span><br><span class="line">    b.intro()</span><br><span class="line">    c = b-a</span><br><span class="line">    c.intro()</span><br><span class="line">    d = a+b</span><br><span class="line">    d.intro()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<p>高为 10 重为 5<br>高为 20 重为 10<br>高为 20 重为 5<br>高为 30 重为 5</p>
+<p>3）<code>__mul__(self, other)</code>定义乘法的行为：<code>*</code></p>
+<p>4）<code>__truediv__(self, other)</code>定义真除法的行为：<code>/</code></p>
+<p>5）<strong>floordiv</strong>(self, other)<code>定义整数除法的行为：</code>//</p>
+<p>6）<strong>mod</strong>(self, other)<code>定义取模算法的行为：</code>%</p>
+<p>7）<code>__divmod__(self, other)</code>定义当被 <code>divmod()</code> 调用时的行为</p>
+<p>8）<code>divmod(a, b)</code>把除数和余数运算结果结合起来，返回一个包含商和余数的元组<code>(a // b, a % b)</code>。</p>
+<p>9）<code>__pow__(self, other[, module])</code>定义当被 <code>power()</code> 调用或 <code>**</code> 运算时的行为</p>
+<p>10）<code>__lshift__(self, other)</code>定义按位左移位的行为：<code>&lt;&lt;</code></p>
+<p>11）<code>__rshift__(self, other)</code>定义按位右移位的行为：<code>&gt;&gt;</code></p>
+<p>12）<code>__and__(self, other)</code>定义按位与操作的行为：<code>&amp;</code></p>
+<p>13）<code>__xor__(self, other)</code>定义按位异或操作的行为：<code>^</code></p>
+<p>14）<code>__or__(self, other)</code>定义按位或操作的行为：<code>|</code></p>
+<p>3.反算术运算符</p>
+<p>反运算魔方方法，与算术运算符保持一一对应，不同之处就是反运算的魔法方法多了一个“r”。当文件左操作不支持相应的操作时被调用。</p>
+<ul>
+<li><code>__radd__(self, other)</code>定义加法的行为：<code>+</code></li>
+<li><code>__rsub__(self, other)</code>定义减法的行为：<code>-</code></li>
+<li><code>__rmul__(self, other)</code>定义乘法的行为：<code>*</code></li>
+<li><code>__rtruediv__(self, other)</code>定义真除法的行为：<code>/</code></li>
+<li><code>__rfloordiv__(self, other)</code>定义整数除法的行为：<code>//</code></li>
+<li><code>__rmod__(self, other)</code> 定义取模算法的行为：<code>%</code></li>
+<li><code>__rdivmod__(self, other)</code>定义当被 divmod() 调用时的行为</li>
+<li><code>__rpow__(self, other[, module])</code>定义当被 power() 调用或 <code>**</code> 运算时的行为</li>
+<li><code>__rlshift__(self, other)</code>定义按位左移位的行为：<code>&lt;&lt;</code></li>
+<li><code>__rrshift__(self, other)</code>定义按位右移位的行为：<code>&gt;&gt;</code></li>
+<li><code>__rand__(self, other)</code>定义按位与操作的行为：<code>&amp;</code></li>
+<li><code>__rxor__(self, other)</code>定义按位异或操作的行为：<code>^</code></li>
+<li><code>__ror__(self, other)</code>定义按位或操作的行为：<code>|</code></li>
+<li></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a + b</span><br></pre></td></tr></table></figure>
+
+<p>这里加数是<code>a</code>，被加数是<code>b</code>，因此是<code>a</code>主动，反运算就是如果<code>a</code>对象的<code>__add__()</code>方法没有实现或者不支持相应的操作，那么 Python 就会调用<code>b</code>的<code>__radd__()</code>方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Nint</span><span class="params">(int)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__radd__</span><span class="params">(self, other)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> int.__sub__(other, self) <span class="comment"># 注意 self 在后面，1-3=-2</span></span><br><span class="line">a = Nint(<span class="number">5</span>)</span><br><span class="line">b = Nint(<span class="number">3</span>)</span><br><span class="line">print(a + b)  <span class="comment"># 8</span></span><br><span class="line">print(<span class="number">1</span> + b)  <span class="comment"># -2</span></span><br></pre></td></tr></table></figure>
+
+<p>4.增量赋值运算符</p>
+<ul>
+<li><code>__iadd__(self, other)</code>定义赋值加法的行为：<code>+=</code></li>
+<li><code>__isub__(self, other)</code>定义赋值减法的行为：<code>-=</code></li>
+<li><code>__imul__(self, other)</code>定义赋值乘法的行为：<code>*=</code></li>
+<li><code>__itruediv__(self, other)</code>定义赋值真除法的行为：<code>/=</code></li>
+<li><code>__ifloordiv__(self, other)</code>定义赋值整数除法的行为：<code>//=</code></li>
+<li><code>__imod__(self, other)</code>定义赋值取模算法的行为：<code>%=</code></li>
+<li><code>__ipow__(self, other[, modulo])</code>定义赋值幂运算的行为：<code>**=</code></li>
+<li><code>__ilshift__(self, other)</code>定义赋值按位左移位的行为：<code>&lt;&lt;=</code></li>
+<li><code>__irshift__(self, other)</code>定义赋值按位右移位的行为：<code>&gt;&gt;=</code></li>
+<li><code>__iand__(self, other)</code>定义赋值按位与操作的行为：<code>&amp;=</code></li>
+<li><code>__ixor__(self, other)</code>定义赋值按位异或操作的行为：<code>^=</code></li>
+<li><code>__ior__(self, other)</code>定义赋值按位或操作的行为：<code>|=</code></li>
+</ul>
+<p>5.一元运算符</p>
+<ul>
+<li><code>__neg__(self)</code>定义正号的行为：<code>+x</code></li>
+<li><code>__pos__(self)</code>定义负号的行为：<code>-x</code></li>
+<li><code>__abs__(self)</code>定义当被<code>abs()</code>调用时的行为</li>
+<li><code>__invert__(self)</code>定义按位求反的行为：<code>~x</code></li>
+</ul>
+<p>6.属性访问</p>
+<ul>
+<li><code>__getattr__(self, name)</code>: 定义当用户试图获取一个不存在的属性时的行为。</li>
+<li><code>__getattribute__(self, name)</code>：定义当该类的属性被访问时的行为（先调用该方法，查看是否存在该属性，若不存在，接着去调用<code>__getattr__</code>）。</li>
+<li><code>__setattr__(self, name, value)</code>：定义当一个属性被设置时的行为。</li>
+<li><code>__delattr__(self, name)</code>：定义当一个属性被删除时的行为。</li>
+</ul>
+<p>7.描述符</p>
+<p>描述符就是将某种特殊类型的类的实例指派给另一个类的属性。</p>
+<p>描述符就是将某种特殊类型的类的实例指派给另一个类的属性。</p>
+<ul>
+<li><code>__get__(self, instance, owner)</code>用于访问属性，它返回属性的值。</li>
+<li><code>__set__(self, instance, value)</code>将在属性分配操作中调用，不返回任何内容。</li>
+<li><code>__del__(self, instance)</code>控制删除操作，不返回任何内容。</li>
+</ul>
 
       
     </div>
@@ -1350,86 +1549,6 @@
 
 
   
-    <article id="post-Python-Task03" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/24/Python-Task03/" class="article-date">
-  <time datetime="2020-07-24T06:10:42.000Z" itemprop="datePublished">2020-07-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/24/Python-Task03/">Python-Task03</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Python编程基础-Task03"><a href="#Python编程基础-Task03" class="headerlink" title="Python编程基础-Task03"></a>Python编程基础-Task03</h1><h2 id="Task-3-异常处理"><a href="#Task-3-异常处理" class="headerlink" title="Task 3:异常处理"></a>Task 3:异常处理</h2><p>1.语法错误</p>
-<p>Python 的语法错误或者称之为解析错。</p>
-<p>2.异常</p>
-<p>即便 Python 程序的语法是正确的，在运行它的时候，也有可能发生错误。运行期检测到的错误被称为异常。</p>
-<p>3.异常处理</p>
-<p>1）try-except语句</p>
-<p>2）try-except Exception as e 语句。<strong>Exception匹配了所有异常，把异常名称赋给了e</strong>。当然这里不一定非得是e，你可以取任何的变量名，只是约定俗称这样写罢了。</p>
-<p>3）try-except语句 多个except子句</p>
-<p>4）try-except -else语句</p>
-<p>5）try-except -finally语句。finaly的作用是，无论except是否捕捉到异常，finally后面的代码都会执行，try获取了资源，finally释放资源，保证了收尾工作。</p>
-<p>6）with语句</p>
-<p>with…语句相当于try-finally语句的简写，可以替代try-finally的功能。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">with open(&#39;poem.txt&#39;) as f:</span><br><span class="line">	print(f.read())</span><br><span class="line">print(f.closed)</span><br></pre></td></tr></table></figure>
-
-<p>表达式open(‘poem.txt’)返回是一个_io.TextIOWrapper 类型的变量赋给f。在with语句块中就可以使用这个变量操作文件。执行with这个结构之后，f会自动关闭，相当于自带了一个finally。</p>
-<p>​    Try的工作原理是，当开始一个try语句后，python就在当前程序的上下文中作标记，这样当异常出现时就可以回到这里，try子句先执行，接下来会发生什么依赖于执行时是否出现异常。</p>
-<ol>
-<li>首先，执行 try 子句（在关键字 try 和关键字 except 之间的语句）。</li>
-<li>如果当try后的语句执行时发生异常，那么 try 子句余下的部分将被忽略。python就跳回到try并执行第一个匹配该异常的except子句，异常处理完毕，控制流就通过整个try语句（除非在处理异常时又引发新的异常）。</li>
-<li>如果在try后的语句里发生了异常，却没有匹配的except子句，异常将被递交到上层的try，或者到程序的最上层（这样将结束程序，并打印缺省的出错信息）。</li>
-<li>如果在try子句执行时没有发生异常，忽略 except 子句，python将执行else语句后的语句（如果有else的话），然后控制流通过整个try语句。</li>
-</ol>
-<p>4.抛出异常</p>
-<p>raise语句   raise [Exception [, args [, traceback]]]</p>
-<p>使用<code>raise</code>语句抛出一个指定的异常。</p>
-<p>raise 唯一的一个参数指定了要被抛出的异常。它必须是一个异常的实例或者是异常的类（也就是 Exception 的子类）。</p>
-<p>如果你只想知道这是否抛出了一个异常，并不想去处理它，那么一个简单的 raise 语句就可以再次把它抛出。</p>
-<p>5.用户自定义异常</p>
-<p>可以通过创建一个新的异常类来拥有自己的异常。异常类继承自 Exception 类，可以直接继承，或者间接继承，例如:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyError</span><span class="params">(Exception)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, value)</span>:</span></span><br><span class="line">		self.value = value</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">return</span> repr(self.value)</span><br><span class="line">  </span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">	<span class="keyword">raise</span> MyError(<span class="number">2</span>*<span class="number">2</span>)</span><br><span class="line"><span class="keyword">except</span> MyError <span class="keyword">as</span> e:</span><br><span class="line">    print(<span class="string">'My exception occurred, value:'</span>, e.value)</span><br><span class="line"></span><br><span class="line"><span class="comment"># My exception occurred, value: 4</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">raise</span> MyError(<span class="string">'oops!'</span>)</span><br><span class="line"><span class="comment">#Traceback (most recent call last):</span></span><br><span class="line"><span class="comment">#File "&lt;stdin&gt;", line 1, **in** ?</span></span><br><span class="line"><span class="comment">#__main__.MyError: 'oops!'</span></span><br></pre></td></tr></table></figure>
-
-<p>在这个例子中，类 Exception 默认的 <strong>init</strong>() 被覆盖。</p>
-<p>6.总结如下：</p>
-<p>1)except语句不是必须的，finally语句也不是必须的，但是二者必须要有一个，否则就没有try的意义了。</p>
-<p>2)except语句可以有多个，Python会按except语句的顺序依次匹配你指定的异常，如果异常已经处理就不会再进入后面的except语句。也就是说最多只有一个分支被执行。</p>
-<p>3)except语句可以以元组形式同时指定多个异常。</p>
-<p>4)except语句后面如果不指定异常类型，则默认捕获所有异常，你可以通过logging或者sys模块获取当前异常。</p>
-<p>5)如果要捕获异常后要重复抛出，请使用raise，后面不要带任何参数或信息。</p>
-<p>6)不建议捕获并抛出同一个异常，请考虑重构你的代码。</p>
-<p>7)不建议在不清楚逻辑的情况下捕获所有异常，有可能你隐藏了很严重的问题。</p>
-<p>8)尽量使用内置的异常处理语句来 替换try/except语句，比如with语句，getattr()方法。</p>
-<p>7.练习题：猜数字游戏</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line">print(<span class="string">"猜测一个0到100之间的整数。"</span>)</span><br><span class="line">x = random.randint(<span class="number">0</span>, <span class="number">100</span>)</span><br><span class="line">i = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        a = int(input(<span class="string">"第%d次猜，请输入一个整形数字:"</span> %i))</span><br><span class="line">        <span class="keyword">if</span> a &lt; x:</span><br><span class="line">            print(<span class="string">"太小"</span>)</span><br><span class="line">        <span class="keyword">elif</span> a &gt; x:</span><br><span class="line">            print(<span class="string">"太大"</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"恭喜你猜到了这个数是"</span>, a)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">except</span> ValueError:</span><br><span class="line">        print(<span class="string">"输入无效"</span>)</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        i += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>猜测一个0到100之间的整数。<br>第1次猜，请输入一个整形数字:5.5<br>输入无效<br>第2次猜，请输入一个整形数字:5<br>太小<br>第3次猜，请输入一个整形数字:50<br>太大<br>第4次猜，请输入一个整形数字:30<br>太大<br>第5次猜，请输入一个整形数字:20<br>太大<br>第6次猜，请输入一个整形数字:10<br>太小<br>第7次猜，请输入一个整形数字:15<br>太大<br>第8次猜，请输入一个整形数字:13<br>恭喜你猜到了这个数是 13</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/24/Python-Task03/" data-id="ckddxsxa40007twwc54m0cln2" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1466,6 +1585,10 @@
       <ul>
         
           <li>
+            <a href="/2020/08/19/Leetcode-Task01/">Leetcode-Task01</a>
+          </li>
+        
+          <li>
             <a href="/2020/08/07/Python-Task09/">Python-Task09</a>
           </li>
         
@@ -1479,10 +1602,6 @@
         
           <li>
             <a href="/2020/08/04/NLP-Task06/">NLP-Task06</a>
-          </li>
-        
-          <li>
-            <a href="/2020/08/04/NLP-Task05/">NLP-Task05</a>
           </li>
         
       </ul>
