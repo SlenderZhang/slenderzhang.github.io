@@ -7,15 +7,15 @@
   
   <title>Leetcode-Task02 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Leetcode编程-Task02Task 2:动态规划1.主要思想">
+  <meta name="description" content="Leetcode编程-Task02Task 2:动态规划动态规划常常适用于有重叠子问题和最优子结构性质的问题，动态规划方法所耗时间往往远少于朴素解 法。 1.主要思想 若要解一个给定问题，我们需要解其不同部分（即子问题），再根据子问题的解以得出原问题的解。动 态规划往往用于优化递归问题，例如斐波那契数列，如果运用递归的方式来求解会重复计算很多相同的 子问题，利用动态规划的思想可以减少计算量。 动态">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode-Task02">
 <meta property="og:url" content="http://yoursite.com/2020/08/23/Leetcode-Task02/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Leetcode编程-Task02Task 2:动态规划1.主要思想">
+<meta property="og:description" content="Leetcode编程-Task02Task 2:动态规划动态规划常常适用于有重叠子问题和最优子结构性质的问题，动态规划方法所耗时间往往远少于朴素解 法。 1.主要思想 若要解一个给定问题，我们需要解其不同部分（即子问题），再根据子问题的解以得出原问题的解。动 态规划往往用于优化递归问题，例如斐波那契数列，如果运用递归的方式来求解会重复计算很多相同的 子问题，利用动态规划的思想可以减少计算量。 动态">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-23T08:34:54.000Z">
-<meta property="article:modified_time" content="2020-08-23T09:05:25.531Z">
+<meta property="article:modified_time" content="2020-08-23T14:58:41.147Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -88,7 +88,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Leetcode编程-Task02"><a href="#Leetcode编程-Task02" class="headerlink" title="Leetcode编程-Task02"></a>Leetcode编程-Task02</h1><h2 id="Task-2-动态规划"><a href="#Task-2-动态规划" class="headerlink" title="Task 2:动态规划"></a>Task 2:动态规划</h2><p><strong>1.主要思想</strong></p>
+        <h1 id="Leetcode编程-Task02"><a href="#Leetcode编程-Task02" class="headerlink" title="Leetcode编程-Task02"></a>Leetcode编程-Task02</h1><h2 id="Task-2-动态规划"><a href="#Task-2-动态规划" class="headerlink" title="Task 2:动态规划"></a>Task 2:动态规划</h2><p>动态规划常常适用于<strong>有重叠子问题</strong>和<strong>最优子结构</strong>性质的问题，动态规划方法<strong>所耗时间往往远少于朴素解</strong></p>
+<p><strong>法</strong>。</p>
+<p><strong>1.主要思想</strong></p>
+<p>若要解一个给定问题，我们需要解其不同部分（即子问题），再根据子问题的解以得出原问题的解。动</p>
+<p>态规划往往用于优化递归问题，例如斐波那契数列，如果运用递归的方式来求解会重复计算很多相同的</p>
+<p>子问题，利用动态规划的思想可以减少计算量。</p>
+<p>动态规划法仅仅解决每个子问题一次，具有天然剪枝的功能，从而减少计算量，</p>
+<p>一旦某个给定子问题的解已经算出，则将其记忆化存储，以便下次需要同一个子问题解之时直接查表。</p>
+<p><strong>2.动态规划模板步骤：</strong></p>
+<p>确定动态规划状态</p>
+<p>写出状态转移方程（画出状态转移表）</p>
+<p>考虑初始化条件</p>
+<p>考虑输出状态</p>
+<p>考虑对时间，空间复杂度的优化（Bonus）</p>
+<p>3.具体来说，动态规划的一般流程就是三步：<strong>暴力的递归解法 -&gt; 带备忘录的递归解法 -&gt; 迭代的动态规划解法</strong>。</p>
+<p>就思考流程来说，就分为一下几步：<strong>找到状态和选择 -&gt; 明确 dp 数组/函数的定义 -&gt; 寻找状态之间的关系</strong>。</p>
+<p>4.动态规划法与分治法最大的差别是：适合于用动态规划法求解的问题，经分解后得到的子问题往往不是互相独立的（即下一个子阶段的求解是建立在上一个子阶段的解的基础上，进行进一步的求解）。</p>
+<p>能采用动态规划求解的问题的一般要具有3个性质：</p>
+<p>  (1) 最优化原理：如果问题的最优解所包含的子问题的解也是最优的，就称该问题具有最优子结构，即满足最优化原理。</p>
+<p>  (2) 无后效性：即某阶段状态一旦确定，就不受这个状态以后决策的影响。也就是说，某状态以后的过程不会影响以前的状态，只与当前状态有关。</p>
+<p>  （3）有重叠子问题：即子问题之间是不独立的，一个子问题在下一阶段决策中可能被多次使用到。（该性质并不是动态规划适用的必要条件，但是如果没有这条性质，动态规划算法同其他算法相比就不具备优势）</p>
 
       
     </div>
