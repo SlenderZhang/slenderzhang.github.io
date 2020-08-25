@@ -64,6 +64,64 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Leetcode-Task03" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/25/Leetcode-Task03/" class="article-date">
+  <time datetime="2020-08-25T06:30:34.000Z" itemprop="datePublished">2020-08-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/25/Leetcode-Task03/">Leetcode-Task03</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Leetcode编程-Task03"><a href="#Leetcode编程-Task03" class="headerlink" title="Leetcode编程-Task03"></a>Leetcode编程-Task03</h1><h2 id="Task-3-查找1"><a href="#Task-3-查找1" class="headerlink" title="Task 3:查找1"></a>Task 3:查找1</h2><p><strong>1.基本数据结构</strong></p>
+<p><strong>第一类： 查找有无–set</strong></p>
+<p>元素’a’是否存在，通常用set：集合</p>
+<p>set只存储键，而不需要对应其相应的值。</p>
+<p>set中的键不允许重复</p>
+<p><strong>第二类： 查找对应关系(键值对应)–dict</strong></p>
+<p>元素’a’出现了几次：dict–&gt;字典</p>
+<p>dict中的键不允许重复</p>
+<p><strong>第三类： 改变映射关系–map</strong></p>
+<p>通过将原有序列的关系映射统一表示为其他。</p>
+<p><strong>2.算法应用样例</strong></p>
+<p><strong>1）Leetcode 349.</strong> <strong>两个数组的交集</strong></p>
+<p>给定两个数组，编写一个函数来计算它们的交集。</p>
+<p>示例 1：</p>
+<p>输入：nums1 = [1,2,2,1], nums2 = [2,2]<br>输出：[2]<br>示例 2：</p>
+<p>输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]<br>输出：[9,4]</p>
+<p>说明：</p>
+<p>输出结果中的每个元素一定是唯一的。<br>我们可以不考虑输出结果的顺序。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">intersection</span><span class="params">(self, nums1: List[int], nums2: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">    array = []</span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> nums1:</span><br><span class="line">        <span class="keyword">if</span> m <span class="keyword">in</span> nums2 <span class="keyword">and</span> m <span class="keyword">not</span> <span class="keyword">in</span> array:</span><br><span class="line">            array.append(m)</span><br><span class="line">    <span class="keyword">return</span> array</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/25/Leetcode-Task03/" data-id="cke9klp6r0000iowc5hl08jrf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Leetcode-Task02" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/08/23/Leetcode-Task02/" class="article-date">
@@ -662,6 +720,9 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime, timedelta</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>now = datetime.now()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>now</span><br><span class="line">datetime.datetime(<span class="number">2015</span>, <span class="number">5</span>, <span class="number">18</span>, <span class="number">16</span>, <span class="number">57</span>, <span class="number">3</span>, <span class="number">540997</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>now + timedelta(hours=<span class="number">10</span>)</span><br><span class="line">datetime.datetime(<span class="number">2015</span>, <span class="number">5</span>, <span class="number">19</span>, <span class="number">2</span>, <span class="number">57</span>, <span class="number">3</span>, <span class="number">540997</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>now - timedelta(days=<span class="number">1</span>)</span><br><span class="line">datetime.datetime(<span class="number">2015</span>, <span class="number">5</span>, <span class="number">17</span>, <span class="number">16</span>, <span class="number">57</span>, <span class="number">3</span>, <span class="number">540997</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>now + timedelta(days=<span class="number">2</span>, hours=<span class="number">12</span>)</span><br><span class="line">datetime.datetime(<span class="number">2015</span>, <span class="number">5</span>, <span class="number">21</span>, <span class="number">4</span>, <span class="number">57</span>, <span class="number">3</span>, <span class="number">540997</span>)</span><br></pre></td></tr></table></figure>
 
 <p>可见，使用<code>timedelta</code>你可以很容易地算出前几天和后几天的时刻。</p>
+<p>查看这个时间差的秒数差别有两种方式timedelta.seconds和timedelta.total_seconds()</p>
+<p>区别在于，timedelta.seconds只是时间差的秒数，忽略天数、微秒数。</p>
+<p>timedelta.total_seconds()则包含全部，更完整。</p>
 <p>6）本地时间转换为UTC时间</p>
 <p>本地时间是指系统设定时区的时间，例如北京时间是UTC+8:00时区的时间，而UTC时间指UTC+0:00时区的时间。</p>
 <p>一个<code>datetime</code>类型有一个时区属性<code>tzinfo</code>，但是默认为<code>None</code>，所以无法区分这个<code>datetime</code>到底是哪个时区，除非强行给<code>datetime</code>设置一个时区：</p>
@@ -983,12 +1044,107 @@
 </ul>
 <p>7.描述符</p>
 <p>描述符就是将某种特殊类型的类的实例指派给另一个类的属性。</p>
-<p>描述符就是将某种特殊类型的类的实例指派给另一个类的属性。</p>
 <ul>
 <li><code>__get__(self, instance, owner)</code>用于访问属性，它返回属性的值。</li>
 <li><code>__set__(self, instance, value)</code>将在属性分配操作中调用，不返回任何内容。</li>
 <li><code>__del__(self, instance)</code>控制删除操作，不返回任何内容。</li>
 </ul>
+<p>扩展参考：公众号-LSGO软件技术团队</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIyNDA1NjA1NQ==&mid=2651011392&idx=1&sn=8dc65617504e909862113d4d1f36c2cb&chksm=f3e35ed8c494d7ce55cab936a1477998ccdf6eb865553a7174da44dcfb63b3807d3c4beb9104&token=523711417&lang=zh_CN#rd" target="_blank" rel="noopener">技术图文：什么是Python的描述符？</a></li>
+</ul>
+<p>属性查询优先级：</p>
+<p>① <code>__getattribute__()</code>， 无条件调用<br>② 数据描述符<br>③ 实例对象的字典<br>④ 类的字典<br>⑤ 非数据描述符<br>⑥ 父类的字典<br>⑦ <code>__getattr__()</code>方法</p>
+<p>8.定制序列</p>
+<p>协议（Protocols）与其它编程语言中的接口很相似，它规定你哪些方法必须要定义。然而，在 Python 中的协议就显得不那么正式。事实上，在 Python 中，协议更像是一种指南。</p>
+<p><strong>容器类型的协议</strong></p>
+<ul>
+<li>如果说你希望定制的容器是不可变的话，你只需要定义<code>__len__()</code>和<code>__getitem__()</code>方法。</li>
+<li>如果你希望定制的容器是可变的话，除了<code>__len__()</code>和<code>__getitem__()</code>方法，你还需要定义<code>__setitem__()</code>和<code>__delitem__()</code>两个方法。</li>
+</ul>
+<p>1）<code>__len__(self)</code>定义当被<code>len()</code>调用时的行为（返回容器中元素的个数）。</p>
+<p>2）<code>__getitem__(self, key)</code>定义获取容器中元素的行为，相当于<code>self[key]</code>。</p>
+<p>3）<code>__setitem__(self, key, value)</code>定义设置容器中指定元素的行为，相当于<code>self[key] = value</code>。</p>
+<p>4）<code>__delitem__(self, key)</code>定义删除容器中指定元素的行为，相当于<code>del self[key]</code>。</p>
+<p>9.迭代器</p>
+<ul>
+<li>迭代是 Python 最强大的功能之一，是访问集合元素的一种方式。</li>
+<li>迭代器是一个可以记住遍历的位置的对象。</li>
+<li>迭代器对象从集合的第一个元素开始访问，直到所有的元素被访问完结束。</li>
+<li>迭代器只能往前不会后退。</li>
+<li>字符串，列表或元组对象都可用于创建迭代器。</li>
+</ul>
+<p>可以直接作用于<code>for</code>循环的数据类型有以下几种：</p>
+<p>一类是集合数据类型，如<code>list</code>、<code>tuple</code>、<code>dict</code>、<code>set</code>、<code>str</code>等；一类是<code>generator</code>，包括生成器和带<code>yield</code>的generator function。</p>
+<p>这些可以直接作用于<code>for</code>循环的对象统称为可迭代对象：<code>Iterable</code>。</p>
+<p>可以使用<code>isinstance()</code>判断一个对象是否是<code>Iterable</code>对象：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> collections.abc <span class="keyword">import</span> Iterable</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance([], Iterable)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(&#123;&#125;, Iterable)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(<span class="string">'abc'</span>, Iterable)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance((x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)), Iterable)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(<span class="number">100</span>, Iterable)</span><br><span class="line"><span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+<p>而生成器不但可以作用于<code>for</code>循环，还可以被<code>next()</code>函数不断调用并返回下一个值，直到最后抛出<code>StopIteration</code>错误表示无法继续返回下一个值了。可以被<code>next()</code>函数调用并不断返回下一个值的对象称为迭代器：<code>Iterator</code>。</p>
+<p>可以使用<code>isinstance()</code>判断一个对象是否是<code>Iterator</code>对象：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> collections.abc <span class="keyword">import</span> Iterator</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance((x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)), Iterator)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance([], Iterator)</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(&#123;&#125;, Iterator)</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(<span class="string">'abc'</span>, Iterator)</span><br><span class="line"><span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+<p>生成器都是<code>Iterator</code>对象，但<code>list</code>、<code>dict</code>、<code>str</code>虽然是<code>Iterable</code>，却不是<code>Iterator</code>。</p>
+<p>把<code>list</code>、<code>dict</code>、<code>str</code>等<code>Iterable</code>变成<code>Iterator</code>可以使用<code>iter()</code>函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(iter([]), Iterator)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(iter(<span class="string">'abc'</span>), Iterator)</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<p>为什么<code>list</code>、<code>dict</code>、<code>str</code>等数据类型不是<code>Iterator</code>？这是因为Python的<code>Iterator</code>对象表示的是一个数据流，Iterator对象可以被<code>next()</code>函数调用并不断返回下一个数据，直到没有数据时抛出<code>StopIteration</code>错误。可以把这个数据流看做是一个有序序列，但我们却不能提前知道序列的长度，只能不断通过<code>next()</code>函数实现按需计算下一个数据，所以<code>Iterator</code>的计算是惰性的，只有在需要返回下一个数据时它才会计算。</p>
+<p><code>Iterator</code>甚至可以表示一个无限大的数据流，例如全体自然数。而使用list是永远不可能存储全体自然数的。</p>
+<p>小结：</p>
+<p>1）凡是可作用于<code>for</code>循环的对象都是<code>Iterable</code>类型；</p>
+<p>2）凡是可作用于<code>next()</code>函数的对象都是<code>Iterator</code>类型，它们表示一个惰性计算的序列；</p>
+<p>3）集合数据类型如<code>list</code>、<code>dict</code>、<code>str</code>等是<code>Iterable</code>但不是<code>Iterator</code>，不过可以通过<code>iter()</code>函数获得一个<code>Iterator</code>对象。</p>
+<p>4）Python的<code>for</code>循环本质上就是通过不断调用<code>next()</code>函数实现的。</p>
+<p>迭代器有两个基本的方法：<code>iter()</code> 和 <code>next()</code>。</p>
+<ul>
+<li><code>iter(object)</code> 函数用来生成迭代器。</li>
+<li><code>next(iterator[, default])</code> 返回迭代器的下一个项目。</li>
+<li><code>iterator</code> – 可迭代对象</li>
+<li><code>default</code> – 可选，用于设置在没有下一个元素时返回该默认值，如果不设置，又没有下一个元素则会触发 <code>StopIteration</code> 异常。</li>
+</ul>
+<p>把一个类作为一个迭代器使用需要在类中实现两个魔法方法 <code>__iter__()</code> 与 <code>__next__()</code> 。</p>
+<ul>
+<li><code>__iter__(self)</code>定义当迭代容器中的元素的行为，返回一个特殊的迭代器对象， 这个迭代器对象实现了 <code>__next__()</code> 方法并通过 <code>StopIteration</code> 异常标识迭代的完成。</li>
+<li><code>__next__()</code> 返回下一个迭代器对象。</li>
+<li><code>StopIteration</code> 异常用于标识迭代的完成，防止出现无限循环的情况，在 <code>__next__()</code> 方法中我们可以设置在完成指定循环次数后触发 <code>StopIteration</code> 异常来结束迭代。</li>
+</ul>
+<p>10.生成器</p>
+<ul>
+<li>在 Python 中，使用了 <code>yield</code> 的函数被称为生成器（generator）。</li>
+<li>跟普通函数不同的是，生成器是一个返回迭代器的函数，只能用于迭代操作，更简单点理解生成器就是一个迭代器。</li>
+<li>在调用生成器运行的过程中，每次遇到 <code>yield</code> 时函数会暂停并保存当前所有的运行信息，返回 <code>yield</code> 的值, 并在下一次执行 <code>next()</code> 方法时从当前位置继续运行。</li>
+<li>调用一个生成器函数，返回的是一个迭代器对象。</li>
+</ul>
+<p>要创建一个generator，有很多种方法。第一种方法很简单，只要把一个列表生成式的<code>[]</code>改成<code>()</code>，就创建了一个generator：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>L = [x * x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>L</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>, <span class="number">36</span>, <span class="number">49</span>, <span class="number">64</span>, <span class="number">81</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>g = (x * x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>g</span><br><span class="line">&lt;generator object &lt;genexpr&gt; at <span class="number">0x1022ef630</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>创建<code>L</code>和<code>g</code>的区别仅在于最外层的<code>[]</code>和<code>()</code>，<code>L</code>是一个list，而<code>g</code>是一个generator。</p>
+<p>我们创建一个generator后，基本上永远不会调用<code>next()</code>，而是通过<code>for</code>循环来迭代它，并且不需要关心<code>StopIteration</code>的错误。generator也是可迭代对象，可以用for循环。</p>
+<p>11.练习题</p>
+<p>1）上面提到了许多魔法方法，如<code>__new__</code>,<code>__init__</code>, <code>__str__</code>,<code>__rstr__</code>,<code>__getitem__</code>,  <code>__setitem__</code>等等，请总结它们各自的使用方法。</p>
+<p><code>__new__</code> 在一个对象实例化的时候所调用的第一个方法，在调用<code>__init__</code>初始化前，先调用<code>__new__</code>。</p>
+<p><code>__init__</code>构造器，当一个实例被创建的时候调用的初始化方法。 </p>
+<p><code>__str__</code> 当你打印一个对象的时候；当你使用%s格式化的时候；str强转数据类型的时候。返回结果可读性强。</p>
+<p><code>__repr__</code>有str的时候执行str，没有实现str的时候，执行repr。返回结果应更准确。</p>
+<p><code>__getitem__</code>定义获取容器中元素的行为，相当于<code>self[key]</code>。</p>
+<p><code>__setitem__</code> 定义设置容器中指定元素的行为，相当于<code>self[key] = value</code>。</p>
+<p>2）利用python做一个简单的定时器类</p>
+<p>要求:</p>
+<ul>
+<li>定制一个计时器的类。</li>
+<li><code>start</code>和<code>stop</code>方法代表启动计时和停止计时。</li>
+<li>假设计时器对象<code>t1</code>，<code>print(t1)</code>和直接调用<code>t1</code>均显示结果。</li>
+<li>当计时器未启动或已经停止计时时，调用<code>stop</code>方法会给予温馨的提示。</li>
+<li>两个计时器对象可以进行相加：<code>t1+t2</code>。</li>
+<li>只能使用提供的有限资源完成。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TimeTest</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.starttime = <span class="number">0</span></span><br><span class="line">        self.endtime = <span class="number">0</span></span><br><span class="line">        self.total = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""返回一个对象的描述信息"""</span></span><br><span class="line"><span class="comment">#         return "计时结果：%s" % (self.endtime - self.starttime).seconds</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"计时结果：%s"</span> % (self.total)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__add__</span><span class="params">(self,other)</span>:</span></span><br><span class="line">        together = self.total+other.total</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"两次计时共：%s 秒"</span>% together</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.starttime = datetime.now()</span><br><span class="line">        print(self.starttime)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">stop</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.starttime==<span class="number">0</span>:</span><br><span class="line">            print(<span class="string">'请先调用 start() 开始计时！'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.endtime = datetime.now()</span><br><span class="line">            print(self.endtime)</span><br><span class="line">            self.total = (self.endtime - self.starttime).total_seconds()</span><br><span class="line">            <span class="comment"># 结束后立马重新初始化变量，可以实现，重复计时</span></span><br><span class="line">            self.starttime = <span class="number">0</span></span><br><span class="line">            self.endtime = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">t1 = TimeTest()</span><br><span class="line">print(t1)</span><br><span class="line">t1.stop()</span><br><span class="line">t1.start()</span><br><span class="line"></span><br><span class="line">t2 = TimeTest()</span><br><span class="line">print(t2)</span><br><span class="line">t2.start()</span><br><span class="line"></span><br><span class="line">t1.stop()</span><br><span class="line">print(t1)</span><br><span class="line"></span><br><span class="line">t2.stop()</span><br><span class="line">print(t2)</span><br><span class="line"></span><br><span class="line">t1+t2</span><br></pre></td></tr></table></figure>
+
+<p>借鉴优化改进版本，参考：<a href="https://www.zybuluo.com/kingwhite/note/136684" target="_blank" rel="noopener">https://www.zybuluo.com/kingwhite/note/136684</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time <span class="keyword">as</span> t</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TimeCount</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.unit = [<span class="string">'年'</span>,  <span class="string">'月'</span>,  <span class="string">'天'</span>,  <span class="string">'小时'</span>,  <span class="string">'分钟'</span>,  <span class="string">'秒'</span>]</span><br><span class="line">        self.begin = <span class="number">0</span></span><br><span class="line">        self.end = <span class="number">0</span></span><br><span class="line">        self.ret = <span class="string">'未开始计时'</span></span><br><span class="line">        self.temp = <span class="number">0</span></span><br><span class="line">        self.time = []</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.ret</span><br><span class="line">    __repr__ = __str__</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__add__</span><span class="params">(self,  other)</span>:</span></span><br><span class="line">        tem = self.temp + other.temp</span><br><span class="line">        ret = <span class="string">'总共运行了'</span></span><br><span class="line">        secs = tem % <span class="number">60</span></span><br><span class="line">        minites = int((tem - secs) // <span class="number">60</span>) % <span class="number">60</span></span><br><span class="line">        hours = int((tem - minites * <span class="number">60</span> - secs) // <span class="number">3600</span>) % <span class="number">24</span> </span><br><span class="line">        days = int((tem - hours * <span class="number">3600</span> - minites * <span class="number">60</span> - secs) // <span class="number">86400</span>) % <span class="number">30</span></span><br><span class="line">        months = int((tem - days * <span class="number">86400</span> - hours * <span class="number">3600</span> - minites * <span class="number">60</span> - secs) // <span class="number">2592000</span>) % <span class="number">12</span></span><br><span class="line">        years = int((tem - months * <span class="number">2592000</span> - days * <span class="number">86400</span> - hours * <span class="number">3600</span> - minites * <span class="number">60</span> - secs) // <span class="number">31104000</span>)</span><br><span class="line">        temp = [years,  months,  days,  hours,  minites,  secs]</span><br><span class="line">        <span class="keyword">for</span> index <span class="keyword">in</span> range(<span class="number">6</span>):</span><br><span class="line">            <span class="keyword">if</span> temp[index]:</span><br><span class="line">                ret += (str(temp[index]) + self.unit[index])</span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.begin = t.time()</span><br><span class="line">        self.ret = <span class="string">'请先调用 stop() 停止计时！'</span></span><br><span class="line">        print(<span class="string">'计时开始！'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">stop</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.begin:</span><br><span class="line">            print(<span class="string">'请先调用 start() 开始计时！'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.end = t.time()</span><br><span class="line">            self.__calc()</span><br><span class="line">            print(<span class="string">'计时停止！'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__calc</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.time = []</span><br><span class="line">        self.ret = <span class="string">'总共运行了'</span></span><br><span class="line">        self.temp = self.end - self.begin</span><br><span class="line">        secs = self.temp % <span class="number">60</span></span><br><span class="line">        minites = int((self.temp - secs) // <span class="number">60</span>) % <span class="number">60</span></span><br><span class="line">        hours = int((self.temp - minites * <span class="number">60</span> - secs) // <span class="number">3600</span>) % <span class="number">24</span> </span><br><span class="line">        days = int((self.temp - hours * <span class="number">3600</span> - minites * <span class="number">60</span> - secs) // <span class="number">86400</span>) % <span class="number">30</span></span><br><span class="line">        months = int((self.temp - days * <span class="number">86400</span> - hours * <span class="number">3600</span> - minites * <span class="number">60</span> - secs) // <span class="number">2592000</span>) % <span class="number">12</span></span><br><span class="line">        years = int((self.temp - months * <span class="number">2592000</span> - days * <span class="number">86400</span> - hours * <span class="number">3600</span> - minites * <span class="number">60</span> - secs) // <span class="number">31104000</span>)</span><br><span class="line">        tem = [years,  months,  days,  hours,  minites,  secs]</span><br><span class="line">        <span class="keyword">for</span> index <span class="keyword">in</span> range(<span class="number">6</span>):</span><br><span class="line">            self.time.append(tem[index])</span><br><span class="line">            <span class="keyword">if</span> self.time[index]:</span><br><span class="line">                self.ret += (str(self.time[index]) + self.unit[index])</span><br><span class="line">        self.begin = <span class="number">0</span></span><br><span class="line">        self.end = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+
+
 
       
     </div>
@@ -1563,68 +1719,6 @@
 
 
   
-    <article id="post-NLP-Task04" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/27/NLP-Task04/" class="article-date">
-  <time datetime="2020-07-27T15:33:02.000Z" itemprop="datePublished">2020-07-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/27/NLP-Task04/">NLP-Task04</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="零基础入门NLP-新闻文本分类-Task04"><a href="#零基础入门NLP-新闻文本分类-Task04" class="headerlink" title="零基础入门NLP - 新闻文本分类-Task04"></a>零基础入门NLP - 新闻文本分类-Task04</h1><h2 id="Task04-基于深度学习的文本分类1"><a href="#Task04-基于深度学习的文本分类1" class="headerlink" title="Task04:基于深度学习的文本分类1"></a>Task04:基于深度学习的文本分类1</h2><ol>
-<li>FastText</li>
-</ol>
-<p>1)简介</p>
-<p>fastText是一个快速文本分类算法，与基于神经网络的分类算法相比有两大优点：<br>1、fastText在保持高精度的情况下加快了训练速度和测试速度<br>2、fastText不需要预训练好的词向量，fastText会自己训练词向量<br>3、fastText两个重要的优化：Hierarchical Softmax、N-gram<br>2)模型架构</p>
-<p>fastText模型架构和word2vec的CBOW模型架构非常相似。下面是fastText模型架构图：</p>
-<p><img src="https://pic1.zhimg.com/80/v2-7f38f23e98ee89d21fd16e34d5f07d69_1440w.jpg" alt="img"></p>
-<p>注意：此架构图没有展示词向量的训练过程。可以看到，和CBOW一样，fastText模型也只有三层：输入层、隐含层、输出层（Hierarchical Softmax），输入都是多个经向量表示的单词，输出都是一个特定的target，隐含层都是对多个词向量的叠加平均。不同的是，CBOW的输入是目标单词的上下文，fastText的输入是多个单词及其n-gram特征，这些特征用来表示单个文档；CBOW的输入单词被onehot编码过，fastText的输入特征是被embedding过；CBOW的输出是目标词汇，fastText的输出是文档对应的类标。</p>
-<p>3）API</p>
-<p><strong>train_unsupervised 参数 用来训练词向量模型</strong></p>
-<p><strong><em>input</em></strong> :训练文件路径<br><strong><em>model</em></strong> :无监督训练使用的模型 {cbow 和 skip-gram} 默认为skip-gram<br><strong><em>lr</em></strong> :学习率 默认为0.05<br><strong><em>dim</em></strong> : 词向量维度 默认为100<br><strong><em>ws</em></strong> :（windows size） 窗口大小 默认为5<br><strong><em>epoch</em></strong> : 默认训练五轮<br><strong><em>minCount</em></strong> : 最小词数 默认为5 当数据集略小要记得调整<br><strong><em>minCountLabel</em></strong> :=0 因为是无监督。<br><strong><em>minn</em></strong> :最小char级别的3-gram（subword）<br><strong><em>maxn</em></strong> :最大char级别的6-gram （subword）<br><strong><em>neg</em></strong> :负例采样个数 默认为5<br><strong><em>wordNgrams</em></strong> :最大的词n-gram长度 默认为1<br><strong><em>loss</em></strong> :损失函数 {ns,hs,softmax,ova} 默认是ns 负采样 ， hs 是分层softmax<br><strong><em>bucket</em></strong> : 桶数默认为2000000<br><strong><em>thread</em></strong>：cpu线程数 默认为12<br><strong><em>lrUpdateRate</em></strong>：学习率更新，默认为100<br><strong><em>t</em></strong>：负采样阈值 默认0.0001<br><strong><em>verbose</em></strong>：=2</p>
-<hr>
-<p><strong>train_supervised 参数 用来训练分类模型</strong> 没有model参数√</p>
-<p><strong><em>input</em></strong> :训练文件路径<br><strong><em>lr</em></strong> :学习率 默认为<strong>0.1</strong> √<br><strong><em>dim</em></strong> : 词向量维度 默认为100<br><strong><em>ws</em></strong> :（windows size） 窗口大小 默认为5<br><strong><em>minCount</em></strong> : 最小词数 默认为<strong>1</strong>√<br><strong><em>minCountLabel</em></strong> :=<strong>1</strong> √ 最小标签数<br><strong><em>minn</em></strong> :=<strong>0</strong>√<br><strong><em>maxn</em></strong> :=<strong>0</strong>√<br><strong><em>neg</em></strong> :负例采样个数 默认为5<br><strong><em>wordNgrams</em></strong> :最大的词n-gram长度 默认为1<br><strong><em>loss</em></strong> :损失函数 {ns,hs,softmax,ova} 默认是<strong>softmax</strong>√<br><strong><em>bucket</em></strong> : 桶数默认为2000000<br><strong><em>thread</em></strong>：cpu线程数 默认为12<br><strong><em>lrUpdateRate</em></strong>：学习率更新，默认为100<br><strong><em>t</em></strong>：负采样阈值 默认0.0001<br><strong><em>label</em></strong> :标签前缀 默认 ‘_ <em>label</em> _’√<br><strong><em>verbose</em></strong>：=2 控制打印输出 2显示每个epoch 1显示最后一个epoch<br><strong><em>pretrainedVectors</em></strong>:用于监督学习的预训练词向量（.vec文件），给出路径 ，默认为‘ ’</p>
-<p>2.基于FastText的文本分类</p>
-<ul>
-<li>pip安装</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install fasttext</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>分类模型</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> f1_score</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转换为FastText需要的格式</span></span><br><span class="line"><span class="comment"># pandas读取训练集数据</span></span><br><span class="line">train_df = pd.read_csv(<span class="string">'D:/PycharmProjects/tianchiLab/input/train_set.csv'</span>, sep=<span class="string">'\t'</span>, nrows=<span class="number">30000</span>)</span><br><span class="line">print(train_df.head())</span><br><span class="line"><span class="comment"># 拼接'__label__'和label</span></span><br><span class="line">train_df[<span class="string">'label_ft'</span>] = <span class="string">'__label__'</span> + train_df[<span class="string">'label'</span>].astype(str)</span><br><span class="line"><span class="comment"># 取前面25000条数据作为训练集</span></span><br><span class="line">train_df[[<span class="string">'text'</span>,<span class="string">'label_ft'</span>]].iloc[:<span class="number">-5000</span>].to_csv(<span class="string">'train.csv'</span>, index=<span class="literal">None</span>, header=<span class="literal">None</span>, sep=<span class="string">'\t'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> fasttext</span><br><span class="line"><span class="comment"># wordNgrams代表将一个单词和其后面的词组合在一起，如FastText原理介绍中输入层使用的例子。</span></span><br><span class="line"><span class="comment"># lr :学习率 默认为0.1。wordNgrams :最大的词n-gram长度 默认为1。verbose：=2 控制打印输出 2显示每个epoch 1显示最后一个epoch。</span></span><br><span class="line"><span class="comment"># minCount : 最小词数 默认为1。loss :损失函数 &#123;ns,hs,softmax,ova&#125; 默认是softmax。epoch : 训练轮数，默认训练五轮。</span></span><br><span class="line">model = fasttext.train_supervised(<span class="string">'train.csv'</span>, lr=<span class="number">0.5</span>, wordNgrams=<span class="number">2</span>, </span><br><span class="line">                                  verbose=<span class="number">2</span>, minCount=<span class="number">1</span>, epoch=<span class="number">25</span>, loss=<span class="string">"hs"</span>)</span><br><span class="line"><span class="comment"># 后5000条做测试集</span></span><br><span class="line">val_pred = [model.predict(x)[<span class="number">0</span>][<span class="number">0</span>].split(<span class="string">'__'</span>)[<span class="number">-1</span>] <span class="keyword">for</span> x <span class="keyword">in</span> train_df.iloc[<span class="number">-5000</span>:][<span class="string">'text'</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印f1</span></span><br><span class="line">print(f1_score(train_df[<span class="string">'label'</span>].values[<span class="number">-5000</span>:].astype(str), val_pred, average=<span class="string">'macro'</span>))</span><br></pre></td></tr></table></figure>
-
-<p>0.87332537480972</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/27/NLP-Task04/" data-id="ckddxsxa00003twwc8ojz6ioz" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1661,6 +1755,10 @@
       <ul>
         
           <li>
+            <a href="/2020/08/25/Leetcode-Task03/">Leetcode-Task03</a>
+          </li>
+        
+          <li>
             <a href="/2020/08/23/Leetcode-Task02/">Leetcode-Task02</a>
           </li>
         
@@ -1674,10 +1772,6 @@
         
           <li>
             <a href="/2020/08/07/Python-Task08/">Python-Task08</a>
-          </li>
-        
-          <li>
-            <a href="/2020/08/05/Python-Task07/">Python-Task07</a>
           </li>
         
       </ul>

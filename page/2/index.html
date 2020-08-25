@@ -64,6 +64,68 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-NLP-Task04" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/27/NLP-Task04/" class="article-date">
+  <time datetime="2020-07-27T15:33:02.000Z" itemprop="datePublished">2020-07-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/27/NLP-Task04/">NLP-Task04</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="零基础入门NLP-新闻文本分类-Task04"><a href="#零基础入门NLP-新闻文本分类-Task04" class="headerlink" title="零基础入门NLP - 新闻文本分类-Task04"></a>零基础入门NLP - 新闻文本分类-Task04</h1><h2 id="Task04-基于深度学习的文本分类1"><a href="#Task04-基于深度学习的文本分类1" class="headerlink" title="Task04:基于深度学习的文本分类1"></a>Task04:基于深度学习的文本分类1</h2><ol>
+<li>FastText</li>
+</ol>
+<p>1)简介</p>
+<p>fastText是一个快速文本分类算法，与基于神经网络的分类算法相比有两大优点：<br>1、fastText在保持高精度的情况下加快了训练速度和测试速度<br>2、fastText不需要预训练好的词向量，fastText会自己训练词向量<br>3、fastText两个重要的优化：Hierarchical Softmax、N-gram<br>2)模型架构</p>
+<p>fastText模型架构和word2vec的CBOW模型架构非常相似。下面是fastText模型架构图：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-7f38f23e98ee89d21fd16e34d5f07d69_1440w.jpg" alt="img"></p>
+<p>注意：此架构图没有展示词向量的训练过程。可以看到，和CBOW一样，fastText模型也只有三层：输入层、隐含层、输出层（Hierarchical Softmax），输入都是多个经向量表示的单词，输出都是一个特定的target，隐含层都是对多个词向量的叠加平均。不同的是，CBOW的输入是目标单词的上下文，fastText的输入是多个单词及其n-gram特征，这些特征用来表示单个文档；CBOW的输入单词被onehot编码过，fastText的输入特征是被embedding过；CBOW的输出是目标词汇，fastText的输出是文档对应的类标。</p>
+<p>3）API</p>
+<p><strong>train_unsupervised 参数 用来训练词向量模型</strong></p>
+<p><strong><em>input</em></strong> :训练文件路径<br><strong><em>model</em></strong> :无监督训练使用的模型 {cbow 和 skip-gram} 默认为skip-gram<br><strong><em>lr</em></strong> :学习率 默认为0.05<br><strong><em>dim</em></strong> : 词向量维度 默认为100<br><strong><em>ws</em></strong> :（windows size） 窗口大小 默认为5<br><strong><em>epoch</em></strong> : 默认训练五轮<br><strong><em>minCount</em></strong> : 最小词数 默认为5 当数据集略小要记得调整<br><strong><em>minCountLabel</em></strong> :=0 因为是无监督。<br><strong><em>minn</em></strong> :最小char级别的3-gram（subword）<br><strong><em>maxn</em></strong> :最大char级别的6-gram （subword）<br><strong><em>neg</em></strong> :负例采样个数 默认为5<br><strong><em>wordNgrams</em></strong> :最大的词n-gram长度 默认为1<br><strong><em>loss</em></strong> :损失函数 {ns,hs,softmax,ova} 默认是ns 负采样 ， hs 是分层softmax<br><strong><em>bucket</em></strong> : 桶数默认为2000000<br><strong><em>thread</em></strong>：cpu线程数 默认为12<br><strong><em>lrUpdateRate</em></strong>：学习率更新，默认为100<br><strong><em>t</em></strong>：负采样阈值 默认0.0001<br><strong><em>verbose</em></strong>：=2</p>
+<hr>
+<p><strong>train_supervised 参数 用来训练分类模型</strong> 没有model参数√</p>
+<p><strong><em>input</em></strong> :训练文件路径<br><strong><em>lr</em></strong> :学习率 默认为<strong>0.1</strong> √<br><strong><em>dim</em></strong> : 词向量维度 默认为100<br><strong><em>ws</em></strong> :（windows size） 窗口大小 默认为5<br><strong><em>minCount</em></strong> : 最小词数 默认为<strong>1</strong>√<br><strong><em>minCountLabel</em></strong> :=<strong>1</strong> √ 最小标签数<br><strong><em>minn</em></strong> :=<strong>0</strong>√<br><strong><em>maxn</em></strong> :=<strong>0</strong>√<br><strong><em>neg</em></strong> :负例采样个数 默认为5<br><strong><em>wordNgrams</em></strong> :最大的词n-gram长度 默认为1<br><strong><em>loss</em></strong> :损失函数 {ns,hs,softmax,ova} 默认是<strong>softmax</strong>√<br><strong><em>bucket</em></strong> : 桶数默认为2000000<br><strong><em>thread</em></strong>：cpu线程数 默认为12<br><strong><em>lrUpdateRate</em></strong>：学习率更新，默认为100<br><strong><em>t</em></strong>：负采样阈值 默认0.0001<br><strong><em>label</em></strong> :标签前缀 默认 ‘_ <em>label</em> _’√<br><strong><em>verbose</em></strong>：=2 控制打印输出 2显示每个epoch 1显示最后一个epoch<br><strong><em>pretrainedVectors</em></strong>:用于监督学习的预训练词向量（.vec文件），给出路径 ，默认为‘ ’</p>
+<p>2.基于FastText的文本分类</p>
+<ul>
+<li>pip安装</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install fasttext</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>分类模型</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> f1_score</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转换为FastText需要的格式</span></span><br><span class="line"><span class="comment"># pandas读取训练集数据</span></span><br><span class="line">train_df = pd.read_csv(<span class="string">'D:/PycharmProjects/tianchiLab/input/train_set.csv'</span>, sep=<span class="string">'\t'</span>, nrows=<span class="number">30000</span>)</span><br><span class="line">print(train_df.head())</span><br><span class="line"><span class="comment"># 拼接'__label__'和label</span></span><br><span class="line">train_df[<span class="string">'label_ft'</span>] = <span class="string">'__label__'</span> + train_df[<span class="string">'label'</span>].astype(str)</span><br><span class="line"><span class="comment"># 取前面25000条数据作为训练集</span></span><br><span class="line">train_df[[<span class="string">'text'</span>,<span class="string">'label_ft'</span>]].iloc[:<span class="number">-5000</span>].to_csv(<span class="string">'train.csv'</span>, index=<span class="literal">None</span>, header=<span class="literal">None</span>, sep=<span class="string">'\t'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> fasttext</span><br><span class="line"><span class="comment"># wordNgrams代表将一个单词和其后面的词组合在一起，如FastText原理介绍中输入层使用的例子。</span></span><br><span class="line"><span class="comment"># lr :学习率 默认为0.1。wordNgrams :最大的词n-gram长度 默认为1。verbose：=2 控制打印输出 2显示每个epoch 1显示最后一个epoch。</span></span><br><span class="line"><span class="comment"># minCount : 最小词数 默认为1。loss :损失函数 &#123;ns,hs,softmax,ova&#125; 默认是softmax。epoch : 训练轮数，默认训练五轮。</span></span><br><span class="line">model = fasttext.train_supervised(<span class="string">'train.csv'</span>, lr=<span class="number">0.5</span>, wordNgrams=<span class="number">2</span>, </span><br><span class="line">                                  verbose=<span class="number">2</span>, minCount=<span class="number">1</span>, epoch=<span class="number">25</span>, loss=<span class="string">"hs"</span>)</span><br><span class="line"><span class="comment"># 后5000条做测试集</span></span><br><span class="line">val_pred = [model.predict(x)[<span class="number">0</span>][<span class="number">0</span>].split(<span class="string">'__'</span>)[<span class="number">-1</span>] <span class="keyword">for</span> x <span class="keyword">in</span> train_df.iloc[<span class="number">-5000</span>:][<span class="string">'text'</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印f1</span></span><br><span class="line">print(f1_score(train_df[<span class="string">'label'</span>].values[<span class="number">-5000</span>:].astype(str), val_pred, average=<span class="string">'macro'</span>))</span><br></pre></td></tr></table></figure>
+
+<p>0.87332537480972</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/27/NLP-Task04/" data-id="ckddxsxa00003twwc8ojz6ioz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Python-Task04" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/27/Python-Task04/" class="article-date">
@@ -835,6 +897,10 @@
       <ul>
         
           <li>
+            <a href="/2020/08/25/Leetcode-Task03/">Leetcode-Task03</a>
+          </li>
+        
+          <li>
             <a href="/2020/08/23/Leetcode-Task02/">Leetcode-Task02</a>
           </li>
         
@@ -848,10 +914,6 @@
         
           <li>
             <a href="/2020/08/07/Python-Task08/">Python-Task08</a>
-          </li>
-        
-          <li>
-            <a href="/2020/08/05/Python-Task07/">Python-Task07</a>
           </li>
         
       </ul>
